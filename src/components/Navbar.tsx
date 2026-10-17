@@ -159,7 +159,7 @@ export const Navbar: React.FC = () => {
                 FAM1MEDIA
               </span>
               <span className="font-sans text-xs text-neutral-500 font-medium tracking-wide hidden sm:inline">
-                Hospitality Growth Engine
+                Creative Growth Partner
               </span>
             </a>
           </div>
@@ -167,9 +167,9 @@ export const Navbar: React.FC = () => {
           {/* Cell 2: Live Status Cell (Desktop) */}
           <div className="hidden lg:flex h-full items-center px-6 border-r border-black/15 gap-2.5 font-sans text-xs text-neutral-600 font-medium">
             <span className="w-2 h-2 bg-[#10B981] inline-block" />
-            <span className="uppercase tracking-wider font-semibold text-[#0D0D0D]">Accepting Q4 Flagships</span>
+            <span className="uppercase tracking-wider font-semibold text-[#0D0D0D]">Accepting Q4 Collaborations</span>
             <span className="text-neutral-400">·</span>
-            <span className="text-xs text-neutral-500">3–5 Spots Per District</span>
+            <span className="text-xs text-neutral-500">Brands & Creators</span>
           </div>
 
           {/* Cell 3: Desktop Navigation Links */}

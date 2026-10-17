@@ -11,7 +11,7 @@ interface VelocityMarqueeProps {
 }
 
 export const VelocityMarquee: React.FC<VelocityMarqueeProps> = ({
-  text = 'FULL-STACK RESTAURANT GROWTH — PREDICTABLE COVERS — HIGH-MARGIN HOSPITALITY — ',
+  text = 'WHERE BRANDS MEET CREATIVITY — SCRIPTING & STRATEGY — CAPTURING & EDITING — SOCIAL MEDIA HANDLING — INFLUENCER COLLABORATIONS — ',
   className = '',
   dark = false,
 }) => {

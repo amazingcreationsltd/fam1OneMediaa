@@ -10,16 +10,16 @@ export const CalculatorAndContact: React.FC = () => {
 
   // Brand Calculator State
   const [budget, setBudget] = useState<number>(7500);
-  const [industry, setIndustry] = useState<string>('restaurant');
+  const [industry, setIndustry] = useState<string>('ecommerce');
 
   // Creator Calculator State
   const [followers, setFollowers] = useState<number>(120000);
-  const [niche, setNiche] = useState<string>('food');
+  const [niche, setNiche] = useState<string>('lifestyle');
 
   // Form Fields - Brand
   const [brandName, setBrandName] = useState('');
   const [brandEmail, setBrandEmail] = useState('');
-  const [brandGoal, setBrandGoal] = useState('footfall');
+  const [brandGoal, setBrandGoal] = useState('creative');
   const [brandBudget, setBrandBudget] = useState('5000-15000');
   const [brandMessage, setBrandMessage] = useState('');
 
@@ -42,14 +42,14 @@ export const CalculatorAndContact: React.FC = () => {
   const creatorsCount = Math.max(2, Math.round(budget / 800));
   const creatorRange = `${creatorsCount - 1} – ${creatorsCount + 2} Verified Creators`;
 
-  let footfallDisplay = '';
-  if (industry === 'restaurant' || industry === 'retail') {
-    const liftLow = Math.min(420, Math.round(budget * 0.035 + 90));
-    const liftHigh = liftLow + 80;
-    footfallDisplay = `+${liftLow}% – +${liftHigh}% Lift`;
+  let growthDisplay = '';
+  if (industry === 'ecommerce' || industry === 'consumer') {
+    const roas = (3.8 + budget / 6000).toFixed(1);
+    growthDisplay = `${roas}x Attributed ROAS`;
   } else {
-    const roas = (3.4 + budget / 10000).toFixed(1);
-    footfallDisplay = `${roas}x Attributed ROAS`;
+    const liftLow = Math.min(480, Math.round(budget * 0.04 + 110));
+    const liftHigh = liftLow + 90;
+    growthDisplay = `+${liftLow}% – +${liftHigh}% Lift`;
   }
 
   // Calculations: Creator
@@ -103,7 +103,7 @@ export const CalculatorAndContact: React.FC = () => {
                   : 'text-white/60 hover:text-white'
               }`}
             >
-              Restaurant Brands
+              Brand & Businesses
             </button>
             <button
               type="button"
@@ -135,7 +135,7 @@ export const CalculatorAndContact: React.FC = () => {
               </h3>
               <p className="font-sans text-sm text-white/60 leading-relaxed">
                 {audience === 'brand'
-                  ? 'Calculated from 14+ verified district rollouts across hospitality dining flagships.'
+                  ? 'Calculated from 25+ verified brand campaigns across e-commerce, tech, and consumer lifestyle.'
                   : 'Algorithmic rate projection factoring commercial rights buyout and production overhead.'}
               </p>
             </div>
@@ -177,9 +177,9 @@ export const CalculatorAndContact: React.FC = () => {
                   </div>
                   <div className="grid grid-cols-3 gap-px bg-white/15 border border-white/15">
                     {[
-                      { id: 'restaurant', label: 'DINING' },
-                      { id: 'retail', label: 'HOSPITALITY' },
-                      { id: 'dtc', label: 'BEVERAGE' }
+                      { id: 'ecommerce', label: 'E-COMMERCE' },
+                      { id: 'consumer', label: 'CONSUMER' },
+                      { id: 'b2b', label: 'TECH & B2B' }
                     ].map((item) => (
                       <button
                         key={item.id}
@@ -212,9 +212,9 @@ export const CalculatorAndContact: React.FC = () => {
                     </span>
                   </div>
                   <div className="p-4 flex justify-between items-center bg-[#FACC15]/10">
-                    <span className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-bold">Projected Footfall Surge</span>
+                    <span className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-bold">Projected Campaign Yield</span>
                     <span className="font-display font-black text-2xl text-[#10B981] tabular-nums">
-                      {footfallDisplay}
+                      {growthDisplay}
                     </span>
                   </div>
                 </div>
@@ -255,9 +255,9 @@ export const CalculatorAndContact: React.FC = () => {
                   </div>
                   <div className="grid grid-cols-3 gap-px bg-white/15 border border-white/15">
                     {[
-                      { id: 'food', label: 'CULINARY' },
-                      { id: 'tech', label: 'LIFESTYLE' },
-                      { id: 'lifestyle', label: 'TRAVEL' }
+                      { id: 'lifestyle', label: 'LIFESTYLE' },
+                      { id: 'tech', label: 'TECH & GEAR' },
+                      { id: 'culture', label: 'CULTURE & ART' }
                     ].map((item) => (
                       <button
                         key={item.id}
@@ -339,12 +339,12 @@ export const CalculatorAndContact: React.FC = () => {
                   {/* Field 01 */}
                   <div className="space-y-2">
                     <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
-                      Restaurant or Brand Name *
+                      Brand or Company Name *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Osteria Botanica Group"
+                      placeholder="e.g. Lumina Lifestyle Group"
                       value={brandName}
                       onChange={(e) => setBrandName(e.target.value)}
                       className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
@@ -359,7 +359,7 @@ export const CalculatorAndContact: React.FC = () => {
                     <input
                       type="email"
                       required
-                      placeholder="partner@hospitality.com"
+                      placeholder="partner@yourbrand.com"
                       value={brandEmail}
                       onChange={(e) => setBrandEmail(e.target.value)}
                       className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
@@ -378,10 +378,12 @@ export const CalculatorAndContact: React.FC = () => {
                       onChange={(e) => setBrandGoal(e.target.value)}
                       className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
                     >
-                      <option className="bg-[#0A0A0A] text-white" value="footfall">Local Dining / Hospitality Footfall Surge</option>
-                      <option className="bg-[#0A0A0A] text-white" value="web">Conversion Web Platform & Care Plan</option>
-                      <option className="bg-[#0A0A0A] text-white" value="reels">Viral 9:16 Video Creative Production</option>
-                      <option className="bg-[#0A0A0A] text-white" value="integrated">Full Ecosystem (Footfall + Web + Video)</option>
+                      <option className="bg-[#0A0A0A] text-white" value="creative">Scripting & 4K Creative Production</option>
+                      <option className="bg-[#0A0A0A] text-white" value="social">Social Media Handling & Account Management</option>
+                      <option className="bg-[#0A0A0A] text-white" value="influencer">Influencer & Brand Collaborations</option>
+                      <option className="bg-[#0A0A0A] text-white" value="campaigns">Digital & Outdoor Advertising Campaigns</option>
+                      <option className="bg-[#0A0A0A] text-white" value="web">Website Design & Conversion Platform</option>
+                      <option className="bg-[#0A0A0A] text-white" value="integrated">Full Ecosystem (Creative + Social + Collabs)</option>
                     </select>
                   </div>
 
@@ -397,7 +399,7 @@ export const CalculatorAndContact: React.FC = () => {
                     >
                       <option className="bg-[#0A0A0A] text-white" value="3000-5000">$3,000 – $5,000 / Month (Pilot)</option>
                       <option className="bg-[#0A0A0A] text-white" value="5000-15000">$5,000 – $15,000 / Month (Flagship Growth)</option>
-                      <option className="bg-[#0A0A0A] text-white" value="15000+">$15,000+ / Month (Enterprise Multi-District)</option>
+                      <option className="bg-[#0A0A0A] text-white" value="15000+">$15,000+ / Month (Enterprise Scale)</option>
                     </select>
                   </div>
                 </div>
@@ -405,11 +407,11 @@ export const CalculatorAndContact: React.FC = () => {
                 {/* Field 05 */}
                 <div className="space-y-2">
                   <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
-                    District Footprint & Target Locations
+                    Target Audience & Campaign Objectives
                   </label>
                   <textarea
                     rows={3}
-                    placeholder="Specify city, district boundaries, target seating capacity, or launch deadlines..."
+                    placeholder="Specify target audience, ideal creator profiles, deliverables, or launch deadlines..."
                     value={brandMessage}
                     onChange={(e) => setBrandMessage(e.target.value)}
                     className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors resize-none"
@@ -479,7 +481,7 @@ export const CalculatorAndContact: React.FC = () => {
                     <input
                       type="text"
                       required
-                      placeholder="@elenacooks"
+                      placeholder="@creatorhandle"
                       value={creatorHandle}
                       onChange={(e) => setCreatorHandle(e.target.value)}
                       className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"

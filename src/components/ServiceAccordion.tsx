@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArchitecturalSection } from './layout/ArchitecturalSection';
 import { MaskedHeading } from './motion/RevealWrappers';
-import { Megaphone, Users, Utensils, Share2, Video, Calendar } from 'lucide-react';
+import { FileText, Video, Share2, Users, Megaphone, Globe } from 'lucide-react';
 
 export interface AccordionItemData {
   id: number;
@@ -18,82 +18,82 @@ const ACCORDION_ITEMS: AccordionItemData[] = [
   {
     id: 1,
     index: '01',
-    category: 'Brand Architecture',
-    title: 'Marketing Campaigns & Performance Conversion',
-    icon: <Megaphone className="w-4 h-4 text-[#FACC15]" />,
+    category: 'Creative Strategy',
+    title: 'Scripting and Creative Strategy',
+    icon: <FileText className="w-4 h-4 text-[#FACC15]" />,
+    badge: 'Core Foundation',
     content:
-      'We architect synchronized multi-channel growth campaigns combining paid algorithmic media with organic creator blitzes. Every campaign is backed by sub-second booking pages and measurable transaction attribution from day one.',
+      'We turn high-level brand ideas into campaign-ready scripts, promotional video concepts, and narrative storytelling arcs. Every concept is engineered with algorithmic 3-second hook mechanics and audience retention strategies.',
     metrics: [
-      { label: 'Attributed ROAS', value: '4.2x Avg' },
-      { label: 'Conversion Speed', value: '< 380ms TTFB' }
+      { label: 'Script Turnaround', value: '72h Rapid SLA' },
+      { label: 'Hook Formula', value: 'Retention-First' }
     ]
   },
   {
     id: 2,
     index: '02',
-    category: 'Talent Brokerage',
-    title: 'Tier-One Influencer Partnerships & Contract Indemnity',
-    icon: <Users className="w-4 h-4 text-[#FACC15]" />,
+    category: 'Production Studio',
+    title: 'Capturing and Editing (4K Video & Short-Form)',
+    icon: <Video className="w-4 h-4 text-[#FACC15]" />,
+    badge: 'In-House Studio',
     content:
-      'Zero guesswork matchmaking. We audit demographic follower integrity, negotiate tier-one deal equity, and lock down 100% legal usage rights so brands scale safely and creators earn transparent commercial equity.',
+      'Full video production, promotional shoots, commercial brand advertisements, and high-retention 9:16 short-form content for Instagram Reels and YouTube Shorts. Combined with kinetic editing, motion graphics, and precision sound design.',
     metrics: [
-      { label: 'Audit Floor', value: '> 4.8% Engagement' },
-      { label: 'Usage Clearance', value: '100% Guaranteed' }
+      { label: 'Capture Quality', value: '4K ProRes / Cinema' },
+      { label: 'Post Turnaround', value: '48h Master Delivery' }
     ]
   },
   {
     id: 3,
     index: '03',
-    category: 'Outdoor & Hyper-Local',
-    title: 'Outdoor Campaigns: 3–5 Curated Restaurants Per District',
-    icon: <Utensils className="w-4 h-4 text-[#10B981]" />,
-    badge: 'Signature Engine',
+    category: 'Growth & Relevance',
+    title: 'Social Media Handling & Account Management',
+    icon: <Share2 className="w-4 h-4 text-[#FACC15]" />,
     content:
-      'We curate 3 to 5 premier restaurants and lifestyle flagships in every target district, then deploy high-impact localized creator blitzes, digital window takeovers, and geofenced customer booking funnels that create multi-week queues.',
+      'Complete end-to-end management of brand social accounts. We direct content calendars, daily publishing cadences, community engagement, brand voice consistency, audience growth, and ongoing performance optimization.',
     metrics: [
-      { label: 'District Footfall Lift', value: '+340% Average' },
-      { label: 'Curated Roster', value: '3–5 Spots / District' }
+      { label: 'Publishing Cadence', value: 'Daily 7/7 Cadence' },
+      { label: 'Community Response', value: '< 2 Hour SLA' }
     ]
   },
   {
     id: 4,
     index: '04',
-    category: 'Daily Relevance',
-    title: 'Hands-On Daily Social Media Management',
-    icon: <Share2 className="w-4 h-4 text-[#FACC15]" />,
+    category: 'Talent Matchmaking',
+    title: 'Influencer and Brand Collaborations',
+    icon: <Users className="w-4 h-4 text-[#FACC15]" />,
     content:
-      'Content creation, algorithmic scheduling, trend-jacking, comment routing, and community care. Our operators run your brand channels 7 days a week to ensure your business remains culturally and algorithmically relevant every single day.',
+      'Connecting relevant brands with vetted creators and influencers. We oversee campaign planning, coordination, contract negotiations, commercial usage rights licensing, and ongoing creator-brand relationship management.',
     metrics: [
-      { label: 'Posting Frequency', value: 'Daily 7/7 Cadence' },
-      { label: 'Retention Score', value: '84.2% Hook Avg' }
+      { label: 'Talent Audit Floor', value: '> 4.8% Engagement' },
+      { label: 'Usage Clearance', value: '100% Guaranteed' }
     ]
   },
   {
     id: 5,
     index: '05',
-    category: 'Creator Studio',
-    title: 'Creator Trio: Scripting, Capturing + 4K Editing, Social Handling',
-    icon: <Video className="w-4 h-4 text-[#FACC15]" />,
-    badge: 'Creator Suite',
+    category: 'Audience Acquisition',
+    title: 'Marketing Campaigns (Digital & Outdoor Advertising)',
+    icon: <Megaphone className="w-4 h-4 text-[#FACC15]" />,
+    badge: 'Multi-Channel',
     content:
-      'A complete operational cockpit for represented talent: 1. Scripting (algorithmic hook structures) → 2. Capturing + 4K Editing (cinematic 9:16 post-production with 48h turnarounds) → 3. Social Media Handling (deal brokerage & syndicate distribution).',
+      'Synchronized digital advertising and integrated marketing campaigns paired with urban outdoor advertising and billboard takeovers. Engineered around your specific audience to maximize awareness and generate tracked conversions.',
     metrics: [
-      { label: 'Revision Turnaround', value: '< 48 Hours' },
-      { label: 'Video Quality', value: 'ProRes 4K Vertical' }
+      { label: 'Attributed ROAS', value: '4.8x Average' },
+      { label: 'Campaign Reach', value: 'Multi-District' }
     ]
   },
   {
     id: 6,
     index: '06',
-    category: 'Future Scope',
-    title: 'Future Scope → Event Management & Experiential Pop-Ups',
-    icon: <Calendar className="w-4 h-4 text-[#FACC15]" />,
-    badge: 'Upcoming Roadmap',
+    category: 'Conversion Platforms',
+    title: 'Website Design & Conversion Platforms',
+    icon: <Globe className="w-4 h-4 text-[#FACC15]" />,
     content:
-      'Expanding into high-production physical activations: VIP dining launches, invite-only creator summits, brand immersive pop-ups, and district-wide hospitality galas engineered to dominate real-world and digital feeds alike.',
+      'Modern business and brand websites, bespoke portfolio showcases, and high-converting landing pages. Built with sub-400ms page speeds, architectural editorial typography, and seamless lead acquisition funnels.',
     metrics: [
-      { label: 'Rollout Phase', value: 'Q3/Q4 Expansion' },
-      { label: 'Event Capacity', value: 'VIP to 1,000+ Guests' }
+      { label: 'Speed Benchmark', value: '< 380ms TTFB' },
+      { label: 'Conversion Lift', value: '+42% Benchmark' }
     ]
   }
 ];
@@ -115,7 +115,7 @@ export const ServiceAccordion: React.FC = () => {
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 font-tech text-xs uppercase tracking-wider text-black/60 mb-3 font-semibold">
               <span className="w-2 h-2 bg-[#FACC15]" />
-              <span>Full-Spectrum Hospitality Capabilities</span>
+              <span>Full-Spectrum Creative & Marketing Capabilities</span>
             </div>
             <MaskedHeading
               as="h2"
@@ -126,7 +126,7 @@ export const ServiceAccordion: React.FC = () => {
           </div>
           <div className="flex items-center gap-3 py-2 px-4 border border-black/15 font-sans text-xs uppercase tracking-wider text-[#0D0D0D] shrink-0 self-start lg:self-auto font-semibold">
             <span className="w-2 h-2 bg-[#10B981]" />
-            <span>Capacity: 94% Allocated</span>
+            <span>Capacity: Open for Q4</span>
           </div>
         </div>
 

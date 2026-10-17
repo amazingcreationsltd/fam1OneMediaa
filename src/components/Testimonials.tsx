@@ -6,7 +6,7 @@ interface TestimonialItem {
   id: string;
   index: string;
   role: string;
-  roleType: 'CREATOR' | 'HOSPITALITY';
+  roleType: 'CREATOR' | 'BRAND';
   quote: string;
   author: string;
   title: string;
@@ -19,28 +19,28 @@ const TESTIMONIALS: TestimonialItem[] = [
   {
     id: 'creator-chen',
     index: '01',
-    role: 'Creator Representation',
+    role: 'Creator Partner',
     roleType: 'CREATOR',
     quote:
-      'They secured three six-figure brand partnerships in my first month and took video post-production completely off my plate. My engagement surged 40% while my administrative overhead vanished.',
+      'Fam1Media aligned me with top-tier brand partnerships and took 4K video post-production completely off my plate. My hook retention surged while I focused 100% on creative storytelling.',
     author: 'Sarah Chen',
-    title: 'Lifestyle & Culinary Creator · 480K Audience',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
+    title: 'Visual Storyteller & Digital Creator · 480K Audience',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
     metric: '+40%',
     metricLabel: 'Engagement Lift'
   },
   {
-    id: 'brand-rossi',
+    id: 'brand-vance',
     index: '02',
-    role: 'Hospitality Partner',
-    roleType: 'HOSPITALITY',
+    role: 'Brand Partner',
+    roleType: 'BRAND',
     quote:
-      'Our flagship dining launch had a queue around the block for three consecutive weeks thanks to Fam1Media’s hyper-local creator blitz and sub-second booking lander. Measurable revenue attribution from day one.',
-    author: 'Marco Rossi',
-    title: 'Managing Partner, Osteria Botanica Group',
-    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
-    metric: '3 WEEKS',
-    metricLabel: 'Continuous Queue'
+      'Fam1Media turned our product launch into an integrated movement: scripted campaign concepts, vetted creator matchmaking, and a high-converting website. We achieved 4.8x ROAS and immediate sellout.',
+    author: 'Julian Vance',
+    title: 'Founder & CEO, Lumina Lifestyle Group',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    metric: '4.8X ROAS',
+    metricLabel: 'Attributed Campaign Yield'
   }
 ];
 

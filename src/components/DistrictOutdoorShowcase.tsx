@@ -6,7 +6,7 @@ interface CaseStudy {
   id: string;
   category: string;
   title: string;
-  cuisine: string;
+  niche: string;
   location: string;
   lift: string;
   views: string;
@@ -19,52 +19,52 @@ interface CaseStudy {
 const CASE_STUDIES: CaseStudy[] = [
   {
     id: '01',
-    category: 'FINE DINING & HOSPITALITY',
-    title: 'Osteria Botanica Dining Blitz',
-    cuisine: 'Modern Italian & Hand-Rolled Pasta',
-    location: 'Dean Street, Soho',
-    lift: '+340% FOOTFALL',
-    views: '4.8M VIEWS',
-    revenue: '$480K REVENUE',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85',
+    category: 'E-COMMERCE & FASHION',
+    title: 'Apex Apparel Global Rebrand',
+    niche: 'High-Performance Streetwear',
+    location: 'New York · Direct-To-Consumer',
+    lift: '+380% ROAS LIFT',
+    views: '12.4M VIEWS',
+    revenue: '$1.2M GMV',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=85',
     cols: 'col-span-12 lg:col-span-7',
   },
   {
     id: '02',
-    category: 'ROBATA & SPECIALTY DINING',
-    title: 'Kuro Charcoal Wagyu Launch',
-    cuisine: 'Robata & Wagyu Tasting Menu',
-    location: 'Wardour Street, Soho',
-    lift: '+285% COVERS',
-    views: '3.9M VIEWS',
-    revenue: '$360K REVENUE',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85',
+    category: 'CREATOR COLLABORATION & DROP',
+    title: 'Lumina Sound Multi-Channel Drop',
+    niche: 'Audio Tech & Hardware',
+    location: 'London · Global Creator Network',
+    lift: '+420% ENGAGEMENT',
+    views: '8.6M VIEWS',
+    revenue: '$640K REVENUE',
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85',
     cols: 'col-span-12 lg:col-span-5',
     staggerClass: 'lg:pt-20',
   },
   {
     id: '03',
-    category: 'ARTISANAL PATISSERIE',
-    title: 'Velvet Hour Patisserie Morning Rush',
-    cuisine: 'Artisanal Bakery & Specialty Roast',
-    location: 'Berwick Street, Soho',
-    lift: '+410% VISITATION',
-    views: '6.2M VIEWS',
-    revenue: '$290K REVENUE',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=85',
+    category: 'OUTDOOR & URBAN ADVERTISING',
+    title: 'Verve Botanicals City Takeover',
+    niche: 'Clean Skincare & Wellness',
+    location: 'SoHo & Brooklyn Billboards',
+    lift: '+290% SEARCH VOLUME',
+    views: '18.2M IMPRESSIONS',
+    revenue: '$890K REVENUE',
+    image: 'https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&w=1200&q=85',
     cols: 'col-span-12 lg:col-span-5',
     staggerClass: 'lg:pt-12',
   },
   {
     id: '04',
-    category: 'SPEAKEASY & ASIAN DINING',
-    title: 'Neon Lotus Speakeasy Takeover',
-    cuisine: 'Pan-Asian Speakeasy & Dim Sum',
-    location: 'Gerrard Street, Soho',
-    lift: '+320% BOOKINGS',
-    views: '5.1M VIEWS',
-    revenue: '$520K REVENUE',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85',
+    category: 'SCRIPTING & 4K COMMERCIAL',
+    title: 'Kinetix OS Product Launch',
+    niche: 'SaaS & Digital Platform',
+    location: 'San Francisco · Global Web Launch',
+    lift: '+310% SIGNUPS',
+    views: '9.4M VIEWS',
+    revenue: '$750K ARR LIFT',
+    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=85',
     cols: 'col-span-12 lg:col-span-7',
   },
 ];
@@ -82,30 +82,30 @@ interface ReelItem {
 const REELS: ReelItem[] = [
   {
     id: 'reel-1',
-    tag: 'DINING LAUNCH',
-    views: '1.4M VIEWS',
-    title: 'Truffle Tagliolini Viral Cut',
-    meta: '8 Creators · 14-Day Queue Blitz',
-    metric: '+340% FOOTFALL SURGE',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=85',
+    tag: 'CREATOR COLLAB',
+    views: '3.4M VIEWS',
+    title: 'Hook-First Creator Ad Cut',
+    meta: '12 Creators · 7-Day Organic Spark',
+    metric: '88.4% 3-SEC HOOK RETENTION',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=85',
   },
   {
     id: 'reel-2',
-    tag: 'POST-DESK BREAKDOWN',
-    views: '2.1M VIEWS',
-    title: 'Robata Flame Searing 4K',
-    meta: 'Pacing · Sound Design · Zoom Beats',
-    metric: '84.2% 3-SEC RETENTION',
-    image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=85',
+    tag: 'POST-PRODUCTION',
+    views: '4.8M VIEWS',
+    title: '4K Commercial Sound & Motion Cut',
+    meta: 'Kinetic Pacing · SFX Beats · Color Grading',
+    metric: '92.1% WATCH-THROUGH RATE',
+    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=85',
   },
   {
     id: 'reel-3',
-    tag: 'CONVERSION SYSTEM',
-    views: '890K VIEWS',
-    title: 'Matcha Croissant Sellout Loop',
-    meta: 'Sub-400ms Landing System',
-    metric: '4.2X ATTRIBUTED ROAS',
-    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=85',
+    tag: 'CONVERSION LAUNCH',
+    views: '2.1M VIEWS',
+    title: 'Direct-To-Consumer Reel Funnel',
+    meta: 'Interactive Landers · 400ms Load',
+    metric: '5.4X ATTRIBUTED ROAS',
+    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=85',
   },
 ];
 
@@ -128,7 +128,7 @@ export const DistrictOutdoorShowcase: React.FC = () => {
 
         {/* Clean Rectangular Filter Tabs */}
         <div className="flex flex-wrap gap-2 font-tech text-xs uppercase tracking-wider font-semibold">
-          {['ALL', 'FINE DINING', 'ROBATA', 'PATISSERIE'].map((tab) => (
+          {['ALL', 'BRAND CAMPAIGNS', 'CREATOR COLLABS', 'OUTDOOR & ADS'].map((tab) => (
             <button
               key={tab}
               onClick={() => setFilter(tab)}
@@ -171,7 +171,7 @@ export const DistrictOutdoorShowcase: React.FC = () => {
             {/* Content Below Image */}
             <div className="mt-6 pt-4 border-t border-white/10">
               <div className="font-sans text-xs text-[#FACC15] uppercase tracking-wider font-semibold mb-1">
-                {study.location} · {study.cuisine}
+                {study.location} · {study.niche}
               </div>
               <h3 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-[#F4F3EF]">
                 {study.title}

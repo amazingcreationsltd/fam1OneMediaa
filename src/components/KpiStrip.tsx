@@ -23,7 +23,7 @@ const KPIS: KPIItem[] = [
     suffix: 'M+',
     decimals: 1,
     label: 'Attributed Revenue',
-    sub: 'DIRECT GUEST COVER RECEIPTS TRACKED',
+    sub: 'DIRECT CLIENT REVENUE & TRACKED SALES',
   },
   {
     id: '02',
@@ -31,7 +31,7 @@ const KPIS: KPIItem[] = [
     suffix: 'X',
     decimals: 1,
     label: 'Average ROAS',
-    sub: 'TARGETED MEDIA & LOCALIZED SPEND',
+    sub: 'PAID MEDIA & CREATOR DISTRIBUTION',
   },
   {
     id: '03',
@@ -39,16 +39,16 @@ const KPIS: KPIItem[] = [
     targetValue: 312,
     suffix: '%',
     decimals: 0,
-    label: 'Footfall Multiplier',
-    sub: '14-DAY DISTRICT OUTDOOR BURSTS',
+    label: 'Engagement Surge',
+    sub: 'SHORT-FORM RETENTION & VIRAL REACH',
   },
   {
     id: '04',
     targetValue: 94,
     suffix: '%',
     decimals: 0,
-    label: 'Capacity Fill Rate',
-    sub: 'PRIME WEEKEND & MIDWEEK COVERS',
+    label: 'Partner Retention',
+    sub: 'LONG-TERM BRAND & TALENT CONTRACTS',
   },
 ];
 
@@ -141,7 +141,7 @@ export const KpiStrip: React.FC = () => {
       </div>
 
       {/* Velocity Skew Marquee */}
-      <VelocityMarquee text="FULL-STACK RESTAURANT GROWTH — PREDICTABLE COVERS — HIGH-MARGIN HOSPITALITY — " />
+      <VelocityMarquee text="WHERE BRANDS MEET CREATIVITY — SCRIPTING & STRATEGY — CAPTURING & EDITING — SOCIAL MEDIA HANDLING — INFLUENCER COLLABORATIONS — " />
     </div>
   );
 };

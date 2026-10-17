@@ -64,7 +64,7 @@ export const Footer: React.FC = () => {
               FAM1MEDIA
             </div>
             <p className="font-sans text-xs text-white/60 leading-relaxed max-w-xs">
-              Full-stack growth architecture for restaurants and hospitality flagships. Uniting local district blitzes with creator commercial representation.
+              A creative growth partner connecting brands, creators, and audiences through strategy, commercial production, and digital campaign execution.
             </p>
             <div className="font-sans text-xs text-white/40 uppercase tracking-wider pt-2">
               © 2026 Fam1Media. All Rights Reserved.
@@ -77,11 +77,11 @@ export const Footer: React.FC = () => {
               For Brands
             </div>
             <ul className="space-y-2.5 font-tech text-sm uppercase text-white/70 font-medium">
-              <li><a href="#paradigm" className="hover:text-white hover:translate-x-1 transition-transform inline-block">District Footfall Blitz</a></li>
-              <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Sub-Second Booking Landers</a></li>
-              <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Monthly SLA Maintenance</a></li>
-              <li><a href="#work" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Verified Dining Case Studies</a></li>
-              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Lock In District Dates</a></li>
+              <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Scripting & Creative Strategy</a></li>
+              <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Capturing & 4K Editing</a></li>
+              <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Social Media Handling</a></li>
+              <li><a href="#work" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Verified Campaign Case Studies</a></li>
+              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Deploy Brand Campaign</a></li>
             </ul>
           </div>
 
@@ -116,7 +116,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between font-sans text-xs uppercase tracking-wider text-white/40 pt-8 gap-4 font-medium">
-          <div>Fam1Media Hospitality Growth Engine · Full-Stack Architecture</div>
+          <div>Fam1Media Creative Growth Partner · Connecting Brands & Creators</div>
           <a href="#hero" className="hover:text-[#FACC15] transition-colors flex items-center gap-2">
             <span>Back to Top</span>
             <span>↑</span>
