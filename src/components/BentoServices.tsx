@@ -15,9 +15,6 @@ export const BentoServices: React.FC = () => {
     <section ref={sectionRef} id="services" className="py-16 sm:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
       {/* Section Header */}
       <div className="section-header mb-10">
-        <span className="text-xs font-semibold uppercase tracking-wider text-accent block mb-2">
-          Core Infrastructure
-        </span>
         <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
           Integrated Agency Capabilities
         </h2>

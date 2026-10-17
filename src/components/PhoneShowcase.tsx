@@ -72,14 +72,11 @@ export const PhoneShowcase: React.FC = () => {
       {/* Section Header */}
       <div className="section-header mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-accent block mb-2">
-            Creator Video & Conversion Proof
-          </span>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Reel & Retention Showcase
           </h2>
           <p className="mt-2 text-muted text-sm sm:text-base max-w-xl">
-            Live 9:16 mobile feeds and verified commercial attribution metrics across dining, tech, and retail.
+            Live 9:16 vertical feeds and documented commercial attribution metrics across dining, tech, and retail.
           </p>
         </div>
 

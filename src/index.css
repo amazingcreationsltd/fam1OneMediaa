@@ -1,266 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root, [data-theme="dark"] {
-  --bg-primary: #06080C;
-  --bg-primary-rgb: 6 8 12;
-  --bg-surface: #0C1017;
-  --bg-surface-rgb: 12 16 23;
-  --bg-surface-subtle: #121722;
-  --bg-surface-subtle-rgb: 18 23 34;
-  --bg-surface-elevated: #18202D;
-  --bg-surface-elevated-rgb: 24 32 45;
-  --text-primary: #FFFFFF;
-  --text-primary-rgb: 255 255 255;
+:root {
+  --bg-primary: #F4F3EF;
+  --bg-primary-rgb: 244 243 239;
+  --bg-surface: #EAE8E1;
+  --bg-surface-rgb: 234 232 225;
+  --bg-surface-subtle: #DFDDD5;
+  --bg-surface-subtle-rgb: 223 221 213;
+  --bg-surface-elevated: #D4D2C9;
+  --bg-surface-elevated-rgb: 212 210 201;
+  --text-primary: #0D0D0D;
+  --text-primary-rgb: 13 13 13;
+  --text-muted: #595959;
+  --text-muted-rgb: 89 89 89;
+  --accent: #FACC15;
+  --accent-btn: #FACC15;
+  --accent-hover: #eab308;
+  --accent-ink: #0D0D0D;
+  --signal-live: #10B981;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0A0A0A;
+  --bg-primary-rgb: 10 10 10;
+  --bg-surface: #121212;
+  --bg-surface-rgb: 18 18 18;
+  --bg-surface-subtle: #1C1C1C;
+  --bg-surface-subtle-rgb: 28 28 28;
+  --bg-surface-elevated: #242424;
+  --bg-surface-elevated-rgb: 36 36 36;
+  --text-primary: #F4F3EF;
+  --text-primary-rgb: 244 243 239;
   --text-muted: #8E9BAE;
   --text-muted-rgb: 142 155 174;
-  --accent: #F4BD45;
-  --accent-rgb: 244 189 69;
-  --accent-btn: #F4BD45;
-  --accent-hover: #FACD66;
-  --card-border: rgba(255, 255, 255, 0.08);
-  --border-matrix: rgba(255, 255, 255, 0.08);
-  --signal-live: #10B981;
-  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-[data-theme="light"] {
-  --bg-primary: #F8FAFC;
-  --bg-primary-rgb: 248 250 252;
-  --bg-surface: #FFFFFF;
-  --bg-surface-rgb: 255 255 255;
-  --bg-surface-subtle: #F1F5F9;
-  --bg-surface-subtle-rgb: 241 245 249;
-  --bg-surface-elevated: #E2E8F0;
-  --bg-surface-elevated-rgb: 226 232 240;
-  --text-primary: #0F172A;
-  --text-primary-rgb: 15 23 42;
-  --text-muted: #64748B;
-  --text-muted-rgb: 100 116 139;
-  --accent: #FFC800;
-  --accent-rgb: 255 200 0;
-  --accent-btn: #FFC800;
-  --accent-hover: #E6B400;
-  --card-border: rgba(15, 23, 42, 0.08);
-  --border-matrix: rgba(15, 23, 42, 0.08);
-  --signal-live: #059669;
-  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+@layer base {
+  *, *::before, *::after {
+    border-radius: 0px !important;
+    box-shadow: none !important;
+  }
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  body {
+    background-color: #F4F3EF;
+    color: #0D0D0D;
+    font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
-@font-face {
-  font-family: 'Formula Condensed';
-  src: url('/fonts/FormulaCondensed-Bold.woff2') format('woff2');
-  font-weight: 700 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-h1, h2, h3 {
-  font-family: 'Formula Condensed', 'Plus Jakarta Sans', sans-serif !important;
-  text-transform: uppercase;
-  letter-spacing: 0.07em !important;
-  word-spacing: 0.06em;
-}
-
-html, body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: 'Plus Jakarta Sans', 'Satoshi', sans-serif;
-  overflow-x: hidden;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-[data-theme="dark"] body {
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(244, 189, 69, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 15% 70%, rgba(244, 189, 69, 0.06) 0%, transparent 50%);
-  background-attachment: fixed;
-}
-
-[data-theme="light"] body {
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(255, 200, 0, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.03) 0%, transparent 40%);
-  background-attachment: fixed;
-}
-
-/* Double-Bezel Hardware Architecture */
-.double-bezel {
-  position: relative;
-  border-radius: 1.75rem;
-  padding: 0.375rem;
-  background: linear-gradient(180deg, rgba(var(--text-primary-rgb), 0.09) 0%, rgba(var(--text-primary-rgb), 0.02) 100%);
-  border: 1px solid rgba(var(--text-primary-rgb), 0.08);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
-  transition: all 0.4s cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-[data-theme="light"] .double-bezel {
-  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.06);
-}
-
-.double-bezel:hover {
-  border-color: rgba(var(--text-primary-rgb), 0.18);
-  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
-}
-
-[data-theme="light"] .double-bezel:hover {
-  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.1);
-}
-
-.double-bezel-inner {
-  border-radius: calc(1.75rem - 0.375rem);
-  background: var(--bg-surface);
-  border: 1px solid rgba(var(--text-primary-rgb), 0.04);
-  box-shadow: inset 0 1px 1px rgba(var(--text-primary-rgb), 0.06);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-[data-theme="light"] .double-bezel-inner {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-}
-
-/* Island Button Architecture */
-.btn-island {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-.btn-island:active {
-  transform: scale(0.97);
-}
-
-.btn-island-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-.btn-island:hover .btn-island-icon {
-  transform: translate(2px, -2px);
-}
-
-/* Accent Elements & Buttons: For gold/amber theme, buttons and active tabs use deep obsidian ink for pristine 12:1 contrast */
-.bg-accent,
-button.bg-accent,
-a.bg-accent,
-[role="tab"].bg-accent,
-[role="radio"].bg-accent {
-  color: #06080C !important;
-}
-
-.bg-accent *,
-button.bg-accent *,
-a.bg-accent *,
-[role="tab"].bg-accent *,
-[role="radio"].bg-accent * {
-  color: #06080C;
-}
-
-.bg-accent svg,
-button.bg-accent svg,
-a.bg-accent svg,
-[role="tab"].bg-accent svg,
-[role="radio"].bg-accent svg {
-  stroke: #06080C !important;
-  color: #06080C !important;
-}
-
-.bg-accent .bg-white\/20,
-.bg-accent .bg-white\/10 {
-  background-color: rgba(6, 8, 12, 0.14) !important;
-}
-
-/* Video viewport stays cinematic dark regardless of theme */
-.phone-viewport-dark {
-  background-color: #000000 !important;
-  color: #FFFFFF !important;
-}
-
-.phone-viewport-dark * {
-  color: #FFFFFF;
-}
-
-.phone-viewport-dark .text-white {
-  color: #FFFFFF !important;
-}
-
-.phone-viewport-dark .text-muted,
-.phone-viewport-dark .text-slate-300 {
-  color: rgba(255, 255, 255, 0.72) !important;
-}
-
-.phone-viewport-dark .border-white\/10 {
-  border-color: rgba(255, 255, 255, 0.12) !important;
-}
-
-.phone-viewport-dark .border-white\/20 {
-  border-color: rgba(255, 255, 255, 0.22) !important;
-}
-
-.phone-viewport-dark svg {
-  stroke: currentColor;
-}
-
-/* Dark Image Scrim Cards: Text and badges inside dark image overlays stay pure white */
-.dark-overlay-content,
-.dark-overlay-content * {
-  color: #FFFFFF !important;
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: #0A0A0A;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-surface-elevated);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: #FACC15;
 }
 
-/* Selection Color */
-::selection {
-  background-color: var(--accent);
-  color: #06080C;
+/* Range Input styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  height: 4px;
 }
-
-::-moz-selection {
-  background-color: var(--accent);
-  color: #06080C;
-}
-
-/* Form Elements Theme Contrast */
-select option {
-  background-color: var(--bg-surface);
-  color: var(--text-primary);
-}
-
-/* Tabular figures for numbers */
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #FACC15;
+  cursor: pointer;
+  border: 1px solid #000;
+  border-radius: 0px !important;
 }

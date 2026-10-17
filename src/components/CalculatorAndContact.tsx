@@ -1,0 +1,543 @@
+import React, { useState, useId } from 'react';
+import { ArchitecturalSection } from './layout/ArchitecturalSection';
+import { MaskedHeading } from './motion/RevealWrappers';
+import { Magnetic } from './motion/MagneticCursor';
+import { ArrowRight } from 'lucide-react';
+
+export const CalculatorAndContact: React.FC = () => {
+  // Mode switcher
+  const [audience, setAudience] = useState<'brand' | 'creator'>('brand');
+
+  // Brand Calculator State
+  const [budget, setBudget] = useState<number>(7500);
+  const [industry, setIndustry] = useState<string>('restaurant');
+
+  // Creator Calculator State
+  const [followers, setFollowers] = useState<number>(120000);
+  const [niche, setNiche] = useState<string>('food');
+
+  // Form Fields - Brand
+  const [brandName, setBrandName] = useState('');
+  const [brandEmail, setBrandEmail] = useState('');
+  const [brandGoal, setBrandGoal] = useState('footfall');
+  const [brandBudget, setBrandBudget] = useState('5000-15000');
+  const [brandMessage, setBrandMessage] = useState('');
+
+  // Form Fields - Creator
+  const [creatorName, setCreatorName] = useState('');
+  const [creatorEmail, setCreatorEmail] = useState('');
+  const [creatorHandle, setCreatorHandle] = useState('');
+  const [creatorFollowers, setCreatorFollowers] = useState('50k-200k');
+  const [creatorNeed, setCreatorNeed] = useState('deals');
+
+  // Submission State
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const budgetInputId = useId();
+  const followerInputId = useId();
+
+  // Calculations: Brand
+  const reachLow = Math.round(budget * 85);
+  const reachHigh = Math.round(budget * 145);
+  const creatorsCount = Math.max(2, Math.round(budget / 800));
+  const creatorRange = `${creatorsCount - 1} – ${creatorsCount + 2} Verified Creators`;
+
+  let footfallDisplay = '';
+  if (industry === 'restaurant' || industry === 'retail') {
+    const liftLow = Math.min(420, Math.round(budget * 0.035 + 90));
+    const liftHigh = liftLow + 80;
+    footfallDisplay = `+${liftLow}% – +${liftHigh}% Lift`;
+  } else {
+    const roas = (3.4 + budget / 10000).toFixed(1);
+    footfallDisplay = `${roas}x Attributed ROAS`;
+  }
+
+  // Calculations: Creator
+  let multiplier = 1.0;
+  if (niche === 'tech') multiplier = 1.45;
+  else if (niche === 'lifestyle') multiplier = 1.15;
+
+  const rateLow = Math.round(followers * 0.012 * multiplier);
+  const rateHigh = Math.round(rateLow * 1.45);
+  const dealsLow = Math.round(rateLow * 3.5);
+  const dealsHigh = Math.round(rateHigh * 4.2);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
+
+  return (
+    <ArchitecturalSection
+      index="09"
+      label="COMMAND TERMINAL"
+      dark
+      id="calculator"
+      className="py-24 bg-[#0A0A0A] text-[#F4F3EF] border-t border-white/15"
+    >
+      <div className="max-w-7xl mx-auto px-6 sm:px-12">
+        {/* Terminal Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-white/15">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 mb-3">
+              <span className="w-2 h-2 bg-[#FACC15]" />
+              <span>TERMINAL // YIELD SIMULATOR & INTAKE CONSOLE</span>
+            </div>
+            <MaskedHeading
+              as="h2"
+              className="font-display uppercase text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[0.9] text-[#F4F3EF]"
+            >
+              Growth Simulator & Command Intake
+            </MaskedHeading>
+          </div>
+
+          {/* Mode Switcher Tabs */}
+          <div className="flex items-center border border-white/20 bg-black/40 p-1 self-start lg:self-auto font-mono text-xs uppercase tracking-wider">
+            <button
+              type="button"
+              onClick={() => {
+                setAudience('brand');
+                setIsSubmitted(false);
+              }}
+              className={`px-5 py-2 font-bold transition-colors ${
+                audience === 'brand'
+                  ? 'bg-[#FACC15] text-[#0A0A0A]'
+                  : 'text-white/60 hover:text-white'
+              }`}
+            >
+              [01 // RESTAURANT BRANDS]
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setAudience('creator');
+                setIsSubmitted(false);
+              }}
+              className={`px-5 py-2 font-bold transition-colors ${
+                audience === 'creator'
+                  ? 'bg-[#FACC15] text-[#0A0A0A]'
+                  : 'text-white/60 hover:text-white'
+              }`}
+            >
+              [02 // CREATOR ROSTER]
+            </button>
+          </div>
+        </div>
+
+        {/* 12-Column Architectural Command Center */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-white/15 border-b border-white/15">
+          {/* Left Column (5 Cols): Live Mathematical Simulator */}
+          <div className="lg:col-span-5 p-6 sm:p-10 space-y-10">
+            <div className="space-y-2">
+              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#FACC15]">
+                // TELEMETRY ENGINE
+              </div>
+              <h3 className="font-tech text-2xl font-bold uppercase tracking-tight text-[#F4F3EF]">
+                {audience === 'brand' ? 'Campaign Yield Projections' : 'Creator Revenue Model'}
+              </h3>
+              <p className="font-sans text-sm text-white/60 leading-relaxed">
+                {audience === 'brand'
+                  ? 'Calculated from 14+ verified district rollouts across hospitality dining flagships.'
+                  : 'Algorithmic rate projection factoring commercial rights buyout and production overhead.'}
+              </p>
+            </div>
+
+            {/* Slider & Input Matrix */}
+            {audience === 'brand' ? (
+              <div className="space-y-8">
+                {/* Investment Range */}
+                <div className="space-y-4">
+                  <div className="flex justify-between items-baseline">
+                    <label htmlFor={budgetInputId} className="font-mono text-xs uppercase tracking-wider text-white/70">
+                      01 // MONTHLY MEDIA ALLOCATION
+                    </label>
+                    <span className="font-tech text-3xl font-black text-[#FACC15] tabular-nums">
+                      ${budget.toLocaleString()}
+                    </span>
+                  </div>
+                  <input
+                    id={budgetInputId}
+                    type="range"
+                    min={2000}
+                    max={30000}
+                    step={500}
+                    value={budget}
+                    onChange={(e) => setBudget(Number(e.target.value))}
+                    className="w-full h-1 bg-white/20 appearance-none cursor-pointer accent-[#FACC15]"
+                  />
+                  <div className="flex justify-between font-mono text-[10px] text-white/40 uppercase">
+                    <span>$2,000 / MO</span>
+                    <span>$15,000 / MO</span>
+                    <span>$30,000+ / MO</span>
+                  </div>
+                </div>
+
+                {/* Industry Selector */}
+                <div className="space-y-3">
+                  <div className="font-mono text-xs uppercase tracking-wider text-white/70">
+                    02 // SECTOR CLASSIFICATION
+                  </div>
+                  <div className="grid grid-cols-3 gap-px bg-white/15 border border-white/15">
+                    {[
+                      { id: 'restaurant', label: 'DINING' },
+                      { id: 'retail', label: 'HOSPITALITY' },
+                      { id: 'dtc', label: 'BEVERAGE' }
+                    ].map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => setIndustry(item.id)}
+                        className={`py-3 px-2 font-mono text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                          industry === item.id
+                            ? 'bg-[#FACC15] text-[#0A0A0A]'
+                            : 'bg-[#0A0A0A] text-white/70 hover:bg-white/5'
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Output Matrix */}
+                <div className="border border-white/15 divide-y divide-white/15 bg-white/[0.02]">
+                  <div className="p-4 flex justify-between items-center">
+                    <span className="font-mono text-xs uppercase tracking-wider text-white/60">ESTIMATED ATTRIBUTED REACH</span>
+                    <span className="font-tech text-xl font-bold text-[#F4F3EF] tabular-nums">
+                      {(reachLow / 1000).toFixed(0)}K – {(reachHigh / 1000).toFixed(0)}K
+                    </span>
+                  </div>
+                  <div className="p-4 flex justify-between items-center">
+                    <span className="font-mono text-xs uppercase tracking-wider text-white/60">DEPLOYED CREATOR FORCE</span>
+                    <span className="font-tech text-xl font-bold text-[#F4F3EF] tabular-nums">
+                      {creatorRange}
+                    </span>
+                  </div>
+                  <div className="p-4 flex justify-between items-center bg-[#FACC15]/10">
+                    <span className="font-mono text-xs uppercase tracking-wider text-[#FACC15] font-bold">PROJECTED FOOTFALL SURGE</span>
+                    <span className="font-tech text-2xl font-black text-[#10B981] tabular-nums">
+                      {footfallDisplay}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-8">
+                {/* Followers Range */}
+                <div className="space-y-4">
+                  <div className="flex justify-between items-baseline">
+                    <label htmlFor={followerInputId} className="font-mono text-xs uppercase tracking-wider text-white/70">
+                      01 // AUDIENCE FOOTPRINT
+                    </label>
+                    <span className="font-tech text-3xl font-black text-[#FACC15] tabular-nums">
+                      {(followers / 1000).toLocaleString()}K
+                    </span>
+                  </div>
+                  <input
+                    id={followerInputId}
+                    type="range"
+                    min={10000}
+                    max={600000}
+                    step={10000}
+                    value={followers}
+                    onChange={(e) => setFollowers(Number(e.target.value))}
+                    className="w-full h-1 bg-white/20 appearance-none cursor-pointer accent-[#FACC15]"
+                  />
+                  <div className="flex justify-between font-mono text-[10px] text-white/40 uppercase">
+                    <span>10K (RISING)</span>
+                    <span>250K (FLAGSHIP)</span>
+                    <span>600K+ (TIER-1)</span>
+                  </div>
+                </div>
+
+                {/* Niche Selector */}
+                <div className="space-y-3">
+                  <div className="font-mono text-xs uppercase tracking-wider text-white/70">
+                    02 // VERTICAL SPECIALIZATION
+                  </div>
+                  <div className="grid grid-cols-3 gap-px bg-white/15 border border-white/15">
+                    {[
+                      { id: 'food', label: 'CULINARY' },
+                      { id: 'tech', label: 'LIFESTYLE' },
+                      { id: 'lifestyle', label: 'TRAVEL' }
+                    ].map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => setNiche(item.id)}
+                        className={`py-3 px-2 font-mono text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                          niche === item.id
+                            ? 'bg-[#FACC15] text-[#0A0A0A]'
+                            : 'bg-[#0A0A0A] text-white/70 hover:bg-white/5'
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Output Matrix */}
+                <div className="border border-white/15 divide-y divide-white/15 bg-white/[0.02]">
+                  <div className="p-4 flex justify-between items-center">
+                    <span className="font-mono text-xs uppercase tracking-wider text-white/60">SINGLE PLACEMENT FLOOR</span>
+                    <span className="font-tech text-xl font-bold text-[#F4F3EF] tabular-nums">
+                      ${rateLow.toLocaleString()} – ${rateHigh.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="p-4 flex justify-between items-center bg-[#FACC15]/10">
+                    <span className="font-mono text-xs uppercase tracking-wider text-[#FACC15] font-bold">MONTHLY DEAL PIPELINE</span>
+                    <span className="font-tech text-2xl font-black text-[#10B981] tabular-nums">
+                      ${dealsLow.toLocaleString()} – ${dealsHigh.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="p-4 flex justify-between items-center">
+                    <span className="font-mono text-xs uppercase tracking-wider text-white/60">4K POST-PRODUCTION DESK</span>
+                    <span className="font-mono text-xs font-bold text-[#FACC15] uppercase tracking-wider">
+                      100% INCLUDED (ZERO FEE)
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Right Column (7 Cols): Bottom-Border Architectural Command Intake */}
+          <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between" id="contact">
+            {isSubmitted ? (
+              <div className="p-8 border border-[#10B981] bg-[#10B981]/10 space-y-6 my-auto">
+                <div className="flex items-center gap-3">
+                  <span className="w-3 h-3 bg-[#10B981]" />
+                  <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#10B981] font-bold">
+                    TRANSMISSION LOGGED // ADVISORY INTAKE CONFIRMED
+                  </span>
+                </div>
+                <h3 className="font-display text-3xl sm:text-4xl uppercase font-bold text-white tracking-tight">
+                  Brief Successfully Dispatched to Managing Partners.
+                </h3>
+                <p className="font-sans text-sm text-white/80 leading-relaxed max-w-xl">
+                  Your parameters have been logged into our operational deal room. A partner director will complete a preliminary audit and contact you within 24 business hours.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setIsSubmitted(false)}
+                  className="font-mono text-xs uppercase tracking-widest text-[#FACC15] hover:underline"
+                >
+                  [DISPATCH ANOTHER TRANSMISSION]
+                </button>
+              </div>
+            ) : audience === 'brand' ? (
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="space-y-2">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#FACC15]">
+                    // CONFIDENTIAL ADVISORY INTAKE
+                  </div>
+                  <h3 className="font-tech text-2xl font-bold uppercase tracking-tight text-[#F4F3EF]">
+                    Initiate Brand Strategy Deployment
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  {/* Field 01 */}
+                  <div className="space-y-2">
+                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
+                      01 // RESTAURANT OR ENTERPRISE ENTITY *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Osteria Botanica Group"
+                      value={brandName}
+                      onChange={(e) => setBrandName(e.target.value)}
+                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                    />
+                  </div>
+
+                  {/* Field 02 */}
+                  <div className="space-y-2">
+                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
+                      02 // DIRECT EXECUTIVE EMAIL *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="partner@hospitality.com"
+                      value={brandEmail}
+                      onChange={(e) => setBrandEmail(e.target.value)}
+                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  {/* Field 03 */}
+                  <div className="space-y-2">
+                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
+                      03 // PRIMARY STRATEGIC TARGET
+                    </label>
+                    <select
+                      value={brandGoal}
+                      onChange={(e) => setBrandGoal(e.target.value)}
+                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                    >
+                      <option className="bg-[#0A0A0A] text-white" value="footfall">Local Dining / Hospitality Footfall Surge</option>
+                      <option className="bg-[#0A0A0A] text-white" value="web">Conversion Web Platform & Care Plan</option>
+                      <option className="bg-[#0A0A0A] text-white" value="reels">Viral 9:16 Video Creative Production</option>
+                      <option className="bg-[#0A0A0A] text-white" value="integrated">Full Ecosystem (Footfall + Web + Video)</option>
+                    </select>
+                  </div>
+
+                  {/* Field 04 */}
+                  <div className="space-y-2">
+                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
+                      04 // CAPITAL ALLOCATION TIER
+                    </label>
+                    <select
+                      value={brandBudget}
+                      onChange={(e) => setBrandBudget(e.target.value)}
+                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                    >
+                      <option className="bg-[#0A0A0A] text-white" value="3000-5000">$3,000 – $5,000 / Month (Pilot)</option>
+                      <option className="bg-[#0A0A0A] text-white" value="5000-15000">$5,000 – $15,000 / Month (Flagship Growth)</option>
+                      <option className="bg-[#0A0A0A] text-white" value="15000+">$15,000+ / Month (Enterprise Multi-District)</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Field 05 */}
+                <div className="space-y-2">
+                  <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
+                    05 // DISTRICT FOOTPRINT & OPERATIONAL CONSTRAINTS
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="Specify city, district boundaries, target seating capacity, or launch deadlines..."
+                    value={brandMessage}
+                    onChange={(e) => setBrandMessage(e.target.value)}
+                    className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors resize-none"
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <Magnetic strength={0.2}>
+                  <button
+                    type="submit"
+                    className="w-full py-5 bg-[#FACC15] text-[#0A0A0A] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-[#FACC15]/90 transition-colors"
+                  >
+                    <span>TRANSMIT BRIEF FOR ADVISORY REVIEW</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </Magnetic>
+              </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="space-y-2">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#FACC15]">
+                    // TALENT REPRESENTATION INTAKE
+                  </div>
+                  <h3 className="font-tech text-2xl font-bold uppercase tracking-tight text-[#F4F3EF]">
+                    Apply For Agency Roster & Post-Production Suite
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  {/* Field 01 */}
+                  <div className="space-y-2">
+                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
+                      01 // LEGAL OR STAGE NAME *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Elena Rostova"
+                      value={creatorName}
+                      onChange={(e) => setCreatorName(e.target.value)}
+                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                    />
+                  </div>
+
+                  {/* Field 02 */}
+                  <div className="space-y-2">
+                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
+                      02 // CONTACT EMAIL *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="elena@talentdesk.com"
+                      value={creatorEmail}
+                      onChange={(e) => setCreatorEmail(e.target.value)}
+                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                  {/* Field 03 */}
+                  <div className="space-y-2">
+                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
+                      03 // PRIMARY HANDLE *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="@elenacooks"
+                      value={creatorHandle}
+                      onChange={(e) => setCreatorHandle(e.target.value)}
+                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                    />
+                  </div>
+
+                  {/* Field 04 */}
+                  <div className="space-y-2">
+                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
+                      04 // VERIFIED REACH
+                    </label>
+                    <select
+                      value={creatorFollowers}
+                      onChange={(e) => setCreatorFollowers(e.target.value)}
+                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                    >
+                      <option className="bg-[#0A0A0A] text-white" value="10k-50k">10,000 – 50,000 Followers</option>
+                      <option className="bg-[#0A0A0A] text-white" value="50k-200k">50,000 – 200,000 Followers</option>
+                      <option className="bg-[#0A0A0A] text-white" value="200k-500k">200,000 – 500,000 Followers</option>
+                      <option className="bg-[#0A0A0A] text-white" value="500k+">500,000+ Followers (Tier-One)</option>
+                    </select>
+                  </div>
+
+                  {/* Field 05 */}
+                  <div className="space-y-2">
+                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
+                      05 // PRIORITY OBJECTIVE
+                    </label>
+                    <select
+                      value={creatorNeed}
+                      onChange={(e) => setCreatorNeed(e.target.value)}
+                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                    >
+                      <option className="bg-[#0A0A0A] text-white" value="deals">Tier-One Brand Partnerships</option>
+                      <option className="bg-[#0A0A0A] text-white" value="post">Outsource 9:16 Video Post Desk</option>
+                      <option className="bg-[#0A0A0A] text-white" value="mediakit">Custom Web Media Kit & Portfolio</option>
+                      <option className="bg-[#0A0A0A] text-white" value="full">Full Agency Representation</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <Magnetic strength={0.2}>
+                  <button
+                    type="submit"
+                    className="w-full py-5 bg-[#FACC15] text-[#0A0A0A] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-[#FACC15]/90 transition-colors"
+                  >
+                    <span>SUBMIT ROSTER APPLICATION FOR ADMISSION</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </Magnetic>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </ArchitecturalSection>
+  );
+};

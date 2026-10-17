@@ -15,9 +15,6 @@ export const Workflow: React.FC = () => {
     <section ref={sectionRef} id="workflow" className="py-16 sm:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
       {/* Header */}
       <div className="section-header mb-10">
-        <span className="text-xs font-semibold uppercase tracking-wider text-accent block mb-2">
-          Operational Milestones
-        </span>
         <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
           The Three-Stage Production Pipeline
         </h2>
@@ -36,7 +33,7 @@ export const Workflow: React.FC = () => {
                 <span className="font-semibold text-accent uppercase tracking-wider">
                   Stage One
                 </span>
-                <span className="text-muted font-medium">Days 1 – 5</span>
+                <span className="text-muted font-medium">Days 1–5</span>
               </div>
               <h3 className="text-xl font-bold text-white mb-2 tracking-tight">
                 Audience Audit & Match

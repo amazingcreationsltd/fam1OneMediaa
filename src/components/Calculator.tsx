@@ -57,9 +57,6 @@ export const Calculator: React.FC = () => {
           {/* Header */}
           <div className="section-header flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10 mb-8">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-accent block mb-2">
-                Yield Modeling
-              </span>
               <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                 Campaign & Yield Simulator
               </h2>

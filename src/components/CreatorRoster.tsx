@@ -60,9 +60,6 @@ export const CreatorRoster: React.FC = () => {
       {/* Header */}
       <div className="section-header mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-accent block mb-2">
-            Verified Talent Roster
-          </span>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Represented Creator Roster
           </h2>
