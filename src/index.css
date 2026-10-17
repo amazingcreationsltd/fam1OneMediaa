@@ -43,7 +43,10 @@
 @layer base {
   *, *::before, *::after {
     border-radius: 0px !important;
-    box-shadow: none !important;
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent, #FACC15);
+    outline-offset: 2px;
   }
   html.lenis, html.lenis body {
     height: auto;
@@ -55,8 +58,10 @@
     background-color: #F4F3EF;
     color: #0D0D0D;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+  }
+  section[id] {
+    scroll-margin-top: 88px;
   }
 }
 

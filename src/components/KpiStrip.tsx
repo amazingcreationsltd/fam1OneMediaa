@@ -3,6 +3,8 @@ import { VelocityMarquee } from './motion/VelocityMarquee';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { useReducedMotion } from '../hooks/useReducedMotion';
+
 gsap.registerPlugin(ScrollTrigger);
 
 interface KPIItem {
@@ -22,13 +24,13 @@ const KPIS: KPIItem[] = [
     targetValue: 2.4,
     suffix: 'M+',
     decimals: 1,
-    label: 'Attributed Revenue',
+    label: 'Revenue Tracked',
     sub: 'DIRECT CLIENT REVENUE & TRACKED SALES',
   },
   {
     id: '02',
     targetValue: 4.8,
-    suffix: 'X',
+    suffix: '×',
     decimals: 1,
     label: 'Average ROAS',
     sub: 'PAID MEDIA & CREATOR DISTRIBUTION',
@@ -39,8 +41,8 @@ const KPIS: KPIItem[] = [
     targetValue: 312,
     suffix: '%',
     decimals: 0,
-    label: 'Engagement Surge',
-    sub: 'SHORT-FORM RETENTION & VIRAL REACH',
+    label: 'Audience Lift',
+    sub: 'SHORT-FORM RETENTION & REACH',
   },
   {
     id: '04',
@@ -55,10 +57,21 @@ const KPIS: KPIItem[] = [
 export const KpiStrip: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const numberRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const prefersReduced = useReducedMotion();
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
+    if (prefersReduced) {
+      KPIS.forEach((kpi, idx) => {
+        const el = numberRefs.current[idx];
+        if (el) {
+          el.textContent = kpi.decimals && kpi.decimals > 0 ? kpi.targetValue.toFixed(kpi.decimals) : kpi.targetValue.toString();
+        }
+      });
+      return;
+    }
 
     const ctx = gsap.context(() => {
       // Create master timeline triggered when the KPI strip enters viewport

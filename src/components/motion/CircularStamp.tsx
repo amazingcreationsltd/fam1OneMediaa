@@ -66,7 +66,7 @@ export const CircularStamp: React.FC<CircularStampProps> = ({ className = '', da
           }`}
         >
           <textPath href="#stampCirclePath" startOffset="0%">
-            FamO1mediaa • CREATIVE GROWTH PARTNER • EST 2026 • 
+            Fam1Media • CREATIVE GROWTH PARTNER • EST 2026 • 
           </textPath>
         </text>
       </svg>

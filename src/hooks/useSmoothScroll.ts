@@ -45,7 +45,7 @@ export const useSmoothScroll = () => {
           const targetEl = document.querySelector(href);
           if (targetEl) {
             e.preventDefault();
-            lenis?.scrollTo(targetEl as HTMLElement, { offset: -70 });
+            lenis?.scrollTo(targetEl as HTMLElement, { offset: -88 });
           }
         }
       };

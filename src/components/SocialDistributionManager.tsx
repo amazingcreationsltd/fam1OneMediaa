@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { MaskedHeading } from './motion/RevealWrappers';
 
@@ -98,12 +98,9 @@ const PLATFORMS: PlatformData[] = [
 ];
 
 export const SocialDistributionManager: React.FC = () => {
-  const [selectedPlatform, setSelectedPlatform] = useState<string>('instagram');
-  const active = PLATFORMS.find((p) => p.id === selectedPlatform) || PLATFORMS[0];
-
   return (
     <section id="deployment-engine" className="w-full bg-[#F4F3EF] text-[#0D0D0D] border-t border-b border-black/15 scroll-mt-20">
-      {/* 1. Clean Swiss Section Header */}
+      {/* 1. Section Header */}
       <div className="p-8 sm:p-12 md:p-16 border-b border-black/15 flex flex-col lg:flex-row lg:items-end justify-between gap-6 bg-[#F4F3EF]">
         <div>
           <div className="flex items-center gap-2.5 font-tech text-xs uppercase tracking-widest text-neutral-600 mb-3 font-semibold">
@@ -126,189 +123,126 @@ export const SocialDistributionManager: React.FC = () => {
             6 Active Distribution Channels
           </span>
           <span className="text-neutral-500">
-            Select a channel below to view strategy
+            Omnichannel Organic & Paid Execution
           </span>
         </div>
       </div>
 
-      {/* 2. Super Clean Minimal 6-Channel Grid */}
-      <div
-        role="tablist"
-        aria-label="Distribution Channels"
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-black/15 border-b border-black/15 bg-white"
-      >
-        {PLATFORMS.map((platform, idx) => {
-          const isSelected = selectedPlatform === platform.id;
-          const isMobileRow2Or3 = idx >= 2;
-          const isTabletRow2 = idx >= 3;
-
-          return (
-            <button
+      {/* 2. Direct Large Logos Strip (No rectangular card boxes) */}
+      <div className="py-10 sm:py-12 px-6 sm:px-12 border-b border-black/15 bg-[#F4F3EF]">
+        <div className="max-w-7xl mx-auto grid grid-cols-3 sm:grid-cols-6 gap-8 sm:gap-12 items-center justify-items-center">
+          {PLATFORMS.map((platform) => (
+            <div
               key={platform.id}
-              role="tab"
-              aria-selected={isSelected}
-              onClick={() => setSelectedPlatform(platform.id)}
-              className={`p-6 text-left flex flex-col justify-between transition-colors duration-150 cursor-pointer relative ${
-                isMobileRow2Or3 ? 'border-t md:border-t-0' : ''
-              } ${isTabletRow2 ? 'md:border-t lg:border-t-0' : ''} border-black/15 ${
-                isSelected
-                  ? 'bg-[#F4F3EF]'
-                  : 'bg-white hover:bg-[#FAF9F5]'
-              }`}
+              className="flex flex-col items-center gap-2.5 text-[#0D0D0D] group transition-transform duration-300 hover:scale-110"
+              title={`${platform.name} · ${platform.badge}`}
             >
-              {/* Clean Active Top Accent Line */}
-              {isSelected && (
-                <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#0D0D0D]" />
-              )}
-
-              {/* Icon & Category */}
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <div className="w-8 h-8 flex items-center justify-center text-[#0D0D0D]">
-                    {platform.icon('w-5 h-5')}
-                  </div>
-                  <span className="font-sans text-[11px] text-neutral-400 font-medium hidden sm:inline">
-                    {platform.badge}
-                  </span>
-                </div>
-
-                <div className="font-tech text-base font-bold text-[#0D0D0D] tracking-tight">
-                  {platform.name}
-                </div>
+              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-[#0D0D0D]">
+                {platform.icon('w-10 h-10 sm:w-12 sm:h-12')}
               </div>
-
-              {/* Benchmark Metric */}
-              <div className="mt-5 pt-3 border-t border-black/10">
-                <span className="font-sans text-xs font-semibold text-neutral-600 block">
-                  {platform.metricLabel}
-                </span>
-              </div>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* 3. Clean Minimal Subhead Bar (Replaced Black Terminal Bar) */}
-      <div className="px-8 sm:px-12 py-4 border-b border-black/15 bg-[#EAE8E1] flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-sans text-xs">
-        <div className="flex items-center gap-2">
-          <span className="text-neutral-500 font-medium">Selected Platform:</span>
-          <span className="font-tech text-xs font-bold uppercase text-[#0D0D0D] flex items-center gap-1.5 ml-1">
-            {active.icon('w-3.5 h-3.5 text-black')}
-            {active.name}
-          </span>
-          <span className="text-neutral-500 hidden sm:inline">· {active.badge}</span>
+              <span className="font-tech text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0D0D0D]">
+                {platform.name}
+              </span>
+            </div>
+          ))}
         </div>
 
-        <div className="flex items-center gap-2 text-neutral-600">
-          <span className="text-neutral-500 font-medium">Primary Benchmark:</span>
-          <span className="font-tech text-xs font-bold text-[#0D0D0D]">{active.metricLabel}</span>
+        {/* Label */}
+        <div className="mt-8 text-center font-tech text-xs uppercase tracking-widest text-neutral-500 font-semibold">
+          Social handles we work with.
         </div>
       </div>
 
-      {/* 4. Dual Operational Tracks: Clean Editorial Architecture */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-black/15 bg-white">
+      {/* 3. Dual Operational Tracks: Cardless Architectural 2-Column Split (No Cards) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-black/15 border-b border-black/15">
         
         {/* ========================================================
             TRACK 01: FOR CREATORS & INFLUENCERS
             ======================================================== */}
-        <div className="p-8 sm:p-12 flex flex-col justify-between bg-white">
+        <div className="p-8 sm:p-12 lg:p-16 flex flex-col justify-between bg-[#F4F3EF]">
           <div>
-            {/* Clean Section Header (No terminal // or chunky pills) */}
-            <div className="flex items-center justify-between gap-4 mb-4">
-              <div className="flex items-center gap-2.5 font-tech text-xs uppercase tracking-widest text-neutral-600 font-semibold">
-                <span className="w-2 h-2 bg-[#FACC15]" />
-                <span>FOR CREATORS & INFLUENCERS</span>
-              </div>
-              <span className="font-sans text-xs text-neutral-500 font-medium">
-                Full-Service Management
-              </span>
-            </div>
-
-            <MaskedHeading
-              as="h3"
-              className="font-display font-black text-2xl sm:text-3xl md:text-4xl uppercase tracking-tight text-[#0D0D0D]"
-            >
-              WE MANAGE YOUR SOCIAL ACCOUNTS
-            </MaskedHeading>
-
-            <p className="font-sans text-sm sm:text-base text-neutral-600 mt-2.5 leading-relaxed">
-              Complete channel stewardship so creators focus exclusively on recording content.
-            </p>
-
-            {/* Clean Platform Strategy Card */}
-            <div className="mt-6 p-5 border border-black/15 bg-[#F4F3EF]">
-              <div className="flex items-center justify-between gap-2 mb-2 font-tech text-xs uppercase tracking-wider font-bold text-neutral-900">
-                <span className="flex items-center gap-2">
-                  {active.icon('w-4 h-4 text-black')}
-                  <span>{active.name} Strategy</span>
+            {/* Track Header with locked height for perfect cross-column alignment */}
+            <div className="lg:min-h-[200px] flex flex-col justify-start">
+              <div className="flex items-center justify-between gap-4 mb-4">
+                <div className="flex items-center gap-2.5 font-tech text-xs uppercase tracking-widest text-neutral-600 font-semibold">
+                  <span className="w-2 h-2 bg-[#FACC15]" />
+                  <span>FOR CREATORS & INFLUENCERS</span>
+                </div>
+                <span className="font-sans text-xs text-neutral-500 font-medium">
+                  Full-Service Stewardship
                 </span>
-                <span className="text-neutral-500 font-normal">Organic Growth</span>
               </div>
-              <p className="font-sans text-sm text-neutral-700 leading-relaxed">
-                {active.creatorDeliverable}
+
+              <MaskedHeading
+                as="h3"
+                className="font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-[#0D0D0D] leading-[0.95]"
+              >
+                WE MANAGE YOUR SOCIAL ACCOUNTS
+              </MaskedHeading>
+
+              <p className="font-sans text-base text-neutral-700 mt-3 leading-relaxed max-w-xl">
+                Complete channel stewardship so creators focus exclusively on recording content.
               </p>
             </div>
 
-            {/* 3 Numbered Deliverables */}
-            <div className="mt-8 space-y-3 font-sans text-sm">
-              <div className="p-4 border border-black/10 bg-[#FAF9F5] flex items-start gap-4">
-                <div className="w-7 h-7 bg-[#0D0D0D] text-[#FACC15] font-tech font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                  01
-                </div>
-                <div>
-                  <h4 className="font-tech text-sm font-bold text-[#0D0D0D] tracking-tight uppercase">
-                    Daily Publishing Velocity & Cross-Syndication
-                  </h4>
-                  <p className="text-neutral-600 text-xs sm:text-[13px] mt-1 leading-relaxed">
-                    Peak-time automated scheduling, audio trend mapping, 3-second hook testing, and simultaneous publishing across Reels, YouTube Shorts, and feeds.
-                  </p>
-                </div>
+            {/* 4 Pure Editorial Rows (Cardless, synchronized row heights) */}
+            <div className="mt-8 divide-y divide-black/15 border-t border-b border-black/15">
+              {/* Row 01 */}
+              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+                <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
+                  [01]
+                </span>
+                <h4 className="font-tech text-sm sm:text-base font-bold text-[#0D0D0D] tracking-tight uppercase">
+                  Multi-Platform Organic Syndication
+                </h4>
               </div>
 
-              <div className="p-4 border border-black/10 bg-[#FAF9F5] flex items-start gap-4">
-                <div className="w-7 h-7 bg-[#0D0D0D] text-[#FACC15] font-tech font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                  02
-                </div>
-                <div>
-                  <h4 className="font-tech text-sm font-bold text-[#0D0D0D] tracking-tight uppercase">
-                    Retention Optimization & Community Engagement
-                  </h4>
-                  <p className="text-neutral-600 text-xs sm:text-[13px] mt-1 leading-relaxed">
-                    Audience retention drop-off fixes, thumbnail CTR A/B testing, priority comment triage, and active community nurturing to accelerate follower growth.
-                  </p>
-                </div>
+              {/* Row 02 */}
+              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+                <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
+                  [02]
+                </span>
+                <h4 className="font-tech text-sm sm:text-base font-bold text-[#0D0D0D] tracking-tight uppercase">
+                  Daily Publishing Velocity & Cross-Syndication
+                </h4>
               </div>
 
-              <div className="p-4 border border-black/10 bg-[#FAF9F5] flex items-start gap-4">
-                <div className="w-7 h-7 bg-[#0D0D0D] text-[#FACC15] font-tech font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                  03
-                </div>
-                <div>
-                  <h4 className="font-tech text-sm font-bold text-[#0D0D0D] tracking-tight uppercase">
-                    Brand Inbound, Usage Rights & Monetization
-                  </h4>
-                  <p className="text-neutral-600 text-xs sm:text-[13px] mt-1 leading-relaxed">
-                    Inbound sponsor filtration, rate card pricing negotiation, commercial licensing usage rights protection, and Google AdSense revenue optimization.
-                  </p>
-                </div>
+              {/* Row 03 */}
+              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+                <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
+                  [03]
+                </span>
+                <h4 className="font-tech text-sm sm:text-base font-bold text-[#0D0D0D] tracking-tight uppercase">
+                  Retention Optimization & Community Engagement
+                </h4>
+              </div>
+
+              {/* Row 04 */}
+              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+                <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
+                  [04]
+                </span>
+                <h4 className="font-tech text-sm sm:text-base font-bold text-[#0D0D0D] tracking-tight uppercase">
+                  Brand Inbound, Usage Rights & Monetization
+                </h4>
               </div>
             </div>
           </div>
 
-          {/* Clean Outcome Footer + Action */}
+          {/* Outcome Strip */}
           <div className="mt-8 pt-6 border-t border-black/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <span className="font-sans text-xs uppercase tracking-wider text-neutral-500 font-semibold block mb-0.5">
                 Outcome: Zero Burnout · Daily Reach
               </span>
-              <span className="font-display font-black text-xl sm:text-2xl text-[#0D0D0D] tracking-tight">
+              <span className="font-display font-black text-2xl sm:text-3xl text-[#0D0D0D] tracking-tight">
                 +340% AUDIENCE GROWTH
               </span>
             </div>
 
             <a
               href="#calculator"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#0D0D0D] text-white hover:bg-[#FACC15] hover:text-[#0D0D0D] font-tech text-xs uppercase font-bold tracking-wider transition-colors duration-150 shrink-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0D0D0D] text-white hover:bg-[#FACC15] hover:text-[#0D0D0D] font-tech text-xs uppercase font-bold tracking-wider transition-colors duration-150 shrink-0"
             >
               <span>Scale My Channel</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -319,104 +253,90 @@ export const SocialDistributionManager: React.FC = () => {
         {/* ========================================================
             TRACK 02: FOR BRANDS & BUSINESSES
             ======================================================== */}
-        <div className="p-8 sm:p-12 flex flex-col justify-between bg-white">
+        <div className="p-8 sm:p-12 lg:p-16 flex flex-col justify-between bg-[#EAE8E1]/35">
           <div>
-            {/* Clean Section Header (No terminal // or chunky pills) */}
-            <div className="flex items-center justify-between gap-4 mb-4">
-              <div className="flex items-center gap-2.5 font-tech text-xs uppercase tracking-widest text-neutral-600 font-semibold">
-                <span className="w-2 h-2 bg-[#10B981]" />
-                <span>FOR BRANDS & BUSINESSES</span>
-              </div>
-              <span className="font-sans text-xs text-neutral-500 font-medium">
-                Performance Advertising
-              </span>
-            </div>
-
-            <MaskedHeading
-              as="h3"
-              className="font-display font-black text-2xl sm:text-3xl md:text-4xl uppercase tracking-tight text-[#0D0D0D]"
-            >
-              WE RUN YOUR AD CAMPAIGNS
-            </MaskedHeading>
-
-            <p className="font-sans text-sm sm:text-base text-neutral-600 mt-2.5 leading-relaxed">
-              Targeted high-conversion paid advertising engineered to generate direct sales, qualified leads, and measurable GMV.
-            </p>
-
-            {/* Clean Platform Strategy Card */}
-            <div className="mt-6 p-5 border border-black/15 bg-[#F4F3EF]">
-              <div className="flex items-center justify-between gap-2 mb-2 font-tech text-xs uppercase tracking-wider font-bold text-neutral-900">
-                <span className="flex items-center gap-2">
-                  {active.icon('w-4 h-4 text-black')}
-                  <span>{active.name} Campaign</span>
+            {/* Track Header with locked height for perfect cross-column alignment */}
+            <div className="lg:min-h-[200px] flex flex-col justify-start">
+              <div className="flex items-center justify-between gap-4 mb-4">
+                <div className="flex items-center gap-2.5 font-tech text-xs uppercase tracking-widest text-neutral-600 font-semibold">
+                  <span className="w-2 h-2 bg-[#10B981]" />
+                  <span>FOR BRANDS & BUSINESSES</span>
+                </div>
+                <span className="font-sans text-xs text-neutral-500 font-medium">
+                  Performance Advertising
                 </span>
-                <span className="text-neutral-500 font-normal">Commercial Media</span>
               </div>
-              <p className="font-sans text-sm text-neutral-700 leading-relaxed">
-                {active.brandDeliverable}
+
+              <MaskedHeading
+                as="h3"
+                className="font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-[#0D0D0D] leading-[0.95]"
+              >
+                WE RUN YOUR BRAND CAMPAIGNS
+              </MaskedHeading>
+
+              <p className="font-sans text-base text-neutral-700 mt-3 leading-relaxed max-w-xl">
+                Targeted high-conversion paid advertising engineered to generate direct sales, qualified leads, and measurable GMV.
               </p>
             </div>
 
-            {/* 3 Numbered Deliverables */}
-            <div className="mt-8 space-y-3 font-sans text-sm">
-              <div className="p-4 border border-black/10 bg-[#FAF9F5] flex items-start gap-4">
-                <div className="w-7 h-7 bg-[#0D0D0D] text-white font-tech font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                  01
-                </div>
-                <div>
-                  <h4 className="font-tech text-sm font-bold text-[#0D0D0D] tracking-tight uppercase">
-                    Paid Meta, YouTube & X Commercial Ads
-                  </h4>
-                  <p className="text-neutral-600 text-xs sm:text-[13px] mt-1 leading-relaxed">
-                    Direct-response creator whitelisted ads, dynamic creative testing, custom audience segmentation, and multi-touch retargeting.
-                  </p>
-                </div>
+            {/* 4 Pure Editorial Rows (Cardless, synchronized row heights) */}
+            <div className="mt-8 divide-y divide-black/15 border-t border-b border-black/15">
+              {/* Row 01 */}
+              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+                <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
+                  [01]
+                </span>
+                <h4 className="font-tech text-sm sm:text-base font-bold text-[#0D0D0D] tracking-tight uppercase">
+                  Cross-Network Paid Ad Placements
+                </h4>
               </div>
 
-              <div className="p-4 border border-black/10 bg-[#FAF9F5] flex items-start gap-4">
-                <div className="w-7 h-7 bg-[#0D0D0D] text-white font-tech font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                  02
-                </div>
-                <div>
-                  <h4 className="font-tech text-sm font-bold text-[#0D0D0D] tracking-tight uppercase">
-                    Google AdSense Display & Search Network Placements
-                  </h4>
-                  <p className="text-neutral-600 text-xs sm:text-[13px] mt-1 leading-relaxed">
-                    Contextual banner placements, Google Display Network audience retargeting, YouTube pre-rolls, and programmatic display yield optimization.
-                  </p>
-                </div>
+              {/* Row 02 */}
+              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+                <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
+                  [02]
+                </span>
+                <h4 className="font-tech text-sm sm:text-base font-bold text-[#0D0D0D] tracking-tight uppercase">
+                  Paid Meta, YouTube & X Commercial Ads
+                </h4>
               </div>
 
-              <div className="p-4 border border-black/10 bg-[#FAF9F5] flex items-start gap-4">
-                <div className="w-7 h-7 bg-[#0D0D0D] text-white font-tech font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                  03
-                </div>
-                <div>
-                  <h4 className="font-tech text-sm font-bold text-[#0D0D0D] tracking-tight uppercase">
-                    Full-Funnel Attribution & Scalable Media Buying
-                  </h4>
-                  <p className="text-neutral-600 text-xs sm:text-[13px] mt-1 leading-relaxed">
-                    First-party pixel tracking, landing page conversion rate optimization (CRO), continuous creative refreshes, and aggressive ROAS scaling.
-                  </p>
-                </div>
+              {/* Row 03 */}
+              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+                <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
+                  [03]
+                </span>
+                <h4 className="font-tech text-sm sm:text-base font-bold text-[#0D0D0D] tracking-tight uppercase">
+                  Google AdSense Display & Search Network Placements
+                </h4>
+              </div>
+
+              {/* Row 04 */}
+              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+                <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
+                  [04]
+                </span>
+                <h4 className="font-tech text-sm sm:text-base font-bold text-[#0D0D0D] tracking-tight uppercase">
+                  Full-Funnel Attribution & Scalable Media Buying
+                </h4>
               </div>
             </div>
           </div>
 
-          {/* Clean Outcome Footer + Action */}
+          {/* Outcome Strip */}
           <div className="mt-8 pt-6 border-t border-black/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <span className="font-sans text-xs uppercase tracking-wider text-neutral-500 font-semibold block mb-0.5">
                 Outcome: Attributed Revenue · Lower CPA
               </span>
-              <span className="font-display font-black text-xl sm:text-2xl text-[#0D0D0D] tracking-tight">
+              <span className="font-display font-black text-2xl sm:text-3xl text-[#0D0D0D] tracking-tight">
                 4.8X AVG. ATTRIBUTED ROAS
               </span>
             </div>
 
             <a
               href="#calculator"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#0D0D0D] text-white hover:bg-[#FACC15] hover:text-[#0D0D0D] font-tech text-xs uppercase font-bold tracking-wider transition-colors duration-150 shrink-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0D0D0D] text-white hover:bg-[#FACC15] hover:text-[#0D0D0D] font-tech text-xs uppercase font-bold tracking-wider transition-colors duration-150 shrink-0"
             >
               <span>Deploy Brand Campaign</span>
               <ArrowUpRight className="w-4 h-4" />

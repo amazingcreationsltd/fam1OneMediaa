@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { BRAND, SITE } from '../content/site';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,8 +23,8 @@ export const Footer: React.FC = () => {
           trigger: wordmarkRef.current,
           start: 'top 95%',
           end: 'bottom bottom',
-          scrub: 1
-        }
+          scrub: 1,
+        },
       }
     );
   }, []);
@@ -35,23 +36,23 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 mb-16 border-b border-white/15">
           <div className="md:col-span-8 space-y-2">
             <span className="font-tech text-xs uppercase tracking-wider text-[#FACC15] block font-semibold">
-              Senior Partner Desk
+              Partner Desk
             </span>
             <a
-              href="mailto:partners@famo1mediaa.agency"
+              href={`mailto:${SITE.contactEmail}`}
               className="font-tech text-2xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-white hover:text-[#FACC15] transition-colors inline-flex items-center gap-4 group"
             >
-              <span>partners@famo1mediaa.agency</span>
+              <span>{SITE.contactEmail}</span>
               <ArrowUpRight className="w-8 h-8 text-[#FACC15] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a>
           </div>
 
           <div className="md:col-span-4 flex flex-col justify-end md:items-end font-sans text-xs text-white/60 space-y-1">
-            <span className="text-white font-bold uppercase tracking-wider font-tech">Operational Hubs</span>
+            <span className="text-white font-bold uppercase tracking-wider font-tech">Office Hubs</span>
             <span>London · New York · Dubai</span>
             <span className="text-[#10B981] font-semibold flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 bg-[#10B981]" />
-              Accepting New Brand Partnerships
+              {SITE.status}
             </span>
           </div>
         </div>
@@ -61,13 +62,13 @@ export const Footer: React.FC = () => {
           {/* Brand Col */}
           <div className="space-y-4">
             <div className="font-display font-black text-2xl tracking-wider text-white">
-              FamO1mediaa
+              {BRAND}
             </div>
             <p className="font-sans text-xs text-white/60 leading-relaxed max-w-xs">
-              A creative growth partner connecting brands, creators, and audiences through strategy, commercial production, and digital campaign execution.
+              {SITE.tagline}. Strategic creative production, short-form retention, and multi-channel performance media.
             </p>
             <div className="font-sans text-xs text-white/40 uppercase tracking-wider pt-2">
-              © 2026 FamO1mediaa. All Rights Reserved.
+              © {SITE.year} {BRAND}. All Rights Reserved.
             </div>
           </div>
 
@@ -80,8 +81,8 @@ export const Footer: React.FC = () => {
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Scripting & Creative Strategy</a></li>
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Capturing & 4K Editing</a></li>
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Social Media Handling</a></li>
-              <li><a href="#work" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Verified Campaign Case Studies</a></li>
-              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Deploy Brand Campaign</a></li>
+              <li><a href="#work" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Campaign Case Studies</a></li>
+              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Start a Campaign</a></li>
             </ul>
           </div>
 
@@ -93,30 +94,30 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 font-tech text-sm uppercase text-white/70 font-medium">
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Talent Representation</a></li>
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">4K ProRes Video Post Desk</a></li>
-              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Yield Simulator Console</a></li>
-              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Contract Indemnity Review</a></li>
+              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Estimate Model</a></li>
+              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Commercial Rights Clearances</a></li>
               <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Apply For Representation</a></li>
             </ul>
           </div>
 
-          {/* Legal / Standards */}
+          {/* Legal / Channels */}
           <div className="space-y-4">
             <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-bold">
-              Governance & Standards
+              Distribution Channels
             </div>
             <ul className="space-y-2.5 font-tech text-sm uppercase text-white/70 font-medium">
-              <li><a href="#system" className="hover:text-white hover:translate-x-1 transition-transform inline-block">4-Phase Deployment Protocol</a></li>
-              <li><a href="#" className="hover:text-white hover:translate-x-1 transition-transform inline-block">FTC & ASA Regulatory Filings</a></li>
-              <li><a href="#" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Commercial Rights Indemnity</a></li>
-              <li><a href="#" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Confidentiality Protocol</a></li>
-              <li><a href="#" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Terms of Representation</a></li>
+              <li><a href={SITE.socials.instagram} target="_blank" rel="noreferrer" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Instagram</a></li>
+              <li><a href={SITE.socials.youtube} target="_blank" rel="noreferrer" className="hover:text-white hover:translate-x-1 transition-transform inline-block">YouTube</a></li>
+              <li><a href={SITE.socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-white hover:translate-x-1 transition-transform inline-block">LinkedIn</a></li>
+              <li><a href={SITE.socials.x} target="_blank" rel="noreferrer" className="hover:text-white hover:translate-x-1 transition-transform inline-block">X (Twitter)</a></li>
+              <li><a href={SITE.legal.privacy} className="hover:text-white hover:translate-x-1 transition-transform inline-block">Privacy Policy</a></li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between font-sans text-xs uppercase tracking-wider text-white/40 pt-8 gap-4 font-medium">
-          <div><span className="normal-case">FamO1mediaa</span> Creative Growth Partner · Connecting Brands & Creators</div>
+          <div><span className="normal-case">{BRAND}</span> · Connecting Brands & Creators</div>
           <a href="#hero" className="hover:text-[#FACC15] transition-colors flex items-center gap-2">
             <span>Back to Top</span>
             <span>↑</span>
@@ -130,7 +131,7 @@ export const Footer: React.FC = () => {
         className="w-full text-center font-display font-black tracking-[-0.04em] text-[15vw] leading-[0.78] text-white pointer-events-none select-none mt-12 overflow-hidden will-change-transform"
         aria-hidden="true"
       >
-        FamO1mediaa
+        {BRAND}
       </div>
     </footer>
   );

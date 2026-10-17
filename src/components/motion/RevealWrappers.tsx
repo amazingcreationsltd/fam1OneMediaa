@@ -93,14 +93,20 @@ export const MaskedHeading: React.FC<MaskedHeadingProps> = ({
   const words = children.split(' ');
 
   return (
-    <Component ref={containerRef as any} className={`${className}`}>
-      {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden pb-1 align-top mr-[0.25em]">
-          <span className="masked-line-inner inline-block will-change-transform">
-            {word}
+    <Component
+      ref={containerRef as any}
+      aria-label={children}
+      className={`${className}`}
+    >
+      <span aria-hidden="true">
+        {words.map((word, i) => (
+          <span key={i} className="inline-block overflow-hidden pb-1 align-top mr-[0.25em]">
+            <span className="masked-line-inner inline-block will-change-transform">
+              {word}
+            </span>
           </span>
-        </span>
-      ))}
+        ))}
+      </span>
     </Component>
   );
 };

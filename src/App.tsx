@@ -6,14 +6,12 @@ import { Preloader } from './components/Preloader';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { KpiStrip } from './components/KpiStrip';
-import { AudienceFork } from './components/AudienceFork';
 import { DistrictOutdoorShowcase } from './components/DistrictOutdoorShowcase';
 import { CreatorStudioSuite } from './components/CreatorStudioSuite';
 import { ServiceAccordion } from './components/ServiceAccordion';
 import { Testimonials } from './components/Testimonials';
 import { CalculatorAndContact } from './components/CalculatorAndContact';
 import { Footer } from './components/Footer';
-import { MagneticCursor } from './components/motion/MagneticCursor';
 
 const AppContent: React.FC = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);
@@ -22,9 +20,14 @@ const AppContent: React.FC = () => {
   useSmoothScroll();
 
   return (
-    <div className="bg-[#F4F3EF] text-[#0D0D0D] min-h-screen selection:bg-[#FACC15] selection:text-black relative overflow-x-hidden">
-      {/* Reticle Magnetic Cursor */}
-      <MagneticCursor />
+    <div className="bg-[#F4F3EF] text-[#0D0D0D] min-h-screen selection:bg-[#FACC15] selection:text-black relative">
+      {/* Accessible Skip Link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999] focus:px-5 focus:py-3 focus:bg-[#FACC15] focus:text-[#0D0D0D] focus:font-tech focus:text-xs focus:font-bold focus:uppercase focus:outline-none focus:ring-2 focus:ring-black"
+      >
+        Skip to main content
+      </a>
 
       {/* Entrance Preloader */}
       <Preloader onComplete={() => setIsLoaded(true)} />
@@ -32,17 +35,14 @@ const AppContent: React.FC = () => {
       {/* Swiss Architectural Exposed Grid Navbar */}
       <Navbar isLoaded={isLoaded} />
 
-      <main className="w-full max-w-full">
+      <main id="main-content" tabIndex={-1} className="w-full max-w-full focus:outline-none">
         {/* Section 02: 12-Column Hero & Spec Bar */}
         <Hero isLoaded={isLoaded} />
 
         {/* Section 03: Border-Collapsed KPI Matrix & Velocity Marquee */}
         <KpiStrip />
 
-        {/* Section 04: Audience Split Contrast Comparison Table */}
-        <AudienceFork />
-
-        {/* Section 05: Dark Obsidian Case Studies & Vertical 9:16 Video Showcase */}
+        {/* Section 04: Dark Obsidian Case Studies & Vertical 9:16 Video Showcase */}
         <DistrictOutdoorShowcase />
 
         {/* Section 06: Sticky-Stacking Architectural Growth Panels */}

@@ -154,6 +154,29 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
     }
   }, [isLoaded]);
 
+  // Escape key and focus management for mobile drawer
+  const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    // Focus close button when drawer opens
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      hamburgerButtonRef.current?.focus();
+    };
+  }, [mobileMenuOpen]);
+
   const toggleMenu = () => {
     if (!timelineRef.current) return;
     if (mobileMenuOpen) {
@@ -176,68 +199,62 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
       >
         <nav className="w-full h-full flex items-center justify-between" aria-label="Main Navigation">
           {/* Cell 1: Brand Cell */}
-          <div className="h-full flex items-center px-4 sm:px-6 border-r border-black/15 shrink-0 gap-3">
+          <div className="h-full flex items-center px-4 sm:px-6 border-r border-black/15 shrink-0 gap-3 min-w-0">
             <a href="#hero" className="flex items-baseline gap-2.5">
               <span className="font-display text-2xl font-black tracking-tight text-[#0D0D0D]">
-                FamO1mediaa
+                Fam1Media
               </span>
-              <span className="font-sans text-xs text-neutral-500 font-medium tracking-wide hidden sm:inline">
+              <span className="font-sans text-xs text-neutral-500 font-medium tracking-wide hidden xl:inline">
                 Creative Growth Partner
               </span>
             </a>
           </div>
 
-          {/* Cell 2: Live Status Cell (Desktop) */}
-          <div className="hidden lg:flex h-full items-center px-6 border-r border-black/15 gap-2.5 font-sans text-xs text-neutral-600 font-medium">
-            <span className="w-2 h-2 bg-[#10B981] inline-block" />
-            <span className="uppercase tracking-wider font-semibold text-[#0D0D0D]">Accepting Q4 Collaborations</span>
-            <span className="text-neutral-400">·</span>
-            <span className="text-xs text-neutral-500">Brands & Creators</span>
-          </div>
-
-          {/* Cell 3: Desktop Navigation Links */}
-          <div className="hidden md:flex h-full items-center px-8 gap-8 font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
+          {/* Cell 2: Desktop Navigation Links (Visible on lg and above to prevent mid-width collision) */}
+          <div className="hidden lg:flex h-full items-center px-6 xl:px-8 gap-6 xl:gap-8 font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold min-w-0">
             <a href="#work" className="relative hover:text-black py-1 group transition-colors">
-              <span>Case Studies</span>
+              <span>Work</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
-            <a href="#system" className="relative hover:text-black py-1 group transition-colors">
-              <span>Growth System</span>
+            <a href="#process" className="relative hover:text-black py-1 group transition-colors">
+              <span>Process</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
             <a href="#services" className="relative hover:text-black py-1 group transition-colors">
-              <span>Capabilities</span>
+              <span>Services</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
             <a href="#testimonials" className="relative hover:text-black py-1 group transition-colors">
-              <span>Perspectives</span>
+              <span>Clients</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
             <a href="#calculator" className="relative hover:text-black py-1 group transition-colors">
-              <span>Yield Simulator</span>
+              <span>Estimate</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
           </div>
 
-          {/* Cell 4: CTA & Mobile Hamburger Trigger */}
-          <div className="h-full flex items-center border-l border-black/15 ml-auto">
+          {/* Cell 3: CTA & Mobile Hamburger Trigger */}
+          <div className="h-full flex items-center border-l border-black/15 ml-auto shrink-0">
             <div className="hidden sm:block h-full">
               <Magnetic strength={0.25} className="h-full">
                 <a
                   href="#calculator"
-                  className="h-full px-8 bg-[#FACC15] text-[#0D0D0D] font-tech text-xs uppercase font-bold tracking-wider hover:bg-[#0D0D0D] hover:text-[#F4F3EF] transition-colors flex items-center justify-center border-l border-black/15"
+                  className="h-full px-6 xl:px-8 bg-[#FACC15] text-[#0D0D0D] font-tech text-xs uppercase font-bold tracking-wider hover:bg-[#0D0D0D] hover:text-[#F4F3EF] transition-colors flex items-center justify-center border-l border-black/15"
                 >
-                  Deploy Campaign &rarr;
+                  Start a campaign &rarr;
                 </a>
               </Magnetic>
             </div>
 
-            {/* Mobile Animated Hamburger Button */}
-            <div className="md:hidden h-full flex items-center px-4">
+            {/* Mobile Animated Hamburger Button (Visible below lg) */}
+            <div className="lg:hidden h-full flex items-center px-4">
               <button
+                ref={hamburgerButtonRef}
                 type="button"
                 onClick={toggleMenu}
                 aria-label="Toggle Navigation Menu"
+                aria-expanded={mobileMenuOpen}
                 className="w-12 h-12 bg-[#FACC15] cursor-pointer flex flex-col items-center justify-center gap-1.5 border border-black/20 transition-transform active:scale-95"
               >
                 <span
@@ -261,6 +278,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
       <nav
         ref={navDrawerRef}
         aria-hidden={!mobileMenuOpen}
+        {...(!mobileMenuOpen ? { inert: '' } : {})}
         className={`fixed inset-0 min-h-screen w-screen z-[100] flex flex-col justify-between bg-[#0A0A0A] text-[#F4F3EF] px-8 py-10 sm:px-12 sm:py-14 uppercase border-l border-white/15 md:w-[75vw] md:left-auto md:right-0 overflow-y-auto ${
           mobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
@@ -272,6 +290,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
             <span>Navigation Menu</span>
           </div>
           <button
+            ref={closeButtonRef}
             type="button"
             onClick={closeMenu}
             className="w-11 h-11 bg-[#FACC15] text-[#0A0A0A] flex flex-col items-center justify-center cursor-pointer border border-black/30 hover:bg-white transition-colors"
@@ -301,15 +320,15 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4"
           >
             <span className="font-tech text-xs sm:text-sm text-white/30 tracking-wider">02</span>
-            <span>WORK & REELS</span>
+            <span>WORK</span>
           </a>
           <a
-            href="#system"
+            href="#process"
             onClick={closeMenu}
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4"
           >
             <span className="font-tech text-xs sm:text-sm text-white/30 tracking-wider">03</span>
-            <span>GROWTH SYSTEM</span>
+            <span>PROCESS</span>
           </a>
           <a
             href="#services"
@@ -317,7 +336,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4"
           >
             <span className="font-tech text-xs sm:text-sm text-white/30 tracking-wider">04</span>
-            <span>CAPABILITIES</span>
+            <span>SERVICES</span>
           </a>
           <a
             href="#testimonials"
@@ -325,7 +344,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4"
           >
             <span className="font-tech text-xs sm:text-sm text-white/30 tracking-wider">05</span>
-            <span>PERSPECTIVES</span>
+            <span>CLIENTS</span>
           </a>
           <a
             href="#calculator"
@@ -333,7 +352,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4 text-[#FACC15]"
           >
             <span className="font-tech text-xs sm:text-sm text-[#FACC15]/50 tracking-wider">06</span>
-            <span>PARTNER INTAKE</span>
+            <span>START A CAMPAIGN</span>
           </a>
         </div>
 
@@ -344,13 +363,13 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
         >
           <div>
             <p className="font-sans text-xs uppercase tracking-wider text-white/40 mb-1 font-semibold">
-              Direct Executive Desk
+              Inquiries
             </p>
             <a
-              href="mailto:partners@famo1mediaa.agency"
+              href="mailto:contact@fam1media.agency"
               className="font-tech text-base sm:text-xl font-bold lowercase hover:text-[#FACC15] transition-colors tracking-wide text-white"
             >
-              partners@famo1mediaa.agency
+              contact@fam1media.agency
             </a>
           </div>
 
@@ -359,11 +378,11 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
               Global Office Hubs
             </p>
             <div className="flex flex-wrap gap-4 font-sans text-xs tracking-wider text-white/70 font-medium">
-              <span className="hover:text-[#FACC15] cursor-pointer">SoHo, New York</span>
+              <span>SoHo, New York</span>
               <span className="text-white/20">·</span>
-              <span className="hover:text-[#FACC15] cursor-pointer">Mayfair, London</span>
+              <span>Mayfair, London</span>
               <span className="text-white/20">·</span>
-              <span className="hover:text-[#FACC15] cursor-pointer">DIFC, Dubai</span>
+              <span>DIFC, Dubai</span>
             </div>
           </div>
         </div>

@@ -2,7 +2,10 @@ import React, { useState, useId } from 'react';
 import { ArchitecturalSection } from './layout/ArchitecturalSection';
 import { MaskedHeading } from './motion/RevealWrappers';
 import { Magnetic } from './motion/MagneticCursor';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, AlertCircle } from 'lucide-react';
+import { submitInquiry } from '../lib/submitInquiry';
+
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 export const CalculatorAndContact: React.FC = () => {
   // Mode switcher
@@ -30,8 +33,9 @@ export const CalculatorAndContact: React.FC = () => {
   const [creatorFollowers, setCreatorFollowers] = useState('50k-200k');
   const [creatorNeed, setCreatorNeed] = useState('deals');
 
-  // Submission State
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  // 4-State Machine: idle | submitting | success | error
+  const [formStatus, setFormStatus] = useState<FormStatus>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
 
   const budgetInputId = useId();
   const followerInputId = useId();
@@ -44,11 +48,12 @@ export const CalculatorAndContact: React.FC = () => {
 
   let growthDisplay = '';
   if (industry === 'ecommerce' || industry === 'consumer') {
-    const roas = (3.8 + budget / 6000).toFixed(1);
-    growthDisplay = `${roas}x Attributed ROAS`;
+    // Defensible illustrative range between 3.2x and 4.8x based on $85–$145 attributed reach
+    const roas = Math.min(4.8, 3.2 + (budget / 30000) * 1.4).toFixed(1);
+    growthDisplay = `${roas}× Attributed ROAS`;
   } else {
-    const liftLow = Math.min(480, Math.round(budget * 0.04 + 110));
-    const liftHigh = liftLow + 90;
+    const liftLow = Math.min(180, Math.round(budget * 0.003 + 45));
+    const liftHigh = liftLow + 40;
     growthDisplay = `+${liftLow}% – +${liftHigh}% Lift`;
   }
 
@@ -62,9 +67,53 @@ export const CalculatorAndContact: React.FC = () => {
   const dealsLow = Math.round(rateLow * 3.5);
   const dealsHigh = Math.round(rateHigh * 4.2);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    if (formStatus === 'submitting') return;
+
+    setFormStatus('submitting');
+    setStatusMessage('');
+
+    const payload: import('../lib/submitInquiry').InquiryPayload =
+      audience === 'brand'
+        ? {
+            audience: 'brand',
+            name: brandName,
+            email: brandEmail,
+            details: {
+              targetGoal: brandGoal,
+              budgetTier: brandBudget,
+              selectedBudget: `$${budget.toLocaleString()}`,
+              industry,
+            },
+            message: brandMessage,
+          }
+        : {
+            audience: 'creator',
+            name: creatorName,
+            email: creatorEmail,
+            details: {
+              handle: creatorHandle,
+              reachRange: creatorFollowers,
+              followersCount: followers.toLocaleString(),
+              primaryNeed: creatorNeed,
+              niche,
+            },
+          };
+
+    try {
+      const result = await submitInquiry(payload);
+      if (result.ok) {
+        setFormStatus('success');
+        setStatusMessage(result.message);
+      } else {
+        setFormStatus('error');
+        setStatusMessage(result.message);
+      }
+    } catch (err: any) {
+      setFormStatus('error');
+      setStatusMessage(err.message || 'Error dispatching inquiry. Please email us directly.');
+    }
   };
 
   return (
@@ -79,13 +128,13 @@ export const CalculatorAndContact: React.FC = () => {
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 font-tech text-xs uppercase tracking-wider text-white/50 mb-3 font-semibold">
               <span className="w-2 h-2 bg-[#FACC15]" />
-              <span>Yield Simulator & Partner Advisory</span>
+              <span>Campaign Estimator & Inquiry</span>
             </div>
             <MaskedHeading
               as="h2"
               className="font-display font-black uppercase text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.9] text-[#F4F3EF]"
             >
-              Growth Simulator & Partner Intake
+              Estimate & Contact
             </MaskedHeading>
           </div>
 
@@ -95,7 +144,7 @@ export const CalculatorAndContact: React.FC = () => {
               type="button"
               onClick={() => {
                 setAudience('brand');
-                setIsSubmitted(false);
+                setFormStatus('idle');
               }}
               className={`px-5 py-2 font-bold transition-colors ${
                 audience === 'brand'
@@ -109,7 +158,7 @@ export const CalculatorAndContact: React.FC = () => {
               type="button"
               onClick={() => {
                 setAudience('creator');
-                setIsSubmitted(false);
+                setFormStatus('idle');
               }}
               className={`px-5 py-2 font-bold transition-colors ${
                 audience === 'creator'
@@ -125,207 +174,224 @@ export const CalculatorAndContact: React.FC = () => {
         {/* 12-Column Architectural Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-white/15 border-b border-white/15">
           {/* Left Column (5 Cols): Live Mathematical Simulator */}
-          <div className="lg:col-span-5 p-6 sm:p-10 space-y-10">
-            <div className="space-y-2">
-              <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-semibold">
-                Yield Projections
+          {/* Left Column (5 Cols): Live Mathematical Simulator */}
+          <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between space-y-8">
+            <div className="bg-black/40 border border-white/10 p-6 sm:p-8 flex flex-col gap-6">
+              {/* Header */}
+              <div className="flex items-start justify-between border-b border-white/10 pb-5">
+                <div>
+                  <div className="font-tech text-[11px] uppercase tracking-widest text-[#FACC15] font-bold mb-1 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-[#FACC15]" />
+                    <span>{audience === 'brand' ? 'Brand Campaign Engine' : 'Creator Revenue Model'}</span>
+                  </div>
+                  <h3 className="font-tech text-xl font-bold uppercase tracking-tight text-[#F4F3EF]">
+                    {audience === 'brand' ? 'Campaign Estimator' : 'Creator Revenue Model'}
+                  </h3>
+                </div>
+                <div className="border border-white/15 px-2.5 py-1 font-mono text-[10px] text-white/50 uppercase tracking-widest">
+                  LIVE CALC
+                </div>
               </div>
-              <h3 className="font-tech text-2xl font-bold uppercase tracking-tight text-[#F4F3EF]">
-                {audience === 'brand' ? 'Campaign Yield Estimates' : 'Creator Revenue Model'}
-              </h3>
-              <p className="font-sans text-sm text-white/60 leading-relaxed">
-                {audience === 'brand'
-                  ? 'Calculated from 25+ verified brand campaigns across e-commerce, tech, and consumer lifestyle.'
-                  : 'Algorithmic rate projection factoring commercial rights buyout and production overhead.'}
-              </p>
+
+              {/* Top Pinned Highlight Metric Banner */}
+              <div className="p-4 bg-gradient-to-r from-[#FACC15]/15 via-white/[0.04] to-transparent border-l-2 border-[#FACC15] flex items-center justify-between">
+                <div>
+                  <div className="font-tech text-[10px] uppercase tracking-wider text-white/60">
+                    {audience === 'brand' ? 'Projected Campaign Impact' : 'Monthly Deal Pipeline'}
+                  </div>
+                  <div className="font-display font-black text-2xl text-[#34D399] tabular-nums mt-0.5">
+                    {audience === 'brand' ? growthDisplay : `$${dealsLow.toLocaleString()} – $${dealsHigh.toLocaleString()}`}
+                  </div>
+                </div>
+                <span className="font-mono text-[10px] text-white/80 bg-white/10 px-2 py-0.5 border border-white/20 uppercase font-semibold">
+                  Illustrative Estimate
+                </span>
+              </div>
+              <div className="text-[11px] font-sans text-white/50 -mt-2 leading-tight">
+                *Illustrative estimate — not a quote. Based on $85–$145 attributed reach per $1 of media spend.
+              </div>
+
+              {/* Sliders and Controls */}
+              {audience === 'brand' ? (
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-baseline">
+                      <label htmlFor={budgetInputId} className="font-tech text-xs uppercase tracking-wider text-white/80 font-bold">
+                        Monthly Budget Allocation
+                      </label>
+                      <span className="font-display font-black text-2xl text-[#FACC15] tabular-nums">
+                        ${budget.toLocaleString()}
+                      </span>
+                    </div>
+                    <input
+                      id={budgetInputId}
+                      type="range"
+                      min={2000}
+                      max={30000}
+                      step={500}
+                      value={budget}
+                      onChange={(e) => setBudget(Number(e.target.value))}
+                      className="w-full h-1 bg-white/20 appearance-none cursor-pointer accent-[#FACC15]"
+                    />
+                    <div className="flex justify-between font-mono text-[10px] text-white/40 uppercase">
+                      <span>$2K (Initial)</span>
+                      <span>$15K (Growth)</span>
+                      <span>$30K+ (Scale)</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="font-tech text-[11px] uppercase tracking-wider text-white/70 font-semibold">
+                      Sector Classification
+                    </div>
+                    <div className="grid grid-cols-3 gap-1 bg-white/5 p-1 border border-white/10">
+                      {[
+                        { id: 'ecommerce', label: 'E-COMMERCE' },
+                        { id: 'consumer', label: 'CONSUMER' },
+                        { id: 'b2b', label: 'TECH & B2B' }
+                      ].map((item) => (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => setIndustry(item.id)}
+                          className={`py-2 px-1 font-tech text-[11px] font-bold uppercase transition-colors ${
+                            industry === item.id ? 'bg-[#FACC15] text-[#0A0A0A]' : 'text-white/70 hover:text-white'
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Secondary Metric Grid (2x1) */}
+                  <div className="grid grid-cols-2 gap-px bg-white/10 border border-white/15">
+                    <div className="p-3.5 bg-black/60">
+                      <div className="font-tech text-[10px] uppercase tracking-wider text-white/50">Impressions</div>
+                      <div className="font-display font-bold text-lg text-white tabular-nums mt-1">
+                        {(reachLow / 1000).toFixed(0)}K – {(reachHigh / 1000).toFixed(0)}K
+                      </div>
+                    </div>
+                    <div className="p-3.5 bg-black/60">
+                      <div className="font-tech text-[10px] uppercase tracking-wider text-white/50">Creator Force</div>
+                      <div className="font-display font-bold text-lg text-white tabular-nums mt-1">
+                        {creatorRange}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-baseline">
+                      <label htmlFor={followerInputId} className="font-tech text-xs uppercase tracking-wider text-white/80 font-bold">
+                        Audience Footprint
+                      </label>
+                      <span className="font-display font-black text-2xl text-[#FACC15] tabular-nums">
+                        {(followers / 1000).toLocaleString()}K
+                      </span>
+                    </div>
+                    <input
+                      id={followerInputId}
+                      type="range"
+                      min={10000}
+                      max={600000}
+                      step={10000}
+                      value={followers}
+                      onChange={(e) => setFollowers(Number(e.target.value))}
+                      className="w-full h-1 bg-white/20 appearance-none cursor-pointer accent-[#FACC15]"
+                    />
+                    <div className="flex justify-between font-mono text-[10px] text-white/40 uppercase">
+                      <span>10K</span>
+                      <span>250K</span>
+                      <span>600K+</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="font-tech text-[11px] uppercase tracking-wider text-white/70 font-semibold">
+                      Content Vertical
+                    </div>
+                    <div className="grid grid-cols-3 gap-1 bg-white/5 p-1 border border-white/10">
+                      {[
+                        { id: 'lifestyle', label: 'LIFESTYLE' },
+                        { id: 'tech', label: 'TECH' },
+                        { id: 'culture', label: 'CULTURE' }
+                      ].map((item) => (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => setNiche(item.id)}
+                          className={`py-2 px-1 font-tech text-[11px] font-bold uppercase transition-colors ${
+                            niche === item.id ? 'bg-[#FACC15] text-[#0A0A0A]' : 'text-white/70 hover:text-white'
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-px bg-white/10 border border-white/15">
+                    <div className="p-3.5 bg-black/60">
+                      <div className="font-tech text-[10px] uppercase tracking-wider text-white/50">Per Placement</div>
+                      <div className="font-display font-bold text-lg text-white tabular-nums mt-1">
+                        ${rateLow.toLocaleString()} – ${rateHigh.toLocaleString()}
+                      </div>
+                    </div>
+                    <div className="p-3.5 bg-black/60">
+                      <div className="font-tech text-[10px] uppercase tracking-wider text-white/50">Post Desk</div>
+                      <div className="font-sans text-xs font-bold text-[#FACC15] mt-2">
+                        100% INCLUDED
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-
-            {/* Slider & Input Matrix */}
-            {audience === 'brand' ? (
-              <div className="space-y-8">
-                {/* Investment Range */}
-                <div className="space-y-4">
-                  <div className="flex justify-between items-baseline">
-                    <label htmlFor={budgetInputId} className="font-tech text-xs uppercase tracking-wider text-white/70 font-semibold">
-                      Monthly Campaign Investment
-                    </label>
-                    <span className="font-display font-black text-3xl text-[#FACC15] tabular-nums">
-                      ${budget.toLocaleString()}
-                    </span>
-                  </div>
-                  <input
-                    id={budgetInputId}
-                    type="range"
-                    min={2000}
-                    max={30000}
-                    step={500}
-                    value={budget}
-                    onChange={(e) => setBudget(Number(e.target.value))}
-                    className="w-full h-1 bg-white/20 appearance-none cursor-pointer accent-[#FACC15]"
-                  />
-                  <div className="flex justify-between font-sans text-xs text-white/40 uppercase font-medium">
-                    <span>$2,000 / mo</span>
-                    <span>$15,000 / mo</span>
-                    <span>$30,000+ / mo</span>
-                  </div>
-                </div>
-
-                {/* Industry Selector */}
-                <div className="space-y-3">
-                  <div className="font-tech text-xs uppercase tracking-wider text-white/70 font-semibold">
-                    Sector Classification
-                  </div>
-                  <div className="grid grid-cols-3 gap-px bg-white/15 border border-white/15">
-                    {[
-                      { id: 'ecommerce', label: 'E-COMMERCE' },
-                      { id: 'consumer', label: 'CONSUMER' },
-                      { id: 'b2b', label: 'TECH & B2B' }
-                    ].map((item) => (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => setIndustry(item.id)}
-                        className={`py-3 px-2 font-tech text-xs font-bold uppercase tracking-wider transition-colors ${
-                          industry === item.id
-                            ? 'bg-[#FACC15] text-[#0A0A0A]'
-                            : 'bg-[#0A0A0A] text-white/70 hover:bg-white/5'
-                        }`}
-                      >
-                        {item.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Output Matrix */}
-                <div className="border border-white/15 divide-y divide-white/15 bg-white/[0.02]">
-                  <div className="p-4 flex justify-between items-center">
-                    <span className="font-tech text-xs uppercase tracking-wider text-white/60 font-medium">Estimated Attributed Reach</span>
-                    <span className="font-display font-bold text-xl text-[#F4F3EF] tabular-nums">
-                      {(reachLow / 1000).toFixed(0)}K – {(reachHigh / 1000).toFixed(0)}K
-                    </span>
-                  </div>
-                  <div className="p-4 flex justify-between items-center">
-                    <span className="font-tech text-xs uppercase tracking-wider text-white/60 font-medium">Deployed Creator Force</span>
-                    <span className="font-display font-bold text-xl text-[#F4F3EF] tabular-nums">
-                      {creatorRange}
-                    </span>
-                  </div>
-                  <div className="p-4 flex justify-between items-center bg-[#FACC15]/10">
-                    <span className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-bold">Projected Campaign Yield</span>
-                    <span className="font-display font-black text-2xl text-[#10B981] tabular-nums">
-                      {growthDisplay}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-8">
-                {/* Followers Range */}
-                <div className="space-y-4">
-                  <div className="flex justify-between items-baseline">
-                    <label htmlFor={followerInputId} className="font-tech text-xs uppercase tracking-wider text-white/70 font-semibold">
-                      Audience Reach
-                    </label>
-                    <span className="font-display font-black text-3xl text-[#FACC15] tabular-nums">
-                      {(followers / 1000).toLocaleString()}K
-                    </span>
-                  </div>
-                  <input
-                    id={followerInputId}
-                    type="range"
-                    min={10000}
-                    max={600000}
-                    step={10000}
-                    value={followers}
-                    onChange={(e) => setFollowers(Number(e.target.value))}
-                    className="w-full h-1 bg-white/20 appearance-none cursor-pointer accent-[#FACC15]"
-                  />
-                  <div className="flex justify-between font-sans text-xs text-white/40 uppercase font-medium">
-                    <span>10K (Rising)</span>
-                    <span>250K (Flagship)</span>
-                    <span>600K+ (Tier-1)</span>
-                  </div>
-                </div>
-
-                {/* Niche Selector */}
-                <div className="space-y-3">
-                  <div className="font-tech text-xs uppercase tracking-wider text-white/70 font-semibold">
-                    Vertical Specialization
-                  </div>
-                  <div className="grid grid-cols-3 gap-px bg-white/15 border border-white/15">
-                    {[
-                      { id: 'lifestyle', label: 'LIFESTYLE' },
-                      { id: 'tech', label: 'TECH & GEAR' },
-                      { id: 'culture', label: 'CULTURE & ART' }
-                    ].map((item) => (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => setNiche(item.id)}
-                        className={`py-3 px-2 font-tech text-xs font-bold uppercase tracking-wider transition-colors ${
-                          niche === item.id
-                            ? 'bg-[#FACC15] text-[#0A0A0A]'
-                            : 'bg-[#0A0A0A] text-white/70 hover:bg-white/5'
-                        }`}
-                      >
-                        {item.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Output Matrix */}
-                <div className="border border-white/15 divide-y divide-white/15 bg-white/[0.02]">
-                  <div className="p-4 flex justify-between items-center">
-                    <span className="font-tech text-xs uppercase tracking-wider text-white/60 font-medium">Single Placement Floor</span>
-                    <span className="font-display font-bold text-xl text-[#F4F3EF] tabular-nums">
-                      ${rateLow.toLocaleString()} – ${rateHigh.toLocaleString()}
-                    </span>
-                  </div>
-                  <div className="p-4 flex justify-between items-center bg-[#FACC15]/10">
-                    <span className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-bold">Monthly Deal Pipeline</span>
-                    <span className="font-display font-black text-2xl text-[#10B981] tabular-nums">
-                      ${dealsLow.toLocaleString()} – ${dealsHigh.toLocaleString()}
-                    </span>
-                  </div>
-                  <div className="p-4 flex justify-between items-center">
-                    <span className="font-tech text-xs uppercase tracking-wider text-white/60 font-medium">4K Post-Production Desk</span>
-                    <span className="font-sans text-xs font-bold text-[#FACC15] uppercase tracking-wider">
-                      100% Included (Zero Fee)
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Right Column (7 Cols): Direct Advisory Form */}
           <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between" id="contact">
-            {isSubmitted ? (
-              <div className="p-8 border border-[#10B981] bg-[#10B981]/10 space-y-6 my-auto">
+            {formStatus === 'success' ? (
+              <div
+                role="status"
+                aria-live="polite"
+                className="p-8 border border-[#10B981] bg-[#10B981]/10 space-y-6 my-auto"
+              >
                 <div className="flex items-center gap-3">
                   <span className="w-3 h-3 bg-[#10B981]" />
                   <span className="font-tech text-xs uppercase tracking-wider text-[#10B981] font-bold">
-                    Inquiry Received & Logged
+                    Inquiry Received & Dispatched
                   </span>
                 </div>
-                <h3 className="font-display font-black text-3xl sm:text-4xl uppercase text-white tracking-tight">
-                  Brief Successfully Dispatched to Managing Partners.
+                <h3 tabIndex={-1} className="font-display font-black text-3xl sm:text-4xl uppercase text-white tracking-tight focus:outline-none">
+                  Brief Successfully Prepared.
                 </h3>
                 <p className="font-sans text-sm text-white/80 leading-relaxed max-w-xl">
-                  Your parameters have been logged into our operational deal room. A partner director will complete a preliminary audit and contact you within 24 business hours.
+                  {statusMessage ||
+                    'Your parameters have been recorded. Our partner desk will review and contact you within 24 business hours.'}
                 </p>
                 <button
                   type="button"
-                  onClick={() => setIsSubmitted(false)}
+                  onClick={() => setFormStatus('idle')}
                   className="font-tech text-xs uppercase tracking-wider text-[#FACC15] hover:underline font-bold"
                 >
                   Send Another Inquiry
                 </button>
               </div>
             ) : audience === 'brand' ? (
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <form onSubmit={handleSubmit} className="space-y-8" aria-busy={formStatus === 'submitting'}>
+                {formStatus === 'error' && (
+                  <div
+                    role="alert"
+                    aria-live="assertive"
+                    className="p-4 border border-[#B3261E] bg-[#B3261E]/10 flex items-center gap-3 text-red-400 font-sans text-xs"
+                  >
+                    <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                    <span>{statusMessage}</span>
+                  </div>
+                )}
                 <div className="space-y-2">
                   <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-semibold">
                     Advisory Intake
@@ -422,15 +488,34 @@ export const CalculatorAndContact: React.FC = () => {
                 <Magnetic strength={0.2}>
                   <button
                     type="submit"
-                    className="w-full py-5 bg-[#FACC15] text-[#0A0A0A] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-[#FACC15]/90 transition-colors"
+                    disabled={formStatus === 'submitting'}
+                    className={`w-full py-5 bg-[#FACC15] text-[#0A0A0A] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-colors ${
+                      formStatus === 'submitting'
+                        ? 'opacity-60 cursor-not-allowed'
+                        : 'hover:bg-[#FACC15]/90'
+                    }`}
                   >
-                    <span>Submit Brief For Partner Review</span>
-                    <ArrowRight className="w-5 h-5" />
+                    <span>
+                      {formStatus === 'submitting'
+                        ? 'Dispatching Brief...'
+                        : 'Submit Brief For Partner Review'}
+                    </span>
+                    <ArrowRight className={`w-5 h-5 ${formStatus === 'submitting' ? 'animate-pulse' : ''}`} />
                   </button>
                 </Magnetic>
               </form>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <form onSubmit={handleSubmit} className="space-y-8" aria-busy={formStatus === 'submitting'}>
+                {formStatus === 'error' && (
+                  <div
+                    role="alert"
+                    aria-live="assertive"
+                    className="p-4 border border-[#B3261E] bg-[#B3261E]/10 flex items-center gap-3 text-red-400 font-sans text-xs"
+                  >
+                    <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                    <span>{statusMessage}</span>
+                  </div>
+                )}
                 <div className="space-y-2">
                   <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-semibold">
                     Talent Representation
@@ -527,10 +612,19 @@ export const CalculatorAndContact: React.FC = () => {
                 <Magnetic strength={0.2}>
                   <button
                     type="submit"
-                    className="w-full py-5 bg-[#FACC15] text-[#0A0A0A] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-[#FACC15]/90 transition-colors"
+                    disabled={formStatus === 'submitting'}
+                    className={`w-full py-5 bg-[#FACC15] text-[#0A0A0A] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-colors ${
+                      formStatus === 'submitting'
+                        ? 'opacity-60 cursor-not-allowed'
+                        : 'hover:bg-[#FACC15]/90'
+                    }`}
                   >
-                    <span>Submit Roster Application</span>
-                    <ArrowRight className="w-5 h-5" />
+                    <span>
+                      {formStatus === 'submitting'
+                        ? 'Submitting Application...'
+                        : 'Submit Roster Application'}
+                    </span>
+                    <ArrowRight className={`w-5 h-5 ${formStatus === 'submitting' ? 'animate-pulse' : ''}`} />
                   </button>
                 </Magnetic>
               </form>

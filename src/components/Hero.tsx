@@ -68,7 +68,7 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
                 className="w-full py-5 px-6 bg-transparent text-[#0D0D0D] border border-black/25 font-tech text-xs uppercase font-bold tracking-widest hover:bg-[#EAE8E1] transition-colors flex items-center justify-between"
               >
                 <span>LET'S WORK TOGETHER</span>
-                <span>PARTNER INTAKE</span>
+                <span>CONTACT</span>
               </a>
             </Magnetic>
           </div>
@@ -83,7 +83,7 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
         </div>
         <div className="p-6 md:p-8 flex items-center justify-between">
           <span className="font-tech text-xs text-neutral-600 uppercase tracking-wider font-semibold">SHORT-FORM RETENTION</span>
-          <span className="font-display font-black text-2xl text-[#10B981]">84.2% BENCHMARK</span>
+          <span className="font-display font-black text-2xl text-[#047857]">84.2% BENCHMARK</span>
         </div>
         <div className="p-6 md:p-8 flex items-center justify-between">
           <span className="font-tech text-xs text-neutral-600 uppercase tracking-wider font-semibold">CONTENT DISPATCH</span>
@@ -108,7 +108,7 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
         {/* Technical Coordinate Overlay Badge */}
         <div className="absolute bottom-6 left-6 z-20 bg-[#0D0D0D]/90 text-[#F4F3EF] px-4 py-2 border border-white/20 font-sans text-xs uppercase tracking-wider flex items-center gap-3">
           <span className="w-2 h-2 bg-[#FACC15]" />
-          <span><span className="normal-case">FamO1mediaa</span> CREATIVE STUDIO // COMMERCIAL PRODUCTION & CAMPAIGN ENGINE</span>
+          <span><span className="normal-case">Fam1Media</span> CREATIVE PRODUCTION & COMMERCIAL CAMPAIGN ENGINE</span>
         </div>
       </div>
     </ArchitecturalSection>

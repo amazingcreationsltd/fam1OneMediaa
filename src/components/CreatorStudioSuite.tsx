@@ -6,10 +6,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface StackingPanel {
+/**
+ * ONE JOB: Explain the 3-step studio process (Discover -> Produce -> Distribute & Measure).
+ */
+
+interface ProcessStep {
   id: string;
   index: string;
-  timeline: string;
+  stageLabel: string;
   title: string;
   description: string;
   checkpoints: string[];
@@ -18,70 +22,54 @@ interface StackingPanel {
   kpiSub: string;
 }
 
-const PANELS: StackingPanel[] = [
+const STEPS: ProcessStep[] = [
   {
-    id: 'panel-1',
+    id: 'step-1',
     index: '01',
-    timeline: 'PHASE 01',
-    title: 'SCRIPTING & CREATIVE STRATEGY',
+    stageLabel: 'Stage 01 · Brief to script',
+    title: 'Discover & Strategize',
     description:
-      'We turn ideas into concepts, stories, and campaign-ready scripts. From commercial video concepts to social content arcs, every script is engineered around brand objectives and platform algorithms.',
+      'We turn commercial objectives into concrete creative briefs, script arcs, and production timelines. Every concept is engineered around first 3-second hook retention.',
     checkpoints: [
-      'Advertisement scripts & promotional video concepts',
-      'Campaign ideation, storytelling & creative direction',
-      '3-second visual hook formulas tailored for vertical algorithms',
+      'Creative direction & narrative arc planning',
+      'Platform-native scriptwriting & hook engineering',
+      'Production scheduling & talent coordination',
     ],
-    kpiLabel: 'SCRIPT VELOCITY',
-    kpiValue: '72 HOURS',
-    kpiSub: 'Ideation to locked concept signoff',
+    kpiLabel: 'Brief to script',
+    kpiValue: '72h',
+    kpiSub: 'Concept sign-off cycle',
   },
   {
-    id: 'panel-2',
+    id: 'step-2',
     index: '02',
-    timeline: 'PHASE 02',
-    title: 'CAPTURING & CINEMATIC PRODUCTION',
+    stageLabel: 'Stage 02 · First cut',
+    title: 'Produce & Polish',
     description:
-      'Video production and promotional shoots directed with precision. We capture brand advertisements, product videos, creator-led shoots, and short-form footage for Instagram Reels and YouTube Shorts.',
+      'High-cadence 4K capture, kinetic editing, sound design, and color grading. We shape footage into scroll-stopping stories tailored for high retention.',
     checkpoints: [
-      '4K 60FPS cinema camera packages with professional studio lighting',
-      'On-location commercial shoots & creator-led product sessions',
-      'Multi-angle setups optimized for high retention and visual impact',
+      'Multi-angle 4K production with cinema lighting',
+      'Paced editing with kinetic typography & sound design',
+      'Rapid turnaround master review & color grading',
     ],
-    kpiLabel: 'HOOK RETENTION',
-    kpiValue: '84.2%',
-    kpiSub: 'First 3-second completion benchmark',
+    kpiLabel: 'First cut',
+    kpiValue: '48h',
+    kpiSub: 'From wrap to draft delivery',
   },
   {
-    id: 'panel-3',
+    id: 'step-3',
     index: '03',
-    timeline: 'PHASE 03',
-    title: 'HIGH-RETENTION EDITING & MOTION GRAPHICS',
+    stageLabel: 'Stage 03 · Reporting cadence',
+    title: 'Distribute & Measure',
     description:
-      'Kinetic video editing, custom motion graphics, sound design, and color grading. We shape raw captures into scroll-stopping visual stories that connect with modern digital audiences.',
+      'Multi-channel deployment, publishing rhythms, creator partnerships, and clear reporting against commercial indicators rather than vanity metrics.',
     checkpoints: [
-      'Fast-paced short-form video editing with kinetic typography',
-      'Custom motion graphics, audio mastering & brand transitions',
-      'Rigorous 48-hour edit turnaround guaranteed under SLA',
+      'Publishing calendar & community distribution',
+      'Creator partnership coordination & rights clearance',
+      'Performance reporting & creative iteration',
     ],
-    kpiLabel: 'EDIT TURNAROUND',
-    kpiValue: '48 HOURS',
-    kpiSub: 'Raw footage to master export',
-  },
-  {
-    id: 'panel-4',
-    index: '04',
-    timeline: 'PHASE 04',
-    title: 'SOCIAL HANDLING & CREATOR COLLABORATIONS',
-    description:
-      'Complete social media management, content publishing, community engagement, and vetted influencer matchmaking that scales reach and keeps brands relevant every day.',
-    checkpoints: [
-      'Social account management, editorial calendars & active engagement',
-      'Vetted creator & influencer matchmaking with 100% usage rights',
-      'Integrated marketing campaigns, outdoor ads & conversion web design',
-    ],
-    kpiLabel: 'LIFETIME ROAS',
-    kpiValue: '4.8X',
-    kpiSub: 'Average return on campaign spend',
+    kpiLabel: 'Reporting cadence',
+    kpiValue: 'Weekly',
+    kpiSub: 'Actionable creative feedback loops',
   },
 ];
 
@@ -95,14 +83,14 @@ export const CreatorStudioSuite: React.FC = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    const panels = container.querySelectorAll('.sticky-panel');
+    const panels = container.querySelectorAll<HTMLElement>('.sticky-panel');
 
-    // Scale underlying panels as user scrolls
+    // Panel stacking and scaling animation
     panels.forEach((panel, i) => {
       if (i < panels.length - 1) {
         gsap.to(panel, {
-          scale: 0.97,
-          opacity: 0.6,
+          scale: 0.98,
+          opacity: 0.7,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: panels[i + 1],
@@ -113,97 +101,133 @@ export const CreatorStudioSuite: React.FC = () => {
         });
       }
     });
+
+    // Dynamic scroll-driven progress bar filling for each panel's progress bar
+    panels.forEach((panel, i) => {
+      const progressBar = panel.querySelector<HTMLElement>('.cadence-progress-fill');
+      if (!progressBar) return;
+
+      const baseWidth = (i / STEPS.length) * 100;
+      const targetWidth = ((i + 1) / STEPS.length) * 100;
+
+      gsap.fromTo(
+        progressBar,
+        { width: `${baseWidth}%` },
+        {
+          width: `${targetWidth}%`,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: panel,
+            start: 'top 75%',
+            end: 'top 20%',
+            scrub: true,
+          },
+        }
+      );
+    });
   }, []);
 
   return (
-    <ArchitecturalSection id="system">
+    <ArchitecturalSection id="process">
       {/* Header */}
       <div className="p-8 sm:p-12 md:p-14 border-b border-black/15 flex flex-col md:flex-row md:items-end justify-between gap-6 bg-[#F4F3EF]">
         <div>
           <span className="font-tech text-xs uppercase tracking-wider text-neutral-600 mb-2 block font-semibold">
-            4-Stage Execution Blueprint
+            3-Stage Studio Workflow
           </span>
           <MaskedHeading
             as="h2"
-            className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-[#0D0D0D]"
+            className="font-display font-black text-4xl sm:text-5xl uppercase tracking-tight text-[#0D0D0D]"
           >
-            THE GROWTH PROTOCOL
+            HOW WE WORK
           </MaskedHeading>
         </div>
         <div className="font-tech text-xs text-neutral-600 uppercase tracking-wider font-semibold">
-          Execution Phase Sequence
+          Brief to Distribution
         </div>
       </div>
 
-      {/* Sticky Stacking Panels Container */}
+      {/* Stacking Step Panels Container */}
       <div ref={containerRef} className="relative w-full">
-        {PANELS.map((panel, idx) => (
+        {STEPS.map((step, idx) => (
           <div
-            key={panel.id}
-            className="sticky-panel sticky top-16 w-full min-h-[440px] bg-[#F4F3EF] border-b-2 border-[#0D0D0D] shadow-none z-10"
+            key={step.id}
+            className="sticky-panel sticky top-16 w-full min-h-[380px] bg-[#F4F3EF] border-b-2 border-[#0D0D0D] shadow-none z-10"
             style={{ zIndex: idx + 1 }}
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-black/15 h-full">
-              {/* Cols 1–3: Giant Index & Timeline */}
-              <div className="lg:col-span-3 p-8 sm:p-10 flex flex-col justify-between bg-[#EAE8E1]/60">
-                <span className="font-display text-8xl md:text-9xl text-[#0D0D0D] leading-none select-none">
-                  {panel.index}
-                </span>
-                <div className="mt-8 pt-4 border-t border-black/15 font-mono text-xs text-neutral-600 uppercase tracking-widest">
-                  PHASE TIMELINE: <span className="text-[#0D0D0D] font-bold">{panel.timeline}</span>
-                </div>
-              </div>
-
-              {/* Cols 4–8: Title, Description, Checkpoints */}
-              <div className="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between">
+              {/* Left Column (Cols 1–4): Stage Label, Giant Numeral & Animated Process Cadence Progress Bar */}
+              <div className="lg:col-span-4 p-8 sm:p-10 flex flex-col justify-between bg-[#EAE8E1]/60">
                 <div>
-                  <h3 className="font-display text-3xl sm:text-4xl uppercase tracking-tight text-[#0D0D0D] mb-4">
-                    {panel.title}
-                  </h3>
-                  <p className="font-sans text-sm sm:text-base text-neutral-700 leading-relaxed mb-6">
-                    {panel.description}
-                  </p>
+                  {/* Stage Label above number with no border */}
+                  <div className="font-tech text-xs text-neutral-600 uppercase tracking-widest font-bold mb-3">
+                    {step.stageLabel}
+                  </div>
+                  {/* Giant Numeral */}
+                  <span className="font-display text-7xl md:text-8xl text-[#0D0D0D] leading-none select-none block">
+                    {step.index}
+                  </span>
+                </div>
 
-                  <div className="space-y-3 font-mono text-xs text-neutral-800">
-                    {panel.checkpoints.map((pt, i) => (
-                      <div key={i} className="flex items-start gap-2.5">
-                        <span className="w-1.5 h-1.5 bg-[#FACC15] shrink-0 mt-1.5 border border-black/30" />
-                        <span>{pt}</span>
-                      </div>
-                    ))}
+                {/* Process Cadence Progress Bar moved into Leftmost Card & Scroll Animated */}
+                <div className="pt-8">
+                  <div className="flex justify-between font-tech text-xs text-neutral-600 mb-1.5 uppercase font-semibold">
+                    <span>Process Cadence</span>
+                    <span>Stage {idx + 1} of 3</span>
+                  </div>
+                  <div className="w-full h-2 bg-neutral-300 overflow-hidden">
+                    <div
+                      className="cadence-progress-fill h-full bg-[#0D0D0D] transition-none"
+                      style={{ width: `${((idx + 1) / 3) * 100}%` }}
+                    />
                   </div>
                 </div>
+              </div>
 
-                <div className="mt-8 pt-4 border-t border-black/10 font-sans text-xs text-neutral-500 uppercase tracking-wider font-semibold">
-                  Deliverable Guarantee: 100% SLA Compliance
+              {/* Right Column (Cols 5–12): Title & Enlarged Description */}
+              <div className="lg:col-span-8 p-8 sm:p-12 md:p-14 flex flex-col justify-between">
+                <div>
+                  <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-[#0D0D0D] mb-6">
+                    {step.title}
+                  </h3>
+                  <p className="font-sans text-lg sm:text-xl md:text-2xl text-neutral-800 leading-relaxed max-w-3xl font-normal">
+                    {step.description}
+                  </p>
+                </div>
+
+                <div className="mt-10 pt-5 border-t border-black/10 font-sans text-xs sm:text-sm text-neutral-600 uppercase tracking-wider font-semibold flex items-center justify-between">
+                  <span>Consistent Execution & Clear Communication</span>
+                  <span className="font-mono text-xs sm:text-sm text-neutral-800 uppercase tracking-wider font-bold">
+                    Target Turnaround: {step.kpiValue}
+                  </span>
                 </div>
               </div>
 
-              {/* Cols 9–12: Unboxed Live Metric Visualization */}
+              {/* Third Card Commented Out per request */}
+              {/*
               <div className="lg:col-span-4 p-8 sm:p-10 bg-[#EAE8E1] flex flex-col justify-between">
                 <div>
                   <div className="font-tech text-xs text-neutral-600 uppercase tracking-wider font-semibold mb-1">
-                    Phase 0{idx + 1} · {panel.kpiLabel}
+                    {step.stageLabel}
                   </div>
-                  <div className="font-display font-black text-6xl md:text-7xl text-[#0D0D0D] leading-none mb-2">
-                    {panel.kpiValue}
+                  <div className="font-display font-black text-5xl md:text-6xl text-[#0D0D0D] leading-none mb-2">
+                    {step.kpiValue}
                   </div>
                   <div className="font-tech text-xs text-neutral-600 uppercase tracking-wide">
-                    {panel.kpiSub}
+                    {step.kpiSub}
                   </div>
                 </div>
-
-                {/* Progress Bar */}
                 <div className="pt-8">
                   <div className="flex justify-between font-tech text-xs text-neutral-600 mb-1.5 uppercase font-semibold">
-                    <span>Execution Cadence</span>
-                    <span>Quarter Tracked</span>
+                    <span>Process Cadence</span>
+                    <span>Stage {idx + 1} of 3</span>
                   </div>
                   <div className="w-full h-2 bg-neutral-300 overflow-hidden">
-                    <div className="h-full bg-[#0D0D0D]" style={{ width: `${(idx + 1) * 25}%` }} />
+                    <div className="h-full bg-[#0D0D0D]" style={{ width: `${((idx + 1) / 3) * 100}%` }} />
                   </div>
                 </div>
               </div>
+              */}
             </div>
           </div>
         ))}
