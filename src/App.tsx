@@ -17,6 +17,7 @@ import { CreatorRoster } from './components/CreatorRoster';
 import { Calculator } from './components/Calculator';
 import { ContactForm } from './components/ContactForm';
 import { Footer } from './components/Footer';
+import { ArchitecturalSection, MagneticCursor, VelocityMarquee } from './components/MotionPrimitives';
 
 const AppContent: React.FC = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);
@@ -25,22 +26,18 @@ const AppContent: React.FC = () => {
   useSmoothScroll();
 
   return (
-    <div className="bg-primary text-white min-h-screen selection-accent relative overflow-x-hidden transition-colors duration-300">
+    <div className="min-h-screen relative overflow-x-hidden">
       <Preloader onComplete={() => setIsLoaded(true)} />
+      <MagneticCursor />
       <Navbar isLoaded={isLoaded} />
-      <main className="w-full max-w-full">
-        <Hero isLoaded={isLoaded} />
-        <AudienceFork />
-        <DistrictOutdoorShowcase />
-        <CreatorStudioSuite />
-        <BentoServices />
-        <PhoneShowcase />
-        <ServiceAccordion />
-        <Workflow />
-        <Testimonials />
-        <CreatorRoster />
-        <Calculator />
-        <ContactForm />
+      <main className="w-full max-w-full pt-16">
+        <ArchitecturalSection index="01" label="FULL-STACK HOSPITALITY ENGINE" id="hero"><Hero isLoaded={isLoaded} /></ArchitecturalSection>
+        <VelocityMarquee text="FULL-STACK RESTAURANT GROWTH — PREDICTABLE COVERS — HIGH-MARGIN HOSPITALITY —" />
+        <ArchitecturalSection index="02" label="PARADIGM SHIFT"><AudienceFork /><DistrictOutdoorShowcase /></ArchitecturalSection>
+        <ArchitecturalSection index="03" label="VERIFIED CASE ARCHIVE" dark><CreatorStudioSuite /><PhoneShowcase /></ArchitecturalSection>
+        <ArchitecturalSection index="04" label="PROPRIETARY GROWTH PROTOCOL"><BentoServices /><ServiceAccordion /><Workflow /></ArchitecturalSection>
+        <ArchitecturalSection index="05" label="OPERATOR ENDORSEMENTS"><Testimonials /><CreatorRoster /></ArchitecturalSection>
+        <ArchitecturalSection index="06" label="REVENUE PROJECTION & DEPLOYMENT" dark><Calculator /><ContactForm /></ArchitecturalSection>
       </main>
       <Footer />
     </div>
