@@ -61,12 +61,12 @@ export const CircularStamp: React.FC<CircularStampProps> = ({ className = '', da
           fill="none"
         />
         <text
-          className={`font-mono text-[9px] uppercase tracking-[0.24em] font-bold ${
+          className={`font-mono text-[9px] tracking-[0.24em] font-bold ${
             dark ? 'fill-[#F4F3EF]' : 'fill-[#0D0D0D]'
           }`}
         >
           <textPath href="#stampCirclePath" startOffset="0%">
-            FAM1MEDIA • CREATIVE GROWTH PARTNER • EST 2026 • 
+            FamO1mediaa • CREATIVE GROWTH PARTNER • EST 2026 • 
           </textPath>
         </text>
       </svg>

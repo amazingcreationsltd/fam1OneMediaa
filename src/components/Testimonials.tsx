@@ -22,7 +22,7 @@ const TESTIMONIALS: TestimonialItem[] = [
     role: 'Creator Partner',
     roleType: 'CREATOR',
     quote:
-      'Fam1Media aligned me with top-tier brand partnerships and took 4K video post-production completely off my plate. My hook retention surged while I focused 100% on creative storytelling.',
+      'FamO1mediaa aligned me with top-tier brand partnerships and took 4K video post-production completely off my plate. My hook retention surged while I focused 100% on creative storytelling.',
     author: 'Sarah Chen',
     title: 'Visual Storyteller & Digital Creator · 480K Audience',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
@@ -35,7 +35,7 @@ const TESTIMONIALS: TestimonialItem[] = [
     role: 'Brand Partner',
     roleType: 'BRAND',
     quote:
-      'Fam1Media turned our product launch into an integrated movement: scripted campaign concepts, vetted creator matchmaking, and a high-converting website. We achieved 4.8x ROAS and immediate sellout.',
+      'FamO1mediaa turned our product launch into an integrated movement: scripted campaign concepts, vetted creator matchmaking, and a high-converting website. We achieved 4.8x ROAS and immediate sellout.',
     author: 'Julian Vance',
     title: 'Founder & CEO, Lumina Lifestyle Group',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',

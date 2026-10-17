@@ -108,7 +108,7 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
         {/* Technical Coordinate Overlay Badge */}
         <div className="absolute bottom-6 left-6 z-20 bg-[#0D0D0D]/90 text-[#F4F3EF] px-4 py-2 border border-white/20 font-sans text-xs uppercase tracking-wider flex items-center gap-3">
           <span className="w-2 h-2 bg-[#FACC15]" />
-          <span>FAM1 CREATIVE STUDIO // COMMERCIAL PRODUCTION & CAMPAIGN ENGINE</span>
+          <span><span className="normal-case">FamO1mediaa</span> CREATIVE STUDIO // COMMERCIAL PRODUCTION & CAMPAIGN ENGINE</span>
         </div>
       </div>
     </ArchitecturalSection>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArchitecturalSection } from './layout/ArchitecturalSection';
 import { ParallaxMedia } from './motion/RevealWrappers';
+import { SocialDistributionManager } from './SocialDistributionManager';
 
 interface CaseStudy {
   id: string;
@@ -192,8 +193,12 @@ export const DistrictOutdoorShowcase: React.FC = () => {
           </div>
         ))}
       </div>
+      {/* End Part A: Case Studies */}
 
-      {/* Part B: 9:16 Vertical Reels Gallery */}
+      {/* Part B: Multi-Network Distribution & Social Media Management */}
+      <SocialDistributionManager />
+
+      {/* Part C: 9:16 Vertical Reels Gallery */}
       <div className="w-full">
         <div className="p-6 sm:p-10 border-b border-white/15 flex items-center justify-between">
           <span className="font-tech text-xs text-neutral-300 uppercase tracking-wider font-bold">

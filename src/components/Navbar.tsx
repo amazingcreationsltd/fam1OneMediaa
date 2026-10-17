@@ -155,8 +155,8 @@ export const Navbar: React.FC = () => {
           {/* Cell 1: Brand Cell */}
           <div className="h-full flex items-center px-4 sm:px-6 border-r border-black/15 shrink-0 gap-3">
             <a href="#hero" className="flex items-baseline gap-2.5">
-              <span className="font-display text-2xl font-black uppercase tracking-tight text-[#0D0D0D]">
-                FAM1MEDIA
+              <span className="font-display text-2xl font-black tracking-tight text-[#0D0D0D]">
+                FamO1mediaa
               </span>
               <span className="font-sans text-xs text-neutral-500 font-medium tracking-wide hidden sm:inline">
                 Creative Growth Partner
@@ -324,10 +324,10 @@ export const Navbar: React.FC = () => {
               Direct Executive Desk
             </p>
             <a
-              href="mailto:partners@fam1media.agency"
+              href="mailto:partners@famo1mediaa.agency"
               className="font-tech text-base sm:text-xl font-bold lowercase hover:text-[#FACC15] transition-colors tracking-wide text-white"
             >
-              partners@fam1media.agency
+              partners@famo1mediaa.agency
             </a>
           </div>
 

@@ -75,13 +75,13 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       className="fixed inset-0 z-50 flex flex-col justify-between p-8 sm:p-12 bg-primary select-none"
     >
       <div className="flex items-center justify-between text-xs font-bold text-muted">
-        <span>FamO1Mediaa STUDIO</span>
+        <span>FamO1mediaa STUDIO</span>
         <span className="text-accent">2026 REEL</span>
       </div>
 
       <div className="text-center my-auto">
         <div id="preloaderLogo" className="text-4xl sm:text-6xl font-black text-white tracking-tight">
-          FamO1Mediaa
+          FamO1mediaa
         </div>
         <div className="mt-3 text-xs font-medium text-muted tracking-wide">
           CREATIVE COMMERCE ENGINE

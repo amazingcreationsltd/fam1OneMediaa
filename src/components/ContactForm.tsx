@@ -115,7 +115,7 @@ export const ContactForm: React.FC = () => {
                 Inquiry Received & Logged
               </h3>
               <p className="text-muted max-w-md mx-auto text-sm leading-relaxed">
-                Thank you for reaching out to FamO1Mediaa. A partner director will review your metrics and reply directly within 24 hours.
+                Thank you for reaching out to FamO1mediaa. A partner director will review your metrics and reply directly within 24 hours.
               </p>
               <button
                 onClick={handleReset}

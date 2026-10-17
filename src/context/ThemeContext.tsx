@@ -11,7 +11,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Always default to 'dark' for FamO1Mediaa's cinematic luxury aesthetic
+  // Always default to 'dark' for FamO1mediaa's cinematic luxury aesthetic
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('o1-theme') as Theme | null;

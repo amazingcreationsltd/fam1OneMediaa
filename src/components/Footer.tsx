@@ -38,10 +38,10 @@ export const Footer: React.FC = () => {
               Senior Partner Desk
             </span>
             <a
-              href="mailto:partners@fam1media.agency"
+              href="mailto:partners@famo1mediaa.agency"
               className="font-tech text-2xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-white hover:text-[#FACC15] transition-colors inline-flex items-center gap-4 group"
             >
-              <span>partners@fam1media.agency</span>
+              <span>partners@famo1mediaa.agency</span>
               <ArrowUpRight className="w-8 h-8 text-[#FACC15] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a>
           </div>
@@ -60,14 +60,14 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 pb-16 border-b border-white/15">
           {/* Brand Col */}
           <div className="space-y-4">
-            <div className="font-display font-black text-2xl tracking-wider text-white uppercase">
-              FAM1MEDIA
+            <div className="font-display font-black text-2xl tracking-wider text-white">
+              FamO1mediaa
             </div>
             <p className="font-sans text-xs text-white/60 leading-relaxed max-w-xs">
               A creative growth partner connecting brands, creators, and audiences through strategy, commercial production, and digital campaign execution.
             </p>
             <div className="font-sans text-xs text-white/40 uppercase tracking-wider pt-2">
-              © 2026 Fam1Media. All Rights Reserved.
+              © 2026 FamO1mediaa. All Rights Reserved.
             </div>
           </div>
 
@@ -116,7 +116,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between font-sans text-xs uppercase tracking-wider text-white/40 pt-8 gap-4 font-medium">
-          <div>Fam1Media Creative Growth Partner · Connecting Brands & Creators</div>
+          <div><span className="normal-case">FamO1mediaa</span> Creative Growth Partner · Connecting Brands & Creators</div>
           <a href="#hero" className="hover:text-[#FACC15] transition-colors flex items-center gap-2">
             <span>Back to Top</span>
             <span>↑</span>
@@ -127,10 +127,10 @@ export const Footer: React.FC = () => {
       {/* Full-Bleed Wordmark */}
       <div
         ref={wordmarkRef}
-        className="w-full text-center font-display font-black tracking-[-0.04em] text-[17vw] leading-[0.78] uppercase text-white pointer-events-none select-none mt-12 overflow-hidden will-change-transform"
+        className="w-full text-center font-display font-black tracking-[-0.04em] text-[15vw] leading-[0.78] text-white pointer-events-none select-none mt-12 overflow-hidden will-change-transform"
         aria-hidden="true"
       >
-        FAM1MEDIA
+        FamO1mediaa
       </div>
     </footer>
   );
