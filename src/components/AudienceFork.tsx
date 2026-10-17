@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArchitecturalSection } from './layout/ArchitecturalSection';
+import { MaskedHeading } from './motion/RevealWrappers';
 import { Magnetic } from './motion/MagneticCursor';
 import { ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
@@ -92,9 +93,12 @@ export const AudienceFork: React.FC = () => {
             <span className="w-2 h-2 bg-[#FACC15]" />
             <span>PARADIGM SHIFT · UNIFIED ARCHITECTURE</span>
           </div>
-          <h2 className="font-display font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tight text-[#0D0D0D] leading-[0.92]">
+          <MaskedHeading
+            as="h2"
+            className="font-display font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tight text-[#0D0D0D] leading-[0.92]"
+          >
             ONE PARTNER. EVERY PART OF THE GROWTH ENGINE.
-          </h2>
+          </MaskedHeading>
           <p className="mt-5 font-sans text-base sm:text-lg text-neutral-700 max-w-2xl leading-relaxed">
             From the first creative idea to the final conversion, we bring brands, creators, content, and digital experiences together.
           </p>
@@ -111,9 +115,12 @@ export const AudienceFork: React.FC = () => {
           <span className="font-tech text-xs text-neutral-500 uppercase tracking-wider block mb-2 font-semibold">
             FRAGMENTED EXECUTION
           </span>
-          <h3 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-neutral-500">
+          <MaskedHeading
+            as="h3"
+            className="font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-neutral-500"
+          >
             THE TRADITIONAL MODEL
-          </h3>
+          </MaskedHeading>
         </div>
 
         {/* 2. Right Header Cell */}
@@ -122,9 +129,12 @@ export const AudienceFork: React.FC = () => {
             <span className="w-2 h-2 bg-[#FACC15] inline-block" />
             <span>YOUR UNIFIED GROWTH PARTNER</span>
           </div>
-          <h3 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-[#F4F3EF]">
-            THE <span className="normal-case">FamO1mediaa</span> ENGINE
-          </h3>
+          <MaskedHeading
+            as="h3"
+            className="font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-[#F4F3EF]"
+          >
+            THE FamO1mediaa ENGINE
+          </MaskedHeading>
         </div>
 
         {/* 3-8. Comparison Rows (Direct Grid Row Pairs) */}
@@ -250,9 +260,12 @@ export const AudienceFork: React.FC = () => {
         {/* 10. Right Bottom CTA Area */}
         <div className="order-10 lg:order-none p-8 sm:p-10 bg-[#0D0D0D] text-[#F4F3EF] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div>
-            <h4 className="font-tech text-base sm:text-lg font-bold text-white tracking-wide uppercase">
+            <MaskedHeading
+              as="h4"
+              className="font-tech text-base sm:text-lg font-bold text-white tracking-wide uppercase"
+            >
               LET'S BUILD YOUR GROWTH STRATEGY
-            </h4>
+            </MaskedHeading>
             <p className="font-sans text-xs sm:text-sm text-neutral-400 mt-0.5">
               Tell us about your brand, audience, and goals.
             </p>

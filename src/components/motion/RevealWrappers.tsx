@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface MaskedHeadingProps {
   children: string;
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'div';
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div';
   className?: string;
   stagger?: number;
   triggerOnLoad?: boolean;

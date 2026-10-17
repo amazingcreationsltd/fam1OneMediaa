@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArchitecturalSection } from './layout/ArchitecturalSection';
-import { ParallaxMedia } from './motion/RevealWrappers';
+import { ParallaxMedia, MaskedHeading } from './motion/RevealWrappers';
 import { SocialDistributionManager } from './SocialDistributionManager';
 
 interface CaseStudy {
@@ -122,9 +122,12 @@ export const DistrictOutdoorShowcase: React.FC = () => {
             <span className="w-2 h-2 bg-[#FACC15]" />
             <span>Proven Commercial Attribution</span>
           </div>
-          <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-[#F4F3EF]">
+          <MaskedHeading
+            as="h2"
+            className="font-display font-black text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-[#F4F3EF]"
+          >
             VERIFIED CASE STUDIES
-          </h2>
+          </MaskedHeading>
         </div>
 
         {/* Clean Rectangular Filter Tabs */}

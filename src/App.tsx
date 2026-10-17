@@ -30,7 +30,7 @@ const AppContent: React.FC = () => {
       <Preloader onComplete={() => setIsLoaded(true)} />
 
       {/* Swiss Architectural Exposed Grid Navbar */}
-      <Navbar />
+      <Navbar isLoaded={isLoaded} />
 
       <main className="w-full max-w-full">
         {/* Section 02: 12-Column Hero & Spec Bar */}

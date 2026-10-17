@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { ArchitecturalSection } from './layout/ArchitecturalSection';
+import { MaskedHeading } from './motion/RevealWrappers';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -122,9 +123,12 @@ export const CreatorStudioSuite: React.FC = () => {
           <span className="font-tech text-xs uppercase tracking-wider text-neutral-600 mb-2 block font-semibold">
             4-Stage Execution Blueprint
           </span>
-          <h2 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-[#0D0D0D]">
+          <MaskedHeading
+            as="h2"
+            className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-[#0D0D0D]"
+          >
             THE GROWTH PROTOCOL
-          </h2>
+          </MaskedHeading>
         </div>
         <div className="font-tech text-xs text-neutral-600 uppercase tracking-wider font-semibold">
           Execution Phase Sequence

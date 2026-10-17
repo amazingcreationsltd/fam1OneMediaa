@@ -24,18 +24,18 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       return;
     }
 
-    // Safety fallback: guaranteed unmount after 1.8s
+    // Safety fallback: guaranteed unmount after 3.5s
     const safetyTimer = setTimeout(() => {
       setIsDismissed(true);
       onComplete?.();
       ScrollTrigger.refresh();
-    }, 1800);
+    }, 3500);
 
     const progressObj = { value: 0 };
     const tween = gsap.to(progressObj, {
       value: 100,
-      duration: 0.65,
-      ease: 'power1.inOut',
+      duration: 2.0,
+      ease: 'power2.inOut',
       onUpdate: () => {
         setProgress(Math.floor(progressObj.value));
       },
@@ -44,7 +44,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
         if (preloaderRef.current) {
           gsap.to(preloaderRef.current, {
             yPercent: -100,
-            duration: 0.45,
+            duration: 0.65,
             ease: 'power4.inOut',
             onComplete: () => {
               setIsDismissed(true);
@@ -72,33 +72,36 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
     <div
       ref={preloaderRef}
       id="preloader"
-      className="fixed inset-0 z-50 flex flex-col justify-between p-8 sm:p-12 bg-primary select-none"
+      className="fixed inset-0 z-[9999] flex flex-col justify-between p-8 sm:p-12 md:p-16 bg-[#0C1014] text-[#F4F3EF] select-none"
     >
-      <div className="flex items-center justify-between text-xs font-bold text-muted">
-        <span>FamO1mediaa STUDIO</span>
-        <span className="text-accent">2026 REEL</span>
+      <div className="flex items-center justify-between font-tech text-xs uppercase tracking-widest text-neutral-400 font-semibold">
+        <div className="flex items-center gap-2.5">
+          <span className="w-2 h-2 bg-[#FACC15] animate-pulse" />
+          <span>FamO1mediaa STUDIO</span>
+        </div>
+        <span className="text-[#FACC15] border border-[#FACC15]/30 px-2 py-0.5 font-bold">2026 REEL</span>
       </div>
 
       <div className="text-center my-auto">
-        <div id="preloaderLogo" className="text-4xl sm:text-6xl font-black text-white tracking-tight">
+        <div id="preloaderLogo" className="font-display text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tight uppercase">
           FamO1mediaa
         </div>
-        <div className="mt-3 text-xs font-medium text-muted tracking-wide">
+        <div className="mt-4 font-tech text-xs sm:text-sm font-bold text-neutral-400 tracking-[0.25em] uppercase">
           CREATIVE COMMERCE ENGINE
         </div>
       </div>
 
-      <div>
-        <div className="flex items-center justify-between text-xs font-semibold mb-3">
-          <span className="text-muted tracking-wider uppercase">Loading Showcase</span>
-          <span id="preloaderCounter" className="text-accent font-bold text-sm">
+      <div className="w-full max-w-xl mx-auto">
+        <div className="flex items-center justify-between font-tech text-xs font-semibold mb-3">
+          <span className="text-neutral-400 tracking-widest uppercase">Loading Showcase</span>
+          <span id="preloaderCounter" className="text-[#FACC15] font-bold text-sm tracking-wider">
             {progress}%
           </span>
         </div>
-        <div className="w-full h-1 bg-surface-subtle rounded-full overflow-hidden">
+        <div className="w-full h-1 bg-white/10 overflow-hidden">
           <div
             id="preloaderBar"
-            className="h-full bg-accent"
+            className="h-full bg-[#FACC15] transition-[width] ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>

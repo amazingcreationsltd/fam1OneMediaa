@@ -2,7 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { Magnetic } from './motion/MagneticCursor';
 
-export const Navbar: React.FC = () => {
+interface NavbarProps {
+  isLoaded?: boolean;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const navDrawerRef = useRef<HTMLElement>(null);
@@ -131,6 +135,25 @@ export const Navbar: React.FC = () => {
     };
   }, []);
 
+  // Smooth entrance when preloader completes
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    if (!isLoaded) {
+      gsap.set(header, { yPercent: -100, opacity: 0, visibility: 'hidden' });
+    } else {
+      gsap.to(header, {
+        yPercent: 0,
+        opacity: 1,
+        visibility: 'visible',
+        duration: 0.6,
+        ease: 'power3.out',
+        delay: 0.1,
+      });
+    }
+  }, [isLoaded]);
+
   const toggleMenu = () => {
     if (!timelineRef.current) return;
     if (mobileMenuOpen) {
@@ -149,7 +172,7 @@ export const Navbar: React.FC = () => {
     <>
       <header
         ref={headerRef}
-        className="fixed top-0 left-0 w-full z-40 bg-[#F4F3EF] border-b border-black/15 h-16 transition-none will-change-transform shadow-none"
+        className="fixed top-0 left-0 w-full z-50 bg-[#F4F3EF] border-b border-black/15 h-16 transition-none will-change-transform shadow-none"
       >
         <nav className="w-full h-full flex items-center justify-between" aria-label="Main Navigation">
           {/* Cell 1: Brand Cell */}
