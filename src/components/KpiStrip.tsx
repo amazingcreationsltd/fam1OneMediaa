@@ -141,7 +141,7 @@ export const KpiStrip: React.FC = () => {
       </div>
 
       {/* Velocity Skew Marquee */}
-      <VelocityMarquee text="WHERE BRANDS MEET CREATIVITY — SCRIPTING & STRATEGY — CAPTURING & EDITING — SOCIAL MEDIA HANDLING — INFLUENCER COLLABORATIONS — " />
+      <VelocityMarquee />
     </div>
   );
 };
