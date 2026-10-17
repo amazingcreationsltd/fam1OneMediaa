@@ -24,14 +24,11 @@ export const Navbar: React.FC = () => {
           const header = headerRef.current;
 
           if (header) {
-            // Keep visible if near top or if mobile menu is open
             if (currentScrollY <= 80) {
               gsap.to(header, { yPercent: 0, duration: 0.35, ease: 'power2.out' });
             } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-              // Scrolling DOWN -> hide navbar
               gsap.to(header, { yPercent: -100, duration: 0.35, ease: 'power2.out' });
             } else if (currentScrollY < lastScrollY) {
-              // Scrolling UP -> reveal navbar
               gsap.to(header, { yPercent: 0, duration: 0.35, ease: 'power2.out' });
             }
           }
@@ -154,47 +151,47 @@ export const Navbar: React.FC = () => {
         ref={headerRef}
         className="fixed top-0 left-0 w-full z-40 bg-[#F4F3EF] border-b border-black/15 h-16 transition-none will-change-transform shadow-none"
       >
-        <nav className="w-full h-full flex items-center justify-between" aria-label="Technical Header">
+        <nav className="w-full h-full flex items-center justify-between" aria-label="Main Navigation">
           {/* Cell 1: Brand Cell */}
           <div className="h-full flex items-center px-4 sm:px-6 border-r border-black/15 shrink-0 gap-3">
             <a href="#hero" className="flex items-baseline gap-2.5">
               <span className="font-display text-2xl font-black uppercase tracking-tight text-[#0D0D0D]">
                 FAM1MEDIA
               </span>
-              <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest hidden sm:inline">
-                [ N 26° / HOSP-ENG ]
+              <span className="font-sans text-xs text-neutral-500 font-medium tracking-wide hidden sm:inline">
+                Hospitality Growth Engine
               </span>
             </a>
           </div>
 
           {/* Cell 2: Live Status Cell (Desktop) */}
-          <div className="hidden lg:flex h-full items-center px-6 border-r border-black/15 gap-2.5 font-mono text-xs text-neutral-600">
-            <span className="w-2 h-2 bg-[#10B981] animate-pulse inline-block" />
-            <span className="uppercase tracking-widest font-semibold text-[#0D0D0D]">ACCEPTING Q4 PARTNERS</span>
+          <div className="hidden lg:flex h-full items-center px-6 border-r border-black/15 gap-2.5 font-sans text-xs text-neutral-600 font-medium">
+            <span className="w-2 h-2 bg-[#10B981] inline-block" />
+            <span className="uppercase tracking-wider font-semibold text-[#0D0D0D]">Accepting Q4 Flagships</span>
             <span className="text-neutral-400">·</span>
-            <span className="text-[11px] text-neutral-500">3–5 SPOTS/DISTRICT</span>
+            <span className="text-xs text-neutral-500">3–5 Spots Per District</span>
           </div>
 
           {/* Cell 3: Desktop Navigation Links */}
-          <div className="hidden md:flex h-full items-center px-8 gap-8 font-mono text-xs uppercase tracking-widest text-neutral-700">
+          <div className="hidden md:flex h-full items-center px-8 gap-8 font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
             <a href="#work" className="relative hover:text-black py-1 group transition-colors">
-              <span>// WORK</span>
+              <span>Case Studies</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
             <a href="#system" className="relative hover:text-black py-1 group transition-colors">
-              <span>// SYSTEM</span>
+              <span>Growth System</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
             <a href="#services" className="relative hover:text-black py-1 group transition-colors">
-              <span>// CAPABILITIES</span>
+              <span>Capabilities</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
             <a href="#testimonials" className="relative hover:text-black py-1 group transition-colors">
-              <span>// PERSPECTIVES</span>
+              <span>Perspectives</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
             <a href="#calculator" className="relative hover:text-black py-1 group transition-colors">
-              <span>// ROI SIMULATOR</span>
+              <span>Yield Simulator</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
           </div>
@@ -205,9 +202,9 @@ export const Navbar: React.FC = () => {
               <Magnetic strength={0.25} className="h-full">
                 <a
                   href="#calculator"
-                  className="h-full px-8 bg-[#FACC15] text-[#0D0D0D] font-mono text-xs uppercase font-bold tracking-widest hover:bg-[#0D0D0D] hover:text-[#F4F3EF] transition-colors flex items-center justify-center border-l border-black/15"
+                  className="h-full px-8 bg-[#FACC15] text-[#0D0D0D] font-tech text-xs uppercase font-bold tracking-wider hover:bg-[#0D0D0D] hover:text-[#F4F3EF] transition-colors flex items-center justify-center border-l border-black/15"
                 >
-                  DEPLOY CAMPAIGN &rarr;
+                  Deploy Campaign &rarr;
                 </a>
               </Magnetic>
             </div>
@@ -247,9 +244,9 @@ export const Navbar: React.FC = () => {
       >
         {/* Drawer Header with Close Button */}
         <div className="flex items-center justify-between pb-6 border-b border-white/15 shrink-0">
-          <div className="flex items-center gap-3 font-mono text-xs text-[#FACC15]">
+          <div className="flex items-center gap-3 font-tech text-xs text-[#FACC15] uppercase tracking-wider font-bold">
             <span className="w-2 h-2 bg-[#FACC15]" />
-            <span>NAVIGATION CONSOLE</span>
+            <span>Navigation Menu</span>
           </div>
           <button
             type="button"
@@ -272,7 +269,7 @@ export const Navbar: React.FC = () => {
             onClick={closeMenu}
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4"
           >
-            <span className="font-mono text-xs sm:text-sm text-white/30 tracking-widest">[01]</span>
+            <span className="font-tech text-xs sm:text-sm text-white/30 tracking-wider">01</span>
             <span>OVERVIEW</span>
           </a>
           <a
@@ -280,7 +277,7 @@ export const Navbar: React.FC = () => {
             onClick={closeMenu}
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4"
           >
-            <span className="font-mono text-xs sm:text-sm text-white/30 tracking-widest">[02]</span>
+            <span className="font-tech text-xs sm:text-sm text-white/30 tracking-wider">02</span>
             <span>WORK & REELS</span>
           </a>
           <a
@@ -288,7 +285,7 @@ export const Navbar: React.FC = () => {
             onClick={closeMenu}
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4"
           >
-            <span className="font-mono text-xs sm:text-sm text-white/30 tracking-widest">[03]</span>
+            <span className="font-tech text-xs sm:text-sm text-white/30 tracking-wider">03</span>
             <span>GROWTH SYSTEM</span>
           </a>
           <a
@@ -296,7 +293,7 @@ export const Navbar: React.FC = () => {
             onClick={closeMenu}
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4"
           >
-            <span className="font-mono text-xs sm:text-sm text-white/30 tracking-widest">[04]</span>
+            <span className="font-tech text-xs sm:text-sm text-white/30 tracking-wider">04</span>
             <span>CAPABILITIES</span>
           </a>
           <a
@@ -304,7 +301,7 @@ export const Navbar: React.FC = () => {
             onClick={closeMenu}
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4"
           >
-            <span className="font-mono text-xs sm:text-sm text-white/30 tracking-widest">[05]</span>
+            <span className="font-tech text-xs sm:text-sm text-white/30 tracking-wider">05</span>
             <span>PERSPECTIVES</span>
           </a>
           <a
@@ -312,8 +309,8 @@ export const Navbar: React.FC = () => {
             onClick={closeMenu}
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4 text-[#FACC15]"
           >
-            <span className="font-mono text-xs sm:text-sm text-[#FACC15]/50 tracking-widest">[06]</span>
-            <span>ROI & INTAKE</span>
+            <span className="font-tech text-xs sm:text-sm text-[#FACC15]/50 tracking-wider">06</span>
+            <span>PARTNER INTAKE</span>
           </a>
         </div>
 
@@ -323,8 +320,8 @@ export const Navbar: React.FC = () => {
           className="flex flex-col gap-6 md:flex-row md:justify-between md:items-end pt-8 border-t border-white/15 shrink-0"
         >
           <div>
-            <p className="font-mono text-xs uppercase tracking-widest text-white/40 mb-1">
-              Direct Executive Intake
+            <p className="font-sans text-xs uppercase tracking-wider text-white/40 mb-1 font-semibold">
+              Direct Executive Desk
             </p>
             <a
               href="mailto:partners@fam1media.agency"
@@ -335,15 +332,15 @@ export const Navbar: React.FC = () => {
           </div>
 
           <div>
-            <p className="font-mono text-xs uppercase tracking-widest text-white/40 mb-1">
-              Command Coordinates
+            <p className="font-sans text-xs uppercase tracking-wider text-white/40 mb-1 font-semibold">
+              Global Office Hubs
             </p>
-            <div className="flex flex-wrap gap-4 font-mono text-xs tracking-wider text-white/70">
-              <span className="hover:text-[#FACC15] cursor-pointer">SOHO [NYC]</span>
-              <span className="text-white/20">/</span>
-              <span className="hover:text-[#FACC15] cursor-pointer">MAYFAIR [LDN]</span>
-              <span className="text-white/20">/</span>
-              <span className="hover:text-[#FACC15] cursor-pointer">DIFC [DXB]</span>
+            <div className="flex flex-wrap gap-4 font-sans text-xs tracking-wider text-white/70 font-medium">
+              <span className="hover:text-[#FACC15] cursor-pointer">SoHo, New York</span>
+              <span className="text-white/20">·</span>
+              <span className="hover:text-[#FACC15] cursor-pointer">Mayfair, London</span>
+              <span className="text-white/20">·</span>
+              <span className="hover:text-[#FACC15] cursor-pointer">DIFC, Dubai</span>
             </div>
           </div>
         </div>

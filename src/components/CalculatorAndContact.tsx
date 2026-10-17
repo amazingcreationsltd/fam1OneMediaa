@@ -69,30 +69,28 @@ export const CalculatorAndContact: React.FC = () => {
 
   return (
     <ArchitecturalSection
-      index="09"
-      label="COMMAND TERMINAL"
       dark
       id="calculator"
       className="py-24 bg-[#0A0A0A] text-[#F4F3EF] border-t border-white/15"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-12">
-        {/* Terminal Header */}
+        {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-white/15">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-white/50 mb-3">
+            <div className="flex items-center gap-3 font-tech text-xs uppercase tracking-wider text-white/50 mb-3 font-semibold">
               <span className="w-2 h-2 bg-[#FACC15]" />
-              <span>TERMINAL // YIELD SIMULATOR & INTAKE CONSOLE</span>
+              <span>Yield Simulator & Partner Advisory</span>
             </div>
             <MaskedHeading
               as="h2"
-              className="font-display uppercase text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[0.9] text-[#F4F3EF]"
+              className="font-display font-black uppercase text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.9] text-[#F4F3EF]"
             >
-              Growth Simulator & Command Intake
+              Growth Simulator & Partner Intake
             </MaskedHeading>
           </div>
 
           {/* Mode Switcher Tabs */}
-          <div className="flex items-center border border-white/20 bg-black/40 p-1 self-start lg:self-auto font-mono text-xs uppercase tracking-wider">
+          <div className="flex items-center border border-white/20 bg-black/40 p-1 self-start lg:self-auto font-tech text-xs uppercase tracking-wider font-semibold">
             <button
               type="button"
               onClick={() => {
@@ -105,7 +103,7 @@ export const CalculatorAndContact: React.FC = () => {
                   : 'text-white/60 hover:text-white'
               }`}
             >
-              [01 // RESTAURANT BRANDS]
+              Restaurant Brands
             </button>
             <button
               type="button"
@@ -119,21 +117,21 @@ export const CalculatorAndContact: React.FC = () => {
                   : 'text-white/60 hover:text-white'
               }`}
             >
-              [02 // CREATOR ROSTER]
+              Creator Roster
             </button>
           </div>
         </div>
 
-        {/* 12-Column Architectural Command Center */}
+        {/* 12-Column Architectural Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-white/15 border-b border-white/15">
           {/* Left Column (5 Cols): Live Mathematical Simulator */}
           <div className="lg:col-span-5 p-6 sm:p-10 space-y-10">
             <div className="space-y-2">
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#FACC15]">
-                // TELEMETRY ENGINE
+              <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-semibold">
+                Yield Projections
               </div>
               <h3 className="font-tech text-2xl font-bold uppercase tracking-tight text-[#F4F3EF]">
-                {audience === 'brand' ? 'Campaign Yield Projections' : 'Creator Revenue Model'}
+                {audience === 'brand' ? 'Campaign Yield Estimates' : 'Creator Revenue Model'}
               </h3>
               <p className="font-sans text-sm text-white/60 leading-relaxed">
                 {audience === 'brand'
@@ -148,10 +146,10 @@ export const CalculatorAndContact: React.FC = () => {
                 {/* Investment Range */}
                 <div className="space-y-4">
                   <div className="flex justify-between items-baseline">
-                    <label htmlFor={budgetInputId} className="font-mono text-xs uppercase tracking-wider text-white/70">
-                      01 // MONTHLY MEDIA ALLOCATION
+                    <label htmlFor={budgetInputId} className="font-tech text-xs uppercase tracking-wider text-white/70 font-semibold">
+                      Monthly Campaign Investment
                     </label>
-                    <span className="font-tech text-3xl font-black text-[#FACC15] tabular-nums">
+                    <span className="font-display font-black text-3xl text-[#FACC15] tabular-nums">
                       ${budget.toLocaleString()}
                     </span>
                   </div>
@@ -165,17 +163,17 @@ export const CalculatorAndContact: React.FC = () => {
                     onChange={(e) => setBudget(Number(e.target.value))}
                     className="w-full h-1 bg-white/20 appearance-none cursor-pointer accent-[#FACC15]"
                   />
-                  <div className="flex justify-between font-mono text-[10px] text-white/40 uppercase">
-                    <span>$2,000 / MO</span>
-                    <span>$15,000 / MO</span>
-                    <span>$30,000+ / MO</span>
+                  <div className="flex justify-between font-sans text-xs text-white/40 uppercase font-medium">
+                    <span>$2,000 / mo</span>
+                    <span>$15,000 / mo</span>
+                    <span>$30,000+ / mo</span>
                   </div>
                 </div>
 
                 {/* Industry Selector */}
                 <div className="space-y-3">
-                  <div className="font-mono text-xs uppercase tracking-wider text-white/70">
-                    02 // SECTOR CLASSIFICATION
+                  <div className="font-tech text-xs uppercase tracking-wider text-white/70 font-semibold">
+                    Sector Classification
                   </div>
                   <div className="grid grid-cols-3 gap-px bg-white/15 border border-white/15">
                     {[
@@ -187,7 +185,7 @@ export const CalculatorAndContact: React.FC = () => {
                         key={item.id}
                         type="button"
                         onClick={() => setIndustry(item.id)}
-                        className={`py-3 px-2 font-mono text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                        className={`py-3 px-2 font-tech text-xs font-bold uppercase tracking-wider transition-colors ${
                           industry === item.id
                             ? 'bg-[#FACC15] text-[#0A0A0A]'
                             : 'bg-[#0A0A0A] text-white/70 hover:bg-white/5'
@@ -202,20 +200,20 @@ export const CalculatorAndContact: React.FC = () => {
                 {/* Output Matrix */}
                 <div className="border border-white/15 divide-y divide-white/15 bg-white/[0.02]">
                   <div className="p-4 flex justify-between items-center">
-                    <span className="font-mono text-xs uppercase tracking-wider text-white/60">ESTIMATED ATTRIBUTED REACH</span>
-                    <span className="font-tech text-xl font-bold text-[#F4F3EF] tabular-nums">
+                    <span className="font-tech text-xs uppercase tracking-wider text-white/60 font-medium">Estimated Attributed Reach</span>
+                    <span className="font-display font-bold text-xl text-[#F4F3EF] tabular-nums">
                       {(reachLow / 1000).toFixed(0)}K – {(reachHigh / 1000).toFixed(0)}K
                     </span>
                   </div>
                   <div className="p-4 flex justify-between items-center">
-                    <span className="font-mono text-xs uppercase tracking-wider text-white/60">DEPLOYED CREATOR FORCE</span>
-                    <span className="font-tech text-xl font-bold text-[#F4F3EF] tabular-nums">
+                    <span className="font-tech text-xs uppercase tracking-wider text-white/60 font-medium">Deployed Creator Force</span>
+                    <span className="font-display font-bold text-xl text-[#F4F3EF] tabular-nums">
                       {creatorRange}
                     </span>
                   </div>
                   <div className="p-4 flex justify-between items-center bg-[#FACC15]/10">
-                    <span className="font-mono text-xs uppercase tracking-wider text-[#FACC15] font-bold">PROJECTED FOOTFALL SURGE</span>
-                    <span className="font-tech text-2xl font-black text-[#10B981] tabular-nums">
+                    <span className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-bold">Projected Footfall Surge</span>
+                    <span className="font-display font-black text-2xl text-[#10B981] tabular-nums">
                       {footfallDisplay}
                     </span>
                   </div>
@@ -226,10 +224,10 @@ export const CalculatorAndContact: React.FC = () => {
                 {/* Followers Range */}
                 <div className="space-y-4">
                   <div className="flex justify-between items-baseline">
-                    <label htmlFor={followerInputId} className="font-mono text-xs uppercase tracking-wider text-white/70">
-                      01 // AUDIENCE FOOTPRINT
+                    <label htmlFor={followerInputId} className="font-tech text-xs uppercase tracking-wider text-white/70 font-semibold">
+                      Audience Reach
                     </label>
-                    <span className="font-tech text-3xl font-black text-[#FACC15] tabular-nums">
+                    <span className="font-display font-black text-3xl text-[#FACC15] tabular-nums">
                       {(followers / 1000).toLocaleString()}K
                     </span>
                   </div>
@@ -243,17 +241,17 @@ export const CalculatorAndContact: React.FC = () => {
                     onChange={(e) => setFollowers(Number(e.target.value))}
                     className="w-full h-1 bg-white/20 appearance-none cursor-pointer accent-[#FACC15]"
                   />
-                  <div className="flex justify-between font-mono text-[10px] text-white/40 uppercase">
-                    <span>10K (RISING)</span>
-                    <span>250K (FLAGSHIP)</span>
-                    <span>600K+ (TIER-1)</span>
+                  <div className="flex justify-between font-sans text-xs text-white/40 uppercase font-medium">
+                    <span>10K (Rising)</span>
+                    <span>250K (Flagship)</span>
+                    <span>600K+ (Tier-1)</span>
                   </div>
                 </div>
 
                 {/* Niche Selector */}
                 <div className="space-y-3">
-                  <div className="font-mono text-xs uppercase tracking-wider text-white/70">
-                    02 // VERTICAL SPECIALIZATION
+                  <div className="font-tech text-xs uppercase tracking-wider text-white/70 font-semibold">
+                    Vertical Specialization
                   </div>
                   <div className="grid grid-cols-3 gap-px bg-white/15 border border-white/15">
                     {[
@@ -265,7 +263,7 @@ export const CalculatorAndContact: React.FC = () => {
                         key={item.id}
                         type="button"
                         onClick={() => setNiche(item.id)}
-                        className={`py-3 px-2 font-mono text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                        className={`py-3 px-2 font-tech text-xs font-bold uppercase tracking-wider transition-colors ${
                           niche === item.id
                             ? 'bg-[#FACC15] text-[#0A0A0A]'
                             : 'bg-[#0A0A0A] text-white/70 hover:bg-white/5'
@@ -280,21 +278,21 @@ export const CalculatorAndContact: React.FC = () => {
                 {/* Output Matrix */}
                 <div className="border border-white/15 divide-y divide-white/15 bg-white/[0.02]">
                   <div className="p-4 flex justify-between items-center">
-                    <span className="font-mono text-xs uppercase tracking-wider text-white/60">SINGLE PLACEMENT FLOOR</span>
-                    <span className="font-tech text-xl font-bold text-[#F4F3EF] tabular-nums">
+                    <span className="font-tech text-xs uppercase tracking-wider text-white/60 font-medium">Single Placement Floor</span>
+                    <span className="font-display font-bold text-xl text-[#F4F3EF] tabular-nums">
                       ${rateLow.toLocaleString()} – ${rateHigh.toLocaleString()}
                     </span>
                   </div>
                   <div className="p-4 flex justify-between items-center bg-[#FACC15]/10">
-                    <span className="font-mono text-xs uppercase tracking-wider text-[#FACC15] font-bold">MONTHLY DEAL PIPELINE</span>
-                    <span className="font-tech text-2xl font-black text-[#10B981] tabular-nums">
+                    <span className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-bold">Monthly Deal Pipeline</span>
+                    <span className="font-display font-black text-2xl text-[#10B981] tabular-nums">
                       ${dealsLow.toLocaleString()} – ${dealsHigh.toLocaleString()}
                     </span>
                   </div>
                   <div className="p-4 flex justify-between items-center">
-                    <span className="font-mono text-xs uppercase tracking-wider text-white/60">4K POST-PRODUCTION DESK</span>
-                    <span className="font-mono text-xs font-bold text-[#FACC15] uppercase tracking-wider">
-                      100% INCLUDED (ZERO FEE)
+                    <span className="font-tech text-xs uppercase tracking-wider text-white/60 font-medium">4K Post-Production Desk</span>
+                    <span className="font-sans text-xs font-bold text-[#FACC15] uppercase tracking-wider">
+                      100% Included (Zero Fee)
                     </span>
                   </div>
                 </div>
@@ -302,17 +300,17 @@ export const CalculatorAndContact: React.FC = () => {
             )}
           </div>
 
-          {/* Right Column (7 Cols): Bottom-Border Architectural Command Intake */}
+          {/* Right Column (7 Cols): Direct Advisory Form */}
           <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between" id="contact">
             {isSubmitted ? (
               <div className="p-8 border border-[#10B981] bg-[#10B981]/10 space-y-6 my-auto">
                 <div className="flex items-center gap-3">
                   <span className="w-3 h-3 bg-[#10B981]" />
-                  <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#10B981] font-bold">
-                    TRANSMISSION LOGGED // ADVISORY INTAKE CONFIRMED
+                  <span className="font-tech text-xs uppercase tracking-wider text-[#10B981] font-bold">
+                    Inquiry Received & Logged
                   </span>
                 </div>
-                <h3 className="font-display text-3xl sm:text-4xl uppercase font-bold text-white tracking-tight">
+                <h3 className="font-display font-black text-3xl sm:text-4xl uppercase text-white tracking-tight">
                   Brief Successfully Dispatched to Managing Partners.
                 </h3>
                 <p className="font-sans text-sm text-white/80 leading-relaxed max-w-xl">
@@ -321,16 +319,16 @@ export const CalculatorAndContact: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsSubmitted(false)}
-                  className="font-mono text-xs uppercase tracking-widest text-[#FACC15] hover:underline"
+                  className="font-tech text-xs uppercase tracking-wider text-[#FACC15] hover:underline font-bold"
                 >
-                  [DISPATCH ANOTHER TRANSMISSION]
+                  Send Another Inquiry
                 </button>
               </div>
             ) : audience === 'brand' ? (
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="space-y-2">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#FACC15]">
-                    // CONFIDENTIAL ADVISORY INTAKE
+                  <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-semibold">
+                    Advisory Intake
                   </div>
                   <h3 className="font-tech text-2xl font-bold uppercase tracking-tight text-[#F4F3EF]">
                     Initiate Brand Strategy Deployment
@@ -340,8 +338,8 @@ export const CalculatorAndContact: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   {/* Field 01 */}
                   <div className="space-y-2">
-                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
-                      01 // RESTAURANT OR ENTERPRISE ENTITY *
+                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                      Restaurant or Brand Name *
                     </label>
                     <input
                       type="text"
@@ -355,8 +353,8 @@ export const CalculatorAndContact: React.FC = () => {
 
                   {/* Field 02 */}
                   <div className="space-y-2">
-                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
-                      02 // DIRECT EXECUTIVE EMAIL *
+                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                      Executive Contact Email *
                     </label>
                     <input
                       type="email"
@@ -372,8 +370,8 @@ export const CalculatorAndContact: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   {/* Field 03 */}
                   <div className="space-y-2">
-                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
-                      03 // PRIMARY STRATEGIC TARGET
+                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                      Primary Strategic Target
                     </label>
                     <select
                       value={brandGoal}
@@ -389,8 +387,8 @@ export const CalculatorAndContact: React.FC = () => {
 
                   {/* Field 04 */}
                   <div className="space-y-2">
-                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
-                      04 // CAPITAL ALLOCATION TIER
+                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                      Capital Allocation Tier
                     </label>
                     <select
                       value={brandBudget}
@@ -406,8 +404,8 @@ export const CalculatorAndContact: React.FC = () => {
 
                 {/* Field 05 */}
                 <div className="space-y-2">
-                  <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
-                    05 // DISTRICT FOOTPRINT & OPERATIONAL CONSTRAINTS
+                  <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                    District Footprint & Target Locations
                   </label>
                   <textarea
                     rows={3}
@@ -424,7 +422,7 @@ export const CalculatorAndContact: React.FC = () => {
                     type="submit"
                     className="w-full py-5 bg-[#FACC15] text-[#0A0A0A] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-[#FACC15]/90 transition-colors"
                   >
-                    <span>TRANSMIT BRIEF FOR ADVISORY REVIEW</span>
+                    <span>Submit Brief For Partner Review</span>
                     <ArrowRight className="w-5 h-5" />
                   </button>
                 </Magnetic>
@@ -432,8 +430,8 @@ export const CalculatorAndContact: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="space-y-2">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#FACC15]">
-                    // TALENT REPRESENTATION INTAKE
+                  <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-semibold">
+                    Talent Representation
                   </div>
                   <h3 className="font-tech text-2xl font-bold uppercase tracking-tight text-[#F4F3EF]">
                     Apply For Agency Roster & Post-Production Suite
@@ -443,8 +441,8 @@ export const CalculatorAndContact: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   {/* Field 01 */}
                   <div className="space-y-2">
-                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
-                      01 // LEGAL OR STAGE NAME *
+                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                      Creator Name *
                     </label>
                     <input
                       type="text"
@@ -458,8 +456,8 @@ export const CalculatorAndContact: React.FC = () => {
 
                   {/* Field 02 */}
                   <div className="space-y-2">
-                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
-                      02 // CONTACT EMAIL *
+                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                      Contact Email *
                     </label>
                     <input
                       type="email"
@@ -475,8 +473,8 @@ export const CalculatorAndContact: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                   {/* Field 03 */}
                   <div className="space-y-2">
-                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
-                      03 // PRIMARY HANDLE *
+                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                      Primary Handle *
                     </label>
                     <input
                       type="text"
@@ -490,8 +488,8 @@ export const CalculatorAndContact: React.FC = () => {
 
                   {/* Field 04 */}
                   <div className="space-y-2">
-                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
-                      04 // VERIFIED REACH
+                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                      Audience Reach
                     </label>
                     <select
                       value={creatorFollowers}
@@ -507,8 +505,8 @@ export const CalculatorAndContact: React.FC = () => {
 
                   {/* Field 05 */}
                   <div className="space-y-2">
-                    <label className="block font-mono text-[11px] uppercase tracking-wider text-white/60">
-                      05 // PRIORITY OBJECTIVE
+                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                      Priority Objective
                     </label>
                     <select
                       value={creatorNeed}
@@ -529,7 +527,7 @@ export const CalculatorAndContact: React.FC = () => {
                     type="submit"
                     className="w-full py-5 bg-[#FACC15] text-[#0A0A0A] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-[#FACC15]/90 transition-colors"
                   >
-                    <span>SUBMIT ROSTER APPLICATION FOR ADMISSION</span>
+                    <span>Submit Roster Application</span>
                     <ArrowRight className="w-5 h-5" />
                   </button>
                 </Magnetic>

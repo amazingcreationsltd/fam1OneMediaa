@@ -10,15 +10,15 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
   return (
-    <ArchitecturalSection id="hero" index="01" label="FULL-STACK HOSPITALITY ENGINE">
+    <ArchitecturalSection id="hero">
       {/* 12-Column Split Editorial Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-black/15">
-        {/* Cols 1–8: Headline and Technical Eyebrow */}
+        {/* Cols 1–8: Headline and Editorial Eyebrow */}
         <div className="lg:col-span-8 p-6 sm:p-10 md:p-14 lg:border-r border-black/15 flex flex-col justify-between">
           <div>
-            <div className="font-mono text-xs uppercase tracking-widest text-neutral-600 mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 bg-[#FACC15] border border-black/30" />
-              <span>[ 01 / REVENUE ARCHITECTURE FOR RESTAURANTS ]</span>
+            <div className="font-tech text-xs uppercase tracking-widest text-neutral-600 mb-6 flex items-center gap-2">
+              <span className="w-2 h-2 bg-[#FACC15]" />
+              <span className="font-semibold">GROWTH & REVENUE ARCHITECTURE FOR HOSPITALITY</span>
             </div>
 
             <MaskedHeading
@@ -31,12 +31,12 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
             </MaskedHeading>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-black/10 font-mono text-[11px] text-neutral-500 uppercase tracking-widest flex flex-wrap gap-4">
-            <span>COORD: SOHO · DUBAI · NYC</span>
+          <div className="mt-8 pt-6 border-t border-black/10 font-sans text-xs text-neutral-600 uppercase tracking-wider flex flex-wrap gap-4 font-medium">
+            <span>LOCATIONS: SOHO · DUBAI · NYC</span>
             <span>·</span>
-            <span>MODEL: FULL-STACK GROWTH ENGINE</span>
+            <span>ENGAGEMENT: FULL-STACK GROWTH ENGINE</span>
             <span>·</span>
-            <span>SPEED: 14-DAY ONBOARDING</span>
+            <span>TIMELINE: 14-DAY ONBOARDING</span>
           </div>
         </div>
 
@@ -44,7 +44,7 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
         <div className="lg:col-span-4 p-6 sm:p-10 md:p-12 flex flex-col justify-between bg-[#EAE8E1]/40 border-t lg:border-t-0 border-black/15">
           <div className="space-y-4">
             <div className="font-tech text-xs uppercase tracking-wider font-bold text-neutral-600">
-              // EXECUTIVE SUMMARY
+              Executive Overview
             </div>
             <p className="font-sans text-base sm:text-lg text-neutral-800 leading-relaxed">
               We bridge hyper-local marketing campaigns, tier-1 influencer partnerships, curated 3–5 restaurant district outdoor blitzes, and daily hands-on social media handling with an elite creator production trio.
@@ -54,8 +54,8 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
           <div className="pt-8 space-y-3">
             <Magnetic strength={0.2} className="w-full">
               <a
-                href="#contact"
-                className="w-full py-5 px-6 bg-[#FACC15] text-[#0D0D0D] border border-black font-mono text-xs uppercase font-bold tracking-widest hover:bg-black hover:text-[#F4F3EF] transition-colors flex items-center justify-between"
+                href="#calculator"
+                className="w-full py-5 px-6 bg-[#FACC15] text-[#0D0D0D] border border-black font-tech text-xs uppercase font-bold tracking-widest hover:bg-black hover:text-[#F4F3EF] transition-colors flex items-center justify-between"
               >
                 <span>DEPLOY DISTRICT CAMPAIGN</span>
                 <span>&rarr;</span>
@@ -65,33 +65,33 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
             <Magnetic strength={0.2} className="w-full">
               <a
                 href="#work"
-                className="w-full py-5 px-6 bg-transparent text-[#0D0D0D] border border-black/25 font-mono text-xs uppercase font-bold tracking-widest hover:bg-[#EAE8E1] transition-colors flex items-center justify-between"
+                className="w-full py-5 px-6 bg-transparent text-[#0D0D0D] border border-black/25 font-tech text-xs uppercase font-bold tracking-widest hover:bg-[#EAE8E1] transition-colors flex items-center justify-between"
               >
                 <span>INSPECT CASE STUDIES</span>
-                <span>[ 04 ]</span>
+                <span>4 CASE STUDIES</span>
               </a>
             </Magnetic>
           </div>
         </div>
       </div>
 
-      {/* 3-Column Architectural Spec Bar (De-boxed!) */}
+      {/* 3-Column Editorial Spec Bar */}
       <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black/15 border-b border-black/15 bg-[#EAE8E1]">
         <div className="p-6 md:p-8 flex items-center justify-between">
-          <span className="font-mono text-xs text-neutral-600 uppercase tracking-widest">01 // ATTRIBUTED ROAS</span>
-          <span className="font-tech text-2xl font-bold text-[#0D0D0D]">4.2X AVERAGE</span>
+          <span className="font-tech text-xs text-neutral-600 uppercase tracking-wider font-semibold">ATTRIBUTED ROAS</span>
+          <span className="font-display font-black text-2xl text-[#0D0D0D]">4.2X AVERAGE</span>
         </div>
         <div className="p-6 md:p-8 flex items-center justify-between">
-          <span className="font-mono text-xs text-neutral-600 uppercase tracking-widest">02 // FOOTFALL SURGE</span>
-          <span className="font-tech text-2xl font-bold text-[#10B981]">+340% VERIFIED</span>
+          <span className="font-tech text-xs text-neutral-600 uppercase tracking-wider font-semibold">FOOTFALL SURGE</span>
+          <span className="font-display font-black text-2xl text-[#10B981]">+340% VERIFIED</span>
         </div>
         <div className="p-6 md:p-8 flex items-center justify-between">
-          <span className="font-mono text-xs text-neutral-600 uppercase tracking-widest">03 // SLA DISPATCH</span>
-          <span className="font-tech text-2xl font-bold text-[#0D0D0D]">48H TURNAROUND</span>
+          <span className="font-tech text-xs text-neutral-600 uppercase tracking-wider font-semibold">SLA DISPATCH</span>
+          <span className="font-display font-black text-2xl text-[#0D0D0D]">48H TURNAROUND</span>
         </div>
       </div>
 
-      {/* Unboxed Full-Bleed Hero Media with Overlapping Circular Stamp */}
+      {/* Full-Bleed Hero Media with Overlapping Circular Stamp */}
       <div className="relative w-full overflow-hidden border-b border-black/15">
         <ParallaxMedia
           src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=85"
@@ -106,9 +106,9 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
         </div>
 
         {/* Technical Coordinate Overlay Badge */}
-        <div className="absolute bottom-6 left-6 z-20 bg-[#0D0D0D]/90 text-[#F4F3EF] px-4 py-2 border border-white/20 font-mono text-[11px] uppercase tracking-widest flex items-center gap-3">
+        <div className="absolute bottom-6 left-6 z-20 bg-[#0D0D0D]/90 text-[#F4F3EF] px-4 py-2 border border-white/20 font-sans text-xs uppercase tracking-wider flex items-center gap-3">
           <span className="w-2 h-2 bg-[#FACC15]" />
-          <span>OSTERIA BOTANICA // DISTRICT 01 LAUNCH</span>
+          <span>OSTERIA BOTANICA · DISTRICT 01 LAUNCH</span>
         </div>
       </div>
     </ArchitecturalSection>

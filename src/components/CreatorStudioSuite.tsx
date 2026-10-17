@@ -115,19 +115,19 @@ export const CreatorStudioSuite: React.FC = () => {
   }, []);
 
   return (
-    <ArchitecturalSection id="system" index="04" label="PROPRIETARY GROWTH PROTOCOL">
+    <ArchitecturalSection id="system">
       {/* Header */}
       <div className="p-8 sm:p-12 md:p-14 border-b border-black/15 flex flex-col md:flex-row md:items-end justify-between gap-6 bg-[#F4F3EF]">
         <div>
-          <span className="font-mono text-xs uppercase tracking-widest text-neutral-600 mb-2 block">
-            [ 04 // 4-STAGE EXECUTION BLUEPRINT ]
+          <span className="font-tech text-xs uppercase tracking-wider text-neutral-600 mb-2 block font-semibold">
+            4-Stage Execution Blueprint
           </span>
-          <h2 className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-[#0D0D0D]">
+          <h2 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-[#0D0D0D]">
             THE GROWTH PROTOCOL
           </h2>
         </div>
-        <div className="font-mono text-xs text-neutral-600 uppercase tracking-widest">
-          STATUS: PINNED ARCHITECTURAL SEQUENCE
+        <div className="font-tech text-xs text-neutral-600 uppercase tracking-wider font-semibold">
+          Execution Phase Sequence
         </div>
       </div>
 
@@ -170,18 +170,18 @@ export const CreatorStudioSuite: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-black/10 font-mono text-[11px] text-neutral-500 uppercase tracking-wider">
-                  DELIVERABLE GUARANTEE: 100% SLA COMPLIANCE
+                <div className="mt-8 pt-4 border-t border-black/10 font-sans text-xs text-neutral-500 uppercase tracking-wider font-semibold">
+                  Deliverable Guarantee: 100% SLA Compliance
                 </div>
               </div>
 
               {/* Cols 9–12: Unboxed Live Metric Visualization */}
               <div className="lg:col-span-4 p-8 sm:p-10 bg-[#EAE8E1] flex flex-col justify-between">
                 <div>
-                  <div className="font-mono text-xs text-neutral-500 uppercase tracking-widest mb-1">
-                    0{idx + 1} // {panel.kpiLabel}
+                  <div className="font-tech text-xs text-neutral-600 uppercase tracking-wider font-semibold mb-1">
+                    Phase 0{idx + 1} · {panel.kpiLabel}
                   </div>
-                  <div className="font-display text-6xl md:text-7xl text-[#0D0D0D] leading-none mb-2">
+                  <div className="font-display font-black text-6xl md:text-7xl text-[#0D0D0D] leading-none mb-2">
                     {panel.kpiValue}
                   </div>
                   <div className="font-tech text-xs text-neutral-600 uppercase tracking-wide">
@@ -189,11 +189,11 @@ export const CreatorStudioSuite: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Technical Progress Bar */}
+                {/* Progress Bar */}
                 <div className="pt-8">
-                  <div className="flex justify-between font-mono text-[10px] text-neutral-500 mb-1.5 uppercase">
-                    <span>EXECUTION CADENCE</span>
-                    <span>100% LOCKED</span>
+                  <div className="flex justify-between font-tech text-xs text-neutral-600 mb-1.5 uppercase font-semibold">
+                    <span>Execution Cadence</span>
+                    <span>Quarter Tracked</span>
                   </div>
                   <div className="w-full h-2 bg-neutral-300 overflow-hidden">
                     <div className="h-full bg-[#0D0D0D]" style={{ width: `${(idx + 1) * 25}%` }} />

@@ -47,8 +47,6 @@ const TESTIMONIALS: TestimonialItem[] = [
 export const Testimonials: React.FC = () => {
   return (
     <ArchitecturalSection
-      index="08"
-      label="VERIFIED PERSPECTIVES"
       id="testimonials"
       className="py-24 border-t border-black/15"
     >
@@ -56,23 +54,23 @@ export const Testimonials: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-black/15">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-black/60 mb-3">
+            <div className="flex items-center gap-3 font-tech text-xs uppercase tracking-wider text-black/60 mb-3 font-semibold">
               <span className="w-2 h-2 bg-[#FACC15]" />
-              <span>STAKEHOLDER ATTESTATIONS // PROTOCOL VERIFIED</span>
+              <span>Stakeholder Attestations & Verified Records</span>
             </div>
             <MaskedHeading
               as="h2"
-              className="font-display uppercase text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[0.9] text-[#0D0D0D]"
+              className="font-display font-black uppercase text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.9] text-[#0D0D0D]"
             >
               Verified Partner Perspectives
             </MaskedHeading>
           </div>
-          <div className="font-mono text-[11px] uppercase tracking-wider text-black/60">
-            AUDIT: 100% UNEDITED DIRECT STATEMENTS
+          <div className="font-sans text-xs uppercase tracking-wider text-black/60 font-semibold">
+            Direct Unedited Statements
           </div>
         </div>
 
-        {/* 2-Column Border-Collapsed Architectural Matrix */}
+        {/* 2-Column Border-Collapsed Matrix */}
         <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-black/15 border-b border-black/15">
           {TESTIMONIALS.map((item) => (
             <div
@@ -83,23 +81,23 @@ export const Testimonials: React.FC = () => {
                 {/* Top Meta Header */}
                 <div className="flex items-center justify-between pb-6 border-b border-black/10">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs font-semibold text-black/40">[{item.index}]</span>
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-[#0D0D0D] font-bold">
+                    <span className="font-tech text-xs font-bold text-black/40">0{item.index}</span>
+                    <span className="font-tech text-xs uppercase tracking-wider text-[#0D0D0D] font-bold">
                       {item.role}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[#10B981] font-bold">
+                  <div className="flex items-center gap-2 font-sans text-xs uppercase tracking-wider text-[#10B981] font-bold">
                     <span className="w-1.5 h-1.5 bg-[#10B981]" />
-                    <span>VERIFIED RECORD</span>
+                    <span>Verified Record</span>
                   </div>
                 </div>
 
                 {/* Giant Metric Callout */}
                 <div>
-                  <div className="font-display text-5xl sm:text-6xl font-black text-[#0D0D0D] tracking-tight leading-none">
+                  <div className="font-display font-black text-5xl sm:text-6xl text-[#0D0D0D] tracking-tight leading-none">
                     {item.metric}
                   </div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-black/50 mt-1">
+                  <div className="font-tech text-xs uppercase tracking-wider text-black/50 mt-1 font-medium">
                     {item.metricLabel}
                   </div>
                 </div>
@@ -122,7 +120,7 @@ export const Testimonials: React.FC = () => {
                   <div className="font-tech text-base font-bold uppercase tracking-tight text-[#0D0D0D]">
                     {item.author}
                   </div>
-                  <div className="font-mono text-[11px] text-black/60 uppercase tracking-wider">
+                  <div className="font-sans text-xs text-black/60 uppercase tracking-wider font-medium">
                     {item.title}
                   </div>
                 </div>

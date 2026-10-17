@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
 
     gsap.fromTo(
       wordmarkRef.current,
-      { yPercent: 40, opacity: 0.1 },
+      { yPercent: 35, opacity: 0.1 },
       {
         yPercent: 0,
         opacity: 0.25,
@@ -34,8 +34,8 @@ export const Footer: React.FC = () => {
         {/* Top Direct Contact Strip */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 mb-16 border-b border-white/15">
           <div className="md:col-span-8 space-y-2">
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#FACC15] block">
-              // DIRECT SENIOR PARTNER DESK
+            <span className="font-tech text-xs uppercase tracking-wider text-[#FACC15] block font-semibold">
+              Senior Partner Desk
             </span>
             <a
               href="mailto:partners@fam1media.agency"
@@ -46,10 +46,13 @@ export const Footer: React.FC = () => {
             </a>
           </div>
 
-          <div className="md:col-span-4 flex flex-col justify-end md:items-end font-mono text-xs text-white/50 space-y-1">
-            <span className="text-white font-bold uppercase tracking-wider">OPERATIONAL HUBS</span>
-            <span>LONDON // NEW YORK // DUBAI</span>
-            <span className="text-[#10B981] font-bold">● SYSTEM STATUS: NOMINAL</span>
+          <div className="md:col-span-4 flex flex-col justify-end md:items-end font-sans text-xs text-white/60 space-y-1">
+            <span className="text-white font-bold uppercase tracking-wider font-tech">Operational Hubs</span>
+            <span>London · New York · Dubai</span>
+            <span className="text-[#10B981] font-semibold flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 bg-[#10B981]" />
+              Accepting New Brand Partnerships
+            </span>
           </div>
         </div>
 
@@ -63,31 +66,31 @@ export const Footer: React.FC = () => {
             <p className="font-sans text-xs text-white/60 leading-relaxed max-w-xs">
               Full-stack growth architecture for restaurants and hospitality flagships. Uniting local district blitzes with creator commercial representation.
             </p>
-            <div className="font-mono text-[10px] text-white/40 uppercase tracking-widest pt-2">
-              EST. 2026 // ALL RIGHTS RESERVED
+            <div className="font-sans text-xs text-white/40 uppercase tracking-wider pt-2">
+              © 2026 Fam1Media. All Rights Reserved.
             </div>
           </div>
 
           {/* Brands */}
           <div className="space-y-4">
-            <div className="font-mono text-xs uppercase tracking-[0.2em] text-[#FACC15] font-bold">
-              [FOR BRANDS]
+            <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-bold">
+              For Brands
             </div>
-            <ul className="space-y-2.5 font-tech text-sm uppercase text-white/70">
-              <li><a href="#fork" className="hover:text-white hover:translate-x-1 transition-transform inline-block">District Footfall Blitz</a></li>
+            <ul className="space-y-2.5 font-tech text-sm uppercase text-white/70 font-medium">
+              <li><a href="#paradigm" className="hover:text-white hover:translate-x-1 transition-transform inline-block">District Footfall Blitz</a></li>
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Sub-Second Booking Landers</a></li>
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Monthly SLA Maintenance</a></li>
-              <li><a href="#portfolio" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Verified Dining Case Studies</a></li>
+              <li><a href="#work" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Verified Dining Case Studies</a></li>
               <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Lock In District Dates</a></li>
             </ul>
           </div>
 
           {/* Creators */}
           <div className="space-y-4">
-            <div className="font-mono text-xs uppercase tracking-[0.2em] text-[#FACC15] font-bold">
-              [FOR CREATORS]
+            <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-bold">
+              For Creators
             </div>
-            <ul className="space-y-2.5 font-tech text-sm uppercase text-white/70">
+            <ul className="space-y-2.5 font-tech text-sm uppercase text-white/70 font-medium">
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Talent Representation</a></li>
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">4K ProRes Video Post Desk</a></li>
               <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Yield Simulator Console</a></li>
@@ -98,11 +101,11 @@ export const Footer: React.FC = () => {
 
           {/* Legal / Standards */}
           <div className="space-y-4">
-            <div className="font-mono text-xs uppercase tracking-[0.2em] text-[#FACC15] font-bold">
-              [GOVERNANCE]
+            <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-bold">
+              Governance & Standards
             </div>
-            <ul className="space-y-2.5 font-tech text-sm uppercase text-white/70">
-              <li><a href="#workflow" className="hover:text-white hover:translate-x-1 transition-transform inline-block">4-Phase Deployment Protocol</a></li>
+            <ul className="space-y-2.5 font-tech text-sm uppercase text-white/70 font-medium">
+              <li><a href="#system" className="hover:text-white hover:translate-x-1 transition-transform inline-block">4-Phase Deployment Protocol</a></li>
               <li><a href="#" className="hover:text-white hover:translate-x-1 transition-transform inline-block">FTC & ASA Regulatory Filings</a></li>
               <li><a href="#" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Commercial Rights Indemnity</a></li>
               <li><a href="#" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Confidentiality Protocol</a></li>
@@ -112,16 +115,16 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between font-mono text-[11px] uppercase tracking-wider text-white/40 pt-8 gap-4">
-          <div>FAM1MEDIA ARCHITECTURAL PLATFORM // SWISS-BRUTALIST PROTOCOL</div>
+        <div className="flex flex-col sm:flex-row items-center justify-between font-sans text-xs uppercase tracking-wider text-white/40 pt-8 gap-4 font-medium">
+          <div>Fam1Media Hospitality Growth Engine · Full-Stack Architecture</div>
           <a href="#hero" className="hover:text-[#FACC15] transition-colors flex items-center gap-2">
-            <span>RETURN TO SUMMIT</span>
+            <span>Back to Top</span>
             <span>↑</span>
           </a>
         </div>
       </div>
 
-      {/* Full-Bleed Brutalist Wordmark */}
+      {/* Full-Bleed Wordmark */}
       <div
         ref={wordmarkRef}
         className="w-full text-center font-display font-black tracking-[-0.04em] text-[17vw] leading-[0.78] uppercase text-white pointer-events-none select-none mt-12 overflow-hidden will-change-transform"

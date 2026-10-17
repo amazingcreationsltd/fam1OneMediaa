@@ -113,21 +113,21 @@ export const DistrictOutdoorShowcase: React.FC = () => {
   const [filter, setFilter] = useState('ALL');
 
   return (
-    <ArchitecturalSection id="work" index="03" label="VERIFIED CASE ARCHIVE" dark={true}>
+    <ArchitecturalSection id="work" dark={true}>
       {/* Top Header Bar */}
       <div className="p-6 sm:p-10 md:p-14 border-b border-white/15 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <div className="font-mono text-xs uppercase tracking-widest text-[#FACC15] mb-3 flex items-center gap-2">
+          <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] mb-3 flex items-center gap-2 font-semibold">
             <span className="w-2 h-2 bg-[#FACC15]" />
-            <span>[ 03.A // PROVEN COMMERCIAL ATTRIBUTION ]</span>
+            <span>Proven Commercial Attribution</span>
           </div>
-          <h2 className="font-display text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-[#F4F3EF]">
+          <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-[#F4F3EF]">
             VERIFIED CASE STUDIES
           </h2>
         </div>
 
-        {/* Sharp Rectangular Filter Tabs */}
-        <div className="flex flex-wrap gap-2 font-mono text-xs uppercase tracking-wider">
+        {/* Clean Rectangular Filter Tabs */}
+        <div className="flex flex-wrap gap-2 font-tech text-xs uppercase tracking-wider font-semibold">
           {['ALL', 'FINE DINING', 'ROBATA', 'PATISSERIE'].map((tab) => (
             <button
               key={tab}
@@ -146,14 +146,14 @@ export const DistrictOutdoorShowcase: React.FC = () => {
 
       {/* Part A: Asymmetric Staggered 12-Column Case Studies Grid (Zero Card Wrappers!) */}
       <div className="grid grid-cols-12 divide-y lg:divide-y-0 border-b border-white/15">
-        {CASE_STUDIES.map((study, idx) => (
+        {CASE_STUDIES.map((study) => (
           <div
             key={study.id}
             className={`${study.cols} ${study.staggerClass || ''} p-6 sm:p-10 md:p-12 lg:border-r border-white/15 flex flex-col justify-between hover:bg-white/[0.02] transition-colors`}
           >
-            {/* Top metadata bar with sharp square indicator */}
-            <div className="flex items-center justify-between font-mono text-xs mb-4">
-              <span className="text-neutral-400 tracking-wider">[ 0{idx + 1} // {study.category} ]</span>
+            {/* Top metadata bar */}
+            <div className="flex items-center justify-between font-tech text-xs mb-4 uppercase tracking-wider font-semibold">
+              <span className="text-neutral-400">{study.category}</span>
               <span className="text-[#10B981] font-bold flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 bg-[#10B981]" />
                 {study.lift}
@@ -170,22 +170,22 @@ export const DistrictOutdoorShowcase: React.FC = () => {
 
             {/* Content Below Image */}
             <div className="mt-6 pt-4 border-t border-white/10">
-              <div className="font-mono text-[11px] text-[#FACC15] uppercase tracking-widest mb-1">
+              <div className="font-sans text-xs text-[#FACC15] uppercase tracking-wider font-semibold mb-1">
                 {study.location} · {study.cuisine}
               </div>
-              <h3 className="font-display text-3xl sm:text-4xl uppercase tracking-tight text-[#F4F3EF]">
+              <h3 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-[#F4F3EF]">
                 {study.title}
               </h3>
 
               {/* 2-Column Specs */}
-              <div className="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-white/10 font-mono text-xs">
+              <div className="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-white/10 font-sans text-xs">
                 <div>
-                  <div className="text-neutral-500 uppercase">MEASURED REACH</div>
-                  <div className="text-base font-bold text-white mt-0.5">{study.views}</div>
+                  <div className="text-neutral-500 uppercase font-semibold">Measured Reach</div>
+                  <div className="font-display font-bold text-lg text-white mt-0.5">{study.views}</div>
                 </div>
                 <div>
-                  <div className="text-neutral-500 uppercase">DIRECT REVENUE LIFT</div>
-                  <div className="text-base font-bold text-[#FACC15] mt-0.5">{study.revenue}</div>
+                  <div className="text-neutral-500 uppercase font-semibold">Direct Revenue Lift</div>
+                  <div className="font-display font-bold text-lg text-[#FACC15] mt-0.5">{study.revenue}</div>
                 </div>
               </div>
             </div>
@@ -196,12 +196,12 @@ export const DistrictOutdoorShowcase: React.FC = () => {
       {/* Part B: 9:16 Vertical Reels Gallery */}
       <div className="w-full">
         <div className="p-6 sm:p-10 border-b border-white/15 flex items-center justify-between">
-          <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest">
-            [ 03.B // HIGH-RETENTION SHORT-FORM ENGINE ]
+          <span className="font-tech text-xs text-neutral-300 uppercase tracking-wider font-bold">
+            High-Retention Short-Form Production
           </span>
-          <span className="font-mono text-xs text-[#10B981] uppercase tracking-wider flex items-center gap-2">
-            <span className="w-2 h-2 bg-[#10B981] animate-pulse" />
-            4K VERTICAL MASTER RECORDINGS
+          <span className="font-sans text-xs text-[#10B981] uppercase tracking-wider flex items-center gap-2 font-semibold">
+            <span className="w-2 h-2 bg-[#10B981]" />
+            4K Vertical Master Recordings
           </span>
         </div>
 
@@ -209,8 +209,8 @@ export const DistrictOutdoorShowcase: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/15">
           {REELS.map((reel) => (
             <div key={reel.id} className="p-6 sm:p-10 flex flex-col justify-between hover:bg-white/[0.02] transition-colors">
-              <div className="flex items-center justify-between font-mono text-xs mb-3">
-                <span className="text-[#FACC15] font-bold">{reel.tag}</span>
+              <div className="flex items-center justify-between font-tech text-xs mb-3 uppercase tracking-wider font-semibold">
+                <span className="text-[#FACC15]">{reel.tag}</span>
                 <span className="text-neutral-400">{reel.views}</span>
               </div>
 
@@ -229,20 +229,20 @@ export const DistrictOutdoorShowcase: React.FC = () => {
 
                 {/* Center Sharp Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 bg-black/80 border border-white/30 text-[#FACC15] flex items-center justify-center font-mono text-xs group-hover:bg-[#FACC15] group-hover:text-black transition-colors">
+                  <div className="w-12 h-12 bg-black/80 border border-white/30 text-[#FACC15] flex items-center justify-center font-sans text-xs group-hover:bg-[#FACC15] group-hover:text-black transition-colors">
                     &#9658;
                   </div>
                 </div>
 
-                <div className="absolute bottom-4 left-4 right-4 text-left font-mono text-xs text-white">
-                  <div className="text-[10px] text-[#FACC15] uppercase tracking-wider">{reel.metric}</div>
-                  <div className="font-bold uppercase text-sm mt-0.5">{reel.title}</div>
+                <div className="absolute bottom-4 left-4 right-4 text-left font-sans text-xs text-white">
+                  <div className="text-[10px] text-[#FACC15] uppercase tracking-wider font-semibold">{reel.metric}</div>
+                  <div className="font-bold uppercase text-sm mt-0.5 font-tech">{reel.title}</div>
                 </div>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-white/10 font-mono text-xs text-neutral-400 flex justify-between">
+              <div className="mt-4 pt-3 border-t border-white/10 font-sans text-xs text-neutral-400 flex justify-between font-medium">
                 <span>{reel.meta}</span>
-                <span className="text-[#10B981]">SLA VERIFIED</span>
+                <span className="text-[#10B981]">SLA Verified</span>
               </div>
             </div>
           ))}

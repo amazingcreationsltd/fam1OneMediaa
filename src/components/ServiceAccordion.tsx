@@ -113,9 +113,9 @@ export const ServiceAccordion: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-black/15">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-black/60 mb-3">
+            <div className="flex items-center gap-3 font-tech text-xs uppercase tracking-wider text-black/60 mb-3 font-semibold">
               <span className="w-2 h-2 bg-[#FACC15]" />
-              <span>CAPABILITIES MATRIX // FULL PROTOCOL</span>
+              <span>Full-Spectrum Hospitality Capabilities</span>
             </div>
             <MaskedHeading
               as="h2"
@@ -124,8 +124,8 @@ export const ServiceAccordion: React.FC = () => {
               Full-Spectrum Service Architecture
             </MaskedHeading>
           </div>
-          <div className="flex items-center gap-3 py-2 px-4 border border-black/15 font-mono text-[11px] uppercase tracking-wider text-[#0D0D0D] shrink-0 self-start lg:self-auto">
-            <span className="w-2 h-2 bg-[#10B981] animate-pulse" />
+          <div className="flex items-center gap-3 py-2 px-4 border border-black/15 font-sans text-xs uppercase tracking-wider text-[#0D0D0D] shrink-0 self-start lg:self-auto font-semibold">
+            <span className="w-2 h-2 bg-[#10B981]" />
             <span>Capacity: 94% Allocated</span>
           </div>
         </div>
