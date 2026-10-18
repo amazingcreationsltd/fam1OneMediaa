@@ -76,8 +76,8 @@ export const AgencyProcess: React.FC = () => {
           {
             opacity: 1,
             y: 0,
-            duration: 0.6,
-            ease: 'power2.out',
+            duration: 0.8,
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: headerText,
               start: 'top 90%',
@@ -87,24 +87,24 @@ export const AgencyProcess: React.FC = () => {
         );
       }
 
-      // 2. Signature Card Reveal Animation (Scale pop with back.out, matching CreatorStudioSuite)
+      // 2. Clean Architectural Card Reveal (No gray flash, no CSS transition clash)
       const mm = gsap.matchMedia();
 
-      // Mobile (< 768px): Card-by-card pop in
+      // Mobile (< 768px): Smooth individual glide-up
       mm.add('(max-width: 767px)', () => {
         cards.forEach((card) => {
           gsap.fromTo(
             card,
-            { scale: 0.88, opacity: 0, y: 15 },
+            { opacity: 0, y: 32 },
             {
-              scale: 1,
               opacity: 1,
               y: 0,
-              duration: 0.45,
-              ease: 'back.out(1.7)',
+              duration: 0.85,
+              ease: 'power3.out',
+              overwrite: 'auto',
               scrollTrigger: {
                 trigger: card,
-                start: 'top 85%',
+                start: 'top 88%',
                 toggleActions: 'play none none reset',
               },
             }
@@ -112,20 +112,20 @@ export const AgencyProcess: React.FC = () => {
         });
       });
 
-      // Desktop & Tablet (>= 768px): Staggered pop-in sequence
+      // Desktop & Tablet (>= 768px): Staggered cascade triggered when the GRID enters view
       mm.add('(min-width: 768px)', () => {
         gsap.fromTo(
           cards,
-          { scale: 0.88, opacity: 0, y: 15 },
+          { opacity: 0, y: 40 },
           {
-            scale: 1,
             opacity: 1,
             y: 0,
-            duration: 0.5,
-            stagger: 0.08,
-            ease: 'back.out(1.7)',
+            duration: 0.95,
+            stagger: 0.12,
+            ease: 'power3.out',
+            overwrite: 'auto',
             scrollTrigger: {
-              trigger: section,
+              trigger: grid, // Trigger on the grid itself, not the top of the section!
               start: 'top 85%',
               toggleActions: 'play none none reset',
             },
@@ -160,16 +160,16 @@ export const AgencyProcess: React.FC = () => {
           </div>
           <p
             ref={headerTextRef}
-            className="font-sans text-sm text-white/60 max-w-md leading-relaxed"
+            className="font-sans text-sm text-white/60 max-w-md leading-relaxed will-change-[transform,opacity]"
           >
             From initial brief to viral reach in 7 days. A repeatable, battle-tested operational pipeline built for speed and ROI.
           </p>
         </div>
 
-        {/* 4-Step Kinetic Grid */}
+        {/* 4-Step Kinetic Grid — Dark background + crisp borders prevents gray flash during opacity reveal */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/15 border border-white/15"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-[#0A0A0A] border border-white/15 divide-y md:divide-y-0 md:divide-x divide-white/15 overflow-hidden"
         >
           {steps.map((step, idx) => {
             const Icon = step.icon;
@@ -177,12 +177,13 @@ export const AgencyProcess: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="process-card bg-[#0D0D0D] p-8 hover:bg-[#151515] transition-all duration-200 group flex flex-col justify-between will-change-transform"
+                /* IMPORTANT: transition-colors instead of transition-all so CSS doesn't fight GSAP! */
+                className="process-card bg-[#0D0D0D] p-8 hover:bg-[#151515] transition-colors duration-300 group flex flex-col justify-between will-change-[transform,opacity]"
               >
                 <div>
                   {/* Top Step Index & Timing Badge */}
                   <div className="flex items-center justify-between mb-8">
-                    <span className="text-3xl font-black text-white/30 group-hover:text-[#FACC15] font-mono transition-colors">
+                    <span className="text-3xl font-black text-white/30 group-hover:text-[#FACC15] font-mono transition-colors duration-300">
                       {step.number}
                     </span>
                     <span className="text-[11px] font-mono uppercase text-white/70 bg-white/5 border border-white/10 px-2.5 py-1 tracking-wider">
@@ -191,7 +192,7 @@ export const AgencyProcess: React.FC = () => {
                   </div>
 
                   {/* Icon Box */}
-                  <div className="w-10 h-10 rounded-none bg-white/5 border border-white/15 flex items-center justify-center text-white mb-6 group-hover:border-[#FACC15] group-hover:text-[#FACC15] transition-colors">
+                  <div className="w-10 h-10 rounded-none bg-white/5 border border-white/15 flex items-center justify-center text-white mb-6 group-hover:border-[#FACC15] group-hover:text-[#FACC15] transition-colors duration-300">
                     <Icon className="w-5 h-5" />
                   </div>
 

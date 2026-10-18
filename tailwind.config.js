@@ -24,7 +24,8 @@ export default {
         muted: 'rgb(var(--text-muted-rgb) / <alpha-value>)',
       },
       fontFamily: {
-        display: ['Geist', 'system-ui', 'sans-serif'],
+        display: ['Outfit', 'Geist', 'system-ui', 'sans-serif'],
+        heading: ['Outfit', 'sans-serif'],
         tech: ['"Space Grotesk"', 'sans-serif'],
         sans: ['Satoshi', 'Geist', 'Inter', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],

@@ -51,16 +51,16 @@ const AppContent: React.FC = () => {
         {/* Section 03: Border-Collapsed KPI Matrix ("Experience that builds trust") */}
         <KpiStrip />
 
-        {/* Section 04: Full-Spectrum Service Architecture (Moved between KPI numbers and Marquee) */}
+        {/* Section 04: Full-Spectrum Service Architecture */}
         <ServiceAccordion />
 
-        {/* Section 05: Velocity Skew Marquee */}
-        <VelocityMarquee />
-
-        {/* Section 06: Dark Obsidian Case Studies & Vertical 9:16 Video Showcase */}
+        {/* Section 05: Dark Obsidian Case Studies & Vertical 9:16 Video Showcase ("High-Retention Short-Form Production") */}
         <DistrictOutdoorShowcase />
 
-        {/* Section 07: Sticky-Stacking Architectural Growth Panels */}
+        {/* Velocity Marquee: Placed after High-Retention Short-Form Production & before HOW WE CONNECT */}
+        <VelocityMarquee />
+
+        {/* Section 06: Brand × Creator Routing Architecture ("HOW WE CONNECT.") */}
         <CreatorStudioSuite />
 
         {/* Section 08: Verified Perspectives Matrix */}

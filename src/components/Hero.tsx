@@ -6,6 +6,7 @@ import { Magnetic } from './motion/MagneticCursor';
 import { ArrowUpRight, Sparkles, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import heroStudioBanner from '../assets/images/faizur-rehman-pHPzdEHN6Os-unsplash.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -185,7 +186,7 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
       {/* 4. Cinematic Studio Stage Banner with Overlapping Circular Stamp */}
       <div className="relative w-full overflow-hidden border-b border-black/15 bg-black">
         <ParallaxMedia
-          src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1920&q=85"
+          src={heroStudioBanner}
           alt="Professional commercial film and creative production studio"
           aspect="aspect-[16/7] min-h-[360px] max-h-[600px]"
           dataCursor="EXPLORE"

@@ -1,145 +1,147 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface VelocityMarqueeProps {
-  items?: string[];
-  className?: string;
-  dark?: boolean;
-}
+export const VelocityMarquee: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const track1Ref = useRef<HTMLDivElement>(null);
+  const track2Ref = useRef<HTMLDivElement>(null);
 
-const DEFAULT_ITEMS = [
-  'WHERE BRANDS MEET CREATIVITY',
-  'SCRIPTING & STRATEGY',
-  'CAPTURING & EDITING',
-  'SOCIAL MEDIA HANDLING',
-  'INFLUENCER COLLABORATIONS',
-  'PAID ADVERTISING & CAMPAIGNS',
-];
+  const line1 = [
+    'INFLUENCER CAMPAIGNS',
+    'UGC CONTENT PRODUCTION',
+    'PAID PERFORMANCE ADS',
+    'BRAND AMBASSADORS',
+    'EVENT PR ACTIVATIONS',
+    'FAMO1MEDIAA',
+    'HIGH ROAS ENGINES',
+  ];
 
-export const VelocityMarquee: React.FC<VelocityMarqueeProps> = ({
-  items = DEFAULT_ITEMS,
-  className = '',
-  dark = false,
-}) => {
-  const marqueeRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [scrollDir, setScrollDir] = useState<'left' | 'right'>('left');
+  const line2 = [
+    'VIRAL HOOK ENGINEERING',
+    '850+ VETTED CREATORS',
+    '142M+ AUDITED IMPRESSIONS',
+    'META & GOOGLE ADS',
+    'FULL PERPETUAL USAGE RIGHTS',
+    '48H SPRINT DEPLOYMENT',
+  ];
 
   useEffect(() => {
-    const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const container = containerRef.current;
+    const track1 = track1Ref.current;
+    const track2 = track2Ref.current;
+    if (!container || !track1 || !track2) return;
+
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    const track = trackRef.current;
-    if (!track) return;
-
-    let xPos = 0;
-    const baseSpeed = 1.35;
-    let currentDir = -1; // -1 = scrolling down -> marquee moves left; 1 = scrolling up -> marquee moves right
-
-    const onTick = () => {
-      // Calculate halfWidth of the duplicated content
-      const halfWidth = track.scrollWidth / 2;
-      if (halfWidth <= 0) return;
-
-      xPos += baseSpeed * currentDir;
-
-      // Seamless modular wrap
-      if (xPos <= -halfWidth) {
-        xPos += halfWidth;
-      } else if (xPos >= 0) {
-        xPos -= halfWidth;
-      }
-
-      gsap.set(track, { x: xPos });
-    };
-
-    gsap.ticker.add(onTick);
-
-    // ScrollTrigger to detect direction and skew velocity
-    const st = ScrollTrigger.create({
-      onUpdate: (self) => {
-        // self.direction: 1 when scrolling DOWN, -1 when scrolling UP
-        if (self.direction === 1) {
-          currentDir = -1; // Move left
-          setScrollDir('left');
-        } else if (self.direction === -1) {
-          currentDir = 1; // Move right
-          setScrollDir('right');
+    const ctx = gsap.context(() => {
+      // Base continuous tweens:
+      // Track 1 moves left (0% -> -50%)
+      const tween1 = gsap.fromTo(
+        track1,
+        { xPercent: 0 },
+        {
+          xPercent: -50,
+          duration: 25,
+          repeat: -1,
+          ease: 'none',
         }
+      );
 
-        const velocity = self.getVelocity() / 250;
-        const clampedSkew = Math.max(-10, Math.min(10, velocity * -0.35));
-        gsap.to(track, {
-          skewX: clampedSkew,
-          duration: 0.35,
-          ease: 'power3.out',
-          overwrite: 'auto',
-        });
-      },
-    });
+      // Track 2 moves right (-50% -> 0%)
+      const tween2 = gsap.fromTo(
+        track2,
+        { xPercent: -50 },
+        {
+          xPercent: 0,
+          duration: 30,
+          repeat: -1,
+          ease: 'none',
+        }
+      );
 
-    return () => {
-      gsap.ticker.remove(onTick);
-      st.kill();
-    };
+      // Direction state: 1 = forward (top goes left, bottom goes right), -1 = reverse (top goes right, bottom goes left)
+      let currentDirection = 1;
+
+      ScrollTrigger.create({
+        trigger: container,
+        start: 'top bottom',
+        end: 'bottom top',
+        onUpdate: (self) => {
+          const velocity = self.getVelocity(); // > 0 when scrolling down, < 0 when scrolling up
+          const dir = self.direction; // 1 for down, -1 for up
+
+          // If scrolling up, lock direction to reverse (-1)
+          // If scrolling down, lock direction to forward (+1)
+          if (dir === -1 || velocity < -40) {
+            currentDirection = -1;
+          } else if (dir === 1 || velocity > 40) {
+            currentDirection = 1;
+          }
+
+          // Calculate speed boost based on scroll velocity
+          const boost = Math.min(Math.abs(velocity) * 0.0018, 3.5);
+          const activeScale = currentDirection * (1 + boost);
+
+          // Animate to active speed immediately while scrolling
+          gsap.to([tween1, tween2], {
+            timeScale: activeScale,
+            duration: 0.2,
+            overwrite: 'auto',
+            onComplete: () => {
+              // When velocity ceases, settle at base speed in the CURRENT direction (never flips back)
+              gsap.to([tween1, tween2], {
+                timeScale: currentDirection,
+                duration: 0.8,
+                ease: 'power2.out',
+                overwrite: 'auto',
+              });
+            },
+          });
+        },
+      });
+    }, container);
+
+    return () => ctx.revert();
   }, []);
-
-  // Repeat sequence across two identical blocks for flawless 50% modular wrapping
-  const renderItemBlock = (keyPrefix: string) => (
-    <div key={keyPrefix} className="flex items-center shrink-0">
-      {items.map((item, idx) => (
-        <div key={`${keyPrefix}-${idx}`} className="flex items-center shrink-0">
-          <span className="font-tech font-normal text-3xl sm:text-4xl md:text-5xl uppercase tracking-wider whitespace-nowrap px-6">
-            {item}
-          </span>
-          {/* Glyph Arrow with smooth 180deg flip on scroll direction reversal */}
-          <span
-            className="inline-flex items-center justify-center shrink-0 text-black mx-2 transition-transform duration-500 ease-out will-change-transform"
-            style={{
-              transform: scrollDir === 'left' ? 'rotate(180deg)' : 'rotate(0deg)',
-            }}
-            aria-hidden="true"
-          >
-            <svg
-              className="w-7 h-7 sm:w-9 sm:h-9"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.75"
-              strokeLinecap="square"
-              strokeLinejoin="miter"
-            >
-              <line x1="2" y1="12" x2="20" y2="12" />
-              <polyline points="13 5 20 12 13 19" />
-            </svg>
-          </span>
-        </div>
-      ))}
-    </div>
-  );
 
   return (
     <div
-      ref={marqueeRef}
-      className={`relative w-full overflow-hidden select-none border-y py-4 ${
-        dark
-          ? 'bg-[#0A0A0A] text-[#F4F3EF] border-white/15'
-          : 'bg-[#EAE8E1] text-[#0D0D0D] border-black/15'
-      } ${className}`}
+      ref={containerRef}
+      className="relative border-y border-neutral-300 bg-[#f4f3ef] py-6 overflow-hidden select-none"
     >
-      <div
-        ref={trackRef}
-        className="flex whitespace-nowrap will-change-transform"
-      >
-        {renderItemBlock('block-a')}
-        {renderItemBlock('block-b')}
+      {/* Top Track (Moving Left, Bold Dark Text with Acid Yellow Stars) */}
+      <div className="overflow-hidden mb-3 whitespace-nowrap">
+        <div ref={track1Ref} className="flex items-center gap-8 w-max will-change-transform">
+          {[...line1, ...line1].map((text, idx) => (
+            <div key={idx} className="flex items-center gap-8 shrink-0">
+              <span className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-[#0D0D0D] hover:text-[#FACC15] transition-colors">
+                {text}
+              </span>
+              <span className="text-[#FACC15] text-xl font-bold">★</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom Track (Moving Right, 50% Gray Text with Dots) */}
+      <div className="overflow-hidden whitespace-nowrap">
+        <div ref={track2Ref} className="flex items-center gap-8 w-max will-change-transform">
+          {[...line2, ...line2].map((text, idx) => (
+            <div key={idx} className="flex items-center gap-8 shrink-0">
+              <span className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-tight text-neutral-500 hover:text-[#0D0D0D] transition-colors">
+                {text}
+              </span>
+              <span className="text-neutral-400 text-lg">·</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
+
+export default VelocityMarquee;
