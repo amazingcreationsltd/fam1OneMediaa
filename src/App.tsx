@@ -3,6 +3,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { AudienceProvider } from './context/AudienceContext';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 import { MagneticCursor } from './components/motion/MagneticCursor';
+import { ProgressiveBottomBlur } from './components/motion/ProgressiveBottomBlur';
 import { Preloader } from './components/Preloader';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -25,6 +26,9 @@ const AppContent: React.FC = () => {
     <div className="bg-[#F4F3EF] text-[#0D0D0D] min-h-screen selection:bg-[#FACC15] selection:text-black relative">
       {/* Custom Fluid Magnetic Cursor */}
       <MagneticCursor />
+
+      {/* Progressive Viewport Bottom Blur Ramp */}
+      <ProgressiveBottomBlur />
 
       {/* Accessible Skip Link */}
       <a

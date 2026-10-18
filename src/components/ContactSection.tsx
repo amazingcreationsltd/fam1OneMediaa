@@ -126,27 +126,26 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
   return (
     <ArchitecturalSection
-      dark
       id="contact"
-      className="py-20 sm:py-28 bg-[#0D0D0D] text-[#F4F3EF] border-t border-white/15"
+      className="py-20 sm:py-28 bg-[#F4F3EF] text-[#0D0D0D] border-t border-black/15"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-12">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-white/15">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-black/15">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3 font-tech text-xs uppercase tracking-wider text-white/50 mb-3 font-semibold">
+            <div className="flex items-center gap-3 font-tech text-xs uppercase tracking-wider text-neutral-600 mb-3 font-semibold">
               <span className="w-2 h-2 bg-[#FACC15]" />
               <span>Project Intake & Strategy Onboarding</span>
             </div>
             <MaskedHeading
               as="h2"
-              className="font-display font-black uppercase text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.9] text-[#F4F3EF]"
+              className="font-display font-black uppercase text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.9] text-[#0D0D0D]"
             >
               Start a Project
             </MaskedHeading>
           </div>
 
-          <div className="flex items-center gap-3 font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+          <div className="flex items-center gap-3 font-tech text-xs uppercase tracking-wider text-neutral-600 font-semibold">
             <span>Selected Budget: ${budget.toLocaleString()}</span>
             <span>·</span>
             <span>24h Response</span>
@@ -155,7 +154,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
         {/* Contact Form Card with Scroll Reveal */}
         <div ref={formCardRef} className="pt-12 max-w-4xl mx-auto">
-          <div className="bg-black/60 border border-white/15 p-6 sm:p-10 md:p-12">
+          <div className="bg-white border border-black/15 p-6 sm:p-10 md:p-12 shadow-sm">
             {formStatus === 'success' ? (
               <div
                 role="status"
@@ -164,21 +163,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               >
                 <div className="flex items-center gap-3">
                   <span className="w-3 h-3 bg-[#10B981]" />
-                  <span className="font-tech text-xs uppercase tracking-wider text-[#10B981] font-bold">
+                  <span className="font-tech text-xs uppercase tracking-wider text-[#047857] font-bold">
                     Inquiry Received & Dispatched
                   </span>
                 </div>
-                <h3 tabIndex={-1} className="font-display font-black text-3xl sm:text-4xl uppercase text-white tracking-tight focus:outline-none">
+                <h3 tabIndex={-1} className="font-display font-black text-3xl sm:text-4xl uppercase text-[#0D0D0D] tracking-tight focus:outline-none">
                   Brief Successfully Prepared.
                 </h3>
-                <p className="font-sans text-sm text-white/80 leading-relaxed max-w-xl">
+                <p className="font-sans text-sm text-neutral-700 leading-relaxed max-w-xl">
                   {statusMessage ||
                     'Your parameters have been recorded. Our partner desk will review and contact you within 24 business hours.'}
                 </p>
                 <button
                   type="button"
                   onClick={() => setFormStatus('idle')}
-                  className="font-tech text-xs uppercase tracking-wider text-[#FACC15] hover:underline font-bold"
+                  className="font-tech text-xs uppercase tracking-wider text-[#0D0D0D] hover:underline font-bold"
                 >
                   Send Another Inquiry
                 </button>
@@ -189,17 +188,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <div
                     role="alert"
                     aria-live="assertive"
-                    className="p-4 border border-[#B3261E] bg-[#B3261E]/10 flex items-center gap-3 text-red-400 font-sans text-xs"
+                    className="p-4 border border-[#B3261E] bg-[#B3261E]/10 flex items-center gap-3 text-red-600 font-sans text-xs"
                   >
-                    <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                    <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
                     <span>{statusMessage}</span>
                   </div>
                 )}
-                <div className="space-y-2 pb-2 border-b border-white/10">
-                  <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-semibold">
+                <div className="space-y-2 pb-2 border-b border-black/10">
+                  <div className="font-tech text-xs uppercase tracking-wider text-[#B45309] font-bold">
                     Advisory Intake
                   </div>
-                  <h3 className="font-tech text-2xl font-bold uppercase tracking-tight text-[#F4F3EF]">
+                  <h3 className="font-tech text-2xl font-bold uppercase tracking-tight text-[#0D0D0D]">
                     Initiate Brand Strategy Deployment
                   </h3>
                 </div>
@@ -207,7 +206,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   {/* Field 01 */}
                   <div className="space-y-2">
-                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                    <label className="block font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
                       Brand or Company Name *
                     </label>
                     <input
@@ -216,13 +215,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       placeholder="e.g. Lumina Lifestyle Group"
                       value={brandName}
                       onChange={(e) => setBrandName(e.target.value)}
-                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                      className="w-full bg-transparent border-b border-black/20 py-3 text-sm text-[#0D0D0D] placeholder:text-neutral-400 focus:outline-none focus:border-black font-sans transition-colors"
                     />
                   </div>
 
                   {/* Field 02 */}
                   <div className="space-y-2">
-                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                    <label className="block font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
                       Executive Contact Email *
                     </label>
                     <input
@@ -231,7 +230,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       placeholder="partner@yourbrand.com"
                       value={brandEmail}
                       onChange={(e) => setBrandEmail(e.target.value)}
-                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                      className="w-full bg-transparent border-b border-black/20 py-3 text-sm text-[#0D0D0D] placeholder:text-neutral-400 focus:outline-none focus:border-black font-sans transition-colors"
                     />
                   </div>
                 </div>
@@ -239,43 +238,43 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   {/* Field 03 */}
                   <div className="space-y-2">
-                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                    <label className="block font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
                       Primary Strategic Target
                     </label>
                     <select
                       value={brandGoal}
                       onChange={(e) => setBrandGoal(e.target.value)}
-                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                      className="w-full bg-transparent border-b border-black/20 py-3 text-sm text-[#0D0D0D] focus:outline-none focus:border-black font-sans transition-colors"
                     >
-                      <option className="bg-[#0A0A0A] text-white" value="creative">Scripting & 4K Creative Production</option>
-                      <option className="bg-[#0A0A0A] text-white" value="social">Social Media Handling & Account Management</option>
-                      <option className="bg-[#0A0A0A] text-white" value="influencer">Influencer & Brand Collaborations</option>
-                      <option className="bg-[#0A0A0A] text-white" value="campaigns">Digital & Outdoor Advertising Campaigns</option>
-                      <option className="bg-[#0A0A0A] text-white" value="web">Website Design & Conversion Platform</option>
-                      <option className="bg-[#0A0A0A] text-white" value="integrated">Full Ecosystem (Creative + Social + Collabs)</option>
+                      <option className="bg-white text-black" value="creative">Scripting & 4K Creative Production</option>
+                      <option className="bg-white text-black" value="social">Social Media Handling & Account Management</option>
+                      <option className="bg-white text-black" value="influencer">Influencer & Brand Collaborations</option>
+                      <option className="bg-white text-black" value="campaigns">Digital & Outdoor Advertising Campaigns</option>
+                      <option className="bg-white text-black" value="web">Website Design & Conversion Platform</option>
+                      <option className="bg-white text-black" value="integrated">Full Ecosystem (Creative + Social + Collabs)</option>
                     </select>
                   </div>
 
                   {/* Field 04 */}
                   <div className="space-y-2">
-                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                    <label className="block font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
                       Capital Allocation Tier
                     </label>
                     <select
                       value={brandBudget}
                       onChange={(e) => setBrandBudget(e.target.value)}
-                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                      className="w-full bg-transparent border-b border-black/20 py-3 text-sm text-[#0D0D0D] focus:outline-none focus:border-black font-sans transition-colors"
                     >
-                      <option className="bg-[#0A0A0A] text-white" value="3000-5000">$3,000 – $5,000 / Month (Pilot)</option>
-                      <option className="bg-[#0A0A0A] text-white" value="5000-15000">$5,000 – $15,000 / Month (Flagship Growth)</option>
-                      <option className="bg-[#0A0A0A] text-white" value="15000+">$15,000+ / Month (Enterprise Scale)</option>
+                      <option className="bg-white text-black" value="3000-5000">$3,000 – $5,000 / Month (Pilot)</option>
+                      <option className="bg-white text-black" value="5000-15000">$5,000 – $15,000 / Month (Flagship Growth)</option>
+                      <option className="bg-white text-black" value="15000+">$15,000+ / Month (Enterprise Scale)</option>
                     </select>
                   </div>
                 </div>
 
                 {/* Field 05 */}
                 <div className="space-y-2">
-                  <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                  <label className="block font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
                     Target Audience & Campaign Objectives
                   </label>
                   <textarea
@@ -283,7 +282,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     placeholder="Specify target audience, ideal creator profiles, deliverables, or launch deadlines..."
                     value={brandMessage}
                     onChange={(e) => setBrandMessage(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors resize-none"
+                    className="w-full bg-transparent border-b border-black/20 py-3 text-sm text-[#0D0D0D] placeholder:text-neutral-400 focus:outline-none focus:border-black font-sans transition-colors resize-none"
                   />
                 </div>
 
@@ -292,10 +291,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <button
                     type="submit"
                     disabled={formStatus === 'submitting'}
-                    className={`w-full py-5 bg-[#FACC15] text-[#0A0A0A] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-colors ${
+                    className={`w-full py-5 bg-[#FACC15] text-[#0D0D0D] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-colors ${
                       formStatus === 'submitting'
                         ? 'opacity-60 cursor-not-allowed'
-                        : 'hover:bg-[#FACC15]/90'
+                        : 'hover:bg-[#EAB308]'
                     }`}
                   >
                     <span>
@@ -303,11 +302,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         ? 'Dispatching Brief...'
                         : 'Submit Brief For Partner Review'}
                     </span>
-                    <ArrowRight className="w-5 h-5 text-[#0A0A0A]" />
+                    <ArrowRight className="w-5 h-5 text-[#0D0D0D]" />
                   </button>
                 </Magnetic>
 
-                <div className="pt-2 text-center font-sans text-xs text-white/40">
+                <div className="pt-2 text-center font-sans text-xs text-neutral-500">
                   Protected under mutual NDA. We respond to all verified inquiries within 24 hours.
                 </div>
               </form>
@@ -317,17 +316,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <div
                     role="alert"
                     aria-live="assertive"
-                    className="p-4 border border-[#B3261E] bg-[#B3261E]/10 flex items-center gap-3 text-red-400 font-sans text-xs"
+                    className="p-4 border border-[#B3261E] bg-[#B3261E]/10 flex items-center gap-3 text-red-600 font-sans text-xs"
                   >
-                    <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                    <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
                     <span>{statusMessage}</span>
                   </div>
                 )}
-                <div className="space-y-2 pb-2 border-b border-white/10">
-                  <div className="font-tech text-xs uppercase tracking-wider text-[#FACC15] font-semibold">
+                <div className="space-y-2 pb-2 border-b border-black/10">
+                  <div className="font-tech text-xs uppercase tracking-wider text-[#B45309] font-bold">
                     Creator Roster Intake
                   </div>
-                  <h3 className="font-tech text-2xl font-bold uppercase tracking-tight text-[#F4F3EF]">
+                  <h3 className="font-tech text-2xl font-bold uppercase tracking-tight text-[#0D0D0D]">
                     Apply For Talent Representation & Post Support
                   </h3>
                 </div>
@@ -335,7 +334,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   {/* Field 01 */}
                   <div className="space-y-2">
-                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                    <label className="block font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
                       Full Legal Name *
                     </label>
                     <input
@@ -344,13 +343,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       placeholder="e.g. Sarah Chen"
                       value={creatorName}
                       onChange={(e) => setCreatorName(e.target.value)}
-                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                      className="w-full bg-transparent border-b border-black/20 py-3 text-sm text-[#0D0D0D] placeholder:text-neutral-400 focus:outline-none focus:border-black font-sans transition-colors"
                     />
                   </div>
 
                   {/* Field 02 */}
                   <div className="space-y-2">
-                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                    <label className="block font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
                       Primary Contact Email *
                     </label>
                     <input
@@ -359,7 +358,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       placeholder="sarah@creator.com"
                       value={creatorEmail}
                       onChange={(e) => setCreatorEmail(e.target.value)}
-                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                      className="w-full bg-transparent border-b border-black/20 py-3 text-sm text-[#0D0D0D] placeholder:text-neutral-400 focus:outline-none focus:border-black font-sans transition-colors"
                     />
                   </div>
                 </div>
@@ -367,7 +366,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   {/* Field 03 */}
                   <div className="space-y-2">
-                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                    <label className="block font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
                       Primary Social Handle *
                     </label>
                     <input
@@ -376,41 +375,41 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       placeholder="@username (IG / TikTok / YouTube)"
                       value={creatorHandle}
                       onChange={(e) => setCreatorHandle(e.target.value)}
-                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                      className="w-full bg-transparent border-b border-black/20 py-3 text-sm text-[#0D0D0D] placeholder:text-neutral-400 focus:outline-none focus:border-black font-sans transition-colors"
                     />
                   </div>
 
                   {/* Field 04 */}
                   <div className="space-y-2">
-                    <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                    <label className="block font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
                       Total Audience Reach
                     </label>
                     <select
                       value={creatorFollowers}
                       onChange={(e) => setCreatorFollowers(e.target.value)}
-                      className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                      className="w-full bg-transparent border-b border-black/20 py-3 text-sm text-[#0D0D0D] focus:outline-none focus:border-black font-sans transition-colors"
                     >
-                      <option className="bg-[#0A0A0A] text-white" value="10k-50k">10K – 50K Total Followers</option>
-                      <option className="bg-[#0A0A0A] text-white" value="50k-200k">50K – 200K Total Followers</option>
-                      <option className="bg-[#0A0A0A] text-white" value="200k-500k">200K – 500K Total Followers</option>
-                      <option className="bg-[#0A0A0A] text-white" value="500k+">500K+ Established Reach</option>
+                      <option className="bg-white text-black" value="10k-50k">10K – 50K Total Followers</option>
+                      <option className="bg-white text-black" value="50k-200k">50K – 200K Total Followers</option>
+                      <option className="bg-white text-black" value="200k-500k">200K – 500K Total Followers</option>
+                      <option className="bg-white text-black" value="500k+">500K+ Established Reach</option>
                     </select>
                   </div>
                 </div>
 
                 {/* Field 05 */}
                 <div className="space-y-2">
-                  <label className="block font-tech text-xs uppercase tracking-wider text-white/60 font-semibold">
+                  <label className="block font-tech text-xs uppercase tracking-wider text-neutral-700 font-semibold">
                     Primary Operational Need
                   </label>
                   <select
                     value={creatorNeed}
                     onChange={(e) => setCreatorNeed(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 py-3 text-sm text-white focus:outline-none focus:border-[#FACC15] font-sans transition-colors"
+                    className="w-full bg-transparent border-b border-black/20 py-3 text-sm text-[#0D0D0D] focus:outline-none focus:border-black font-sans transition-colors"
                   >
-                    <option className="bg-[#0A0A0A] text-white" value="deals">High-Ticket Brand Partnerships & Rate Defense</option>
-                    <option className="bg-[#0A0A0A] text-white" value="editing">Dedicated 4K Short-Form Video Post Desk</option>
-                    <option className="bg-[#0A0A0A] text-white" value="full">Full Agency Representation (Deals + Post + Web)</option>
+                    <option className="bg-white text-black" value="deals">High-Ticket Brand Partnerships & Rate Defense</option>
+                    <option className="bg-white text-black" value="editing">Dedicated 4K Short-Form Video Post Desk</option>
+                    <option className="bg-white text-black" value="full">Full Agency Representation (Deals + Post + Web)</option>
                   </select>
                 </div>
 
@@ -419,10 +418,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <button
                     type="submit"
                     disabled={formStatus === 'submitting'}
-                    className={`w-full py-5 bg-[#FACC15] text-[#0A0A0A] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-colors ${
+                    className={`w-full py-5 bg-[#FACC15] text-[#0D0D0D] font-tech text-base sm:text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-colors ${
                       formStatus === 'submitting'
                         ? 'opacity-60 cursor-not-allowed'
-                        : 'hover:bg-[#FACC15]/90'
+                        : 'hover:bg-[#EAB308]'
                     }`}
                   >
                     <span>
@@ -430,11 +429,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         ? 'Submitting Application...'
                         : 'Apply For Representation'}
                     </span>
-                    <ArrowRight className="w-5 h-5 text-[#0A0A0A]" />
+                    <ArrowRight className="w-5 h-5 text-[#0D0D0D]" />
                   </button>
                 </Magnetic>
 
-                <div className="pt-2 text-center font-sans text-xs text-white/40">
+                <div className="pt-2 text-center font-sans text-xs text-neutral-500">
                   Strict confidentiality guaranteed. We review all talent portfolios within 48 hours.
                 </div>
               </form>

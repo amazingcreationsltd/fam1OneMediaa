@@ -13,7 +13,6 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
   const topLineRef = useRef<HTMLSpanElement>(null);
   const bottomLineRef = useRef<HTMLSpanElement>(null);
   const linksSectionRef = useRef<HTMLDivElement>(null);
-  const contactsSectionRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
@@ -64,65 +63,51 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
         }
       });
 
-      // Top line rotate & translate down into cross
+      // Top line rotate and move down to exact center
       tl.to(
         topLineRef.current,
         {
           rotate: 45,
-          y: 6,
-          backgroundColor: '#0D0D0D',
-          duration: 0.5,
+          y: 4,
+          duration: 1,
           ease: 'expo.out'
         },
         0
       );
 
-      // Bottom line rotate & translate up into cross
+      // Bottom line rotate and move up to exact center
       tl.to(
         bottomLineRef.current,
         {
           rotate: -45,
-          y: -6,
-          backgroundColor: '#0D0D0D',
-          duration: 0.5,
+          y: -4,
+          duration: 1,
           ease: 'expo.out'
         },
-        0
+        '<'
       );
 
-      // Nav drawer slide in from right to 0%
+      // Menu slide in (right to left)
       tl.to(
         navDrawerRef.current,
         {
           x: '0%',
-          duration: 0.75,
+          duration: 1,
           ease: 'expo.out'
         },
-        0
+        '<'
       );
 
-      // Links slide in from right with bounce
+      // Links slide in (right to left)
       tl.from(
         linksSectionRef.current,
         {
-          x: 90,
+          x: 100,
           autoAlpha: 0,
-          duration: 0.7,
-          ease: 'back.out(1.4)'
+          duration: 1,
+          ease: 'back.out'
         },
-        0.25
-      );
-
-      // Contacts slide in with slight bounce
-      tl.from(
-        contactsSectionRef.current,
-        {
-          x: -50,
-          autoAlpha: 0,
-          duration: 0.65,
-          ease: 'power3.out'
-        },
-        0.3
+        '<0.3'
       );
 
       timelineRef.current = tl;
@@ -156,13 +141,11 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
 
   // Escape key and focus management for mobile drawer
   const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
 
-    // Focus close button when drawer opens
-    closeButtonRef.current?.focus();
+    hamburgerButtonRef.current?.focus();
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -182,7 +165,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
     if (mobileMenuOpen) {
       timelineRef.current.reverse();
     } else {
-      timelineRef.current.play();
+      timelineRef.current.play(0);
     }
   };
 
@@ -195,7 +178,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
     <>
       <header
         ref={headerRef}
-        className="fixed top-0 left-0 w-full z-50 bg-[#F4F3EF]/80 backdrop-blur-md border-b border-black/15 h-16 transition-none will-change-transform shadow-none"
+        className="fixed top-0 left-0 w-full z-50 bg-[#F4F3EF] border-b border-black/15 h-16 transition-none will-change-transform shadow-none"
       >
         <nav className="w-full h-full flex items-center justify-between" aria-label="Main Navigation">
           {/* Cell 1: Brand Cell */}
@@ -247,25 +230,9 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
               </Magnetic>
             </div>
 
-            {/* Mobile Animated Hamburger Button (Visible below lg) */}
+            {/* Placeholder preserving cell spacing for fixed morphing button */}
             <div className="lg:hidden h-full flex items-center px-4">
-              <button
-                ref={hamburgerButtonRef}
-                type="button"
-                onClick={toggleMenu}
-                aria-label="Toggle Navigation Menu"
-                aria-expanded={mobileMenuOpen}
-                className="w-12 h-12 bg-[#FACC15] cursor-pointer flex flex-col items-center justify-center gap-1.5 border border-black/20 transition-transform active:scale-95"
-              >
-                <span
-                  ref={topLineRef}
-                  className="h-[2.5px] w-6 bg-[#0D0D0D] block will-change-transform origin-center"
-                />
-                <span
-                  ref={bottomLineRef}
-                  className="h-[2.5px] w-6 bg-[#0D0D0D] block will-change-transform origin-center"
-                />
-              </button>
+              <div className="w-12 h-12" aria-hidden="true" />
             </div>
           </div>
         </nav>
@@ -274,37 +241,32 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
       {/* Spacer so content is not hidden beneath fixed navbar */}
       <div className="h-16 w-full" aria-hidden="true" />
 
-      {/* Fullscreen Mobile Drawer Slide-In (Obsidian Dark) */}
+      {/* Fullscreen Mobile Drawer Slide-In (Translucent Obsidian Dark) */}
       <nav
         ref={navDrawerRef}
         aria-hidden={!mobileMenuOpen}
         {...(!mobileMenuOpen ? { inert: '' } : {})}
-        className={`fixed inset-0 min-h-screen w-screen z-[100] flex flex-col justify-between bg-[#0A0A0A] text-[#F4F3EF] px-8 py-10 sm:px-12 sm:py-14 uppercase border-l border-white/15 md:w-[75vw] md:left-auto md:right-0 overflow-y-auto ${
+        style={{
+          backgroundColor: 'rgba(10, 10, 10, 0.92)',
+          backdropFilter: 'blur(29px)',
+          WebkitBackdropFilter: 'blur(29px)',
+        }}
+        className={`fixed inset-0 min-h-screen w-screen z-[100] flex flex-col justify-between text-[#F4F3EF] px-8 sm:px-12 pt-0 pb-10 sm:pb-14 uppercase border-l border-white/15 md:w-[75vw] md:left-auto md:right-0 overflow-x-hidden overflow-y-auto ${
           mobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
       >
-        {/* Drawer Header with Close Button */}
-        <div className="flex items-center justify-between pb-6 border-b border-white/15 shrink-0">
+        {/* Drawer Header (Aligned with top navbar 64px) */}
+        <div className="h-16 flex items-center justify-between border-b border-white/15 shrink-0 pr-16">
           <div className="flex items-center gap-3 font-tech text-xs text-[#FACC15] uppercase tracking-wider font-bold">
             <span className="w-2 h-2 bg-[#FACC15]" />
             <span>Navigation Menu</span>
           </div>
-          <button
-            ref={closeButtonRef}
-            type="button"
-            onClick={closeMenu}
-            className="w-11 h-11 bg-[#FACC15] text-[#0A0A0A] flex flex-col items-center justify-center cursor-pointer border border-black/30 hover:bg-white transition-colors"
-            aria-label="Close Menu"
-          >
-            <span className="block w-5 h-[2px] bg-black rotate-45 translate-y-[1px]" />
-            <span className="block w-5 h-[2px] bg-black -rotate-45 -translate-y-[1px]" />
-          </button>
         </div>
 
         {/* Links Section with Massive Typography */}
         <div
           ref={linksSectionRef}
-          className="flex flex-col gap-4 text-4xl sm:text-6xl md:text-7xl font-display font-black tracking-tight my-auto py-8 shrink-0"
+          className="flex flex-col gap-4 text-4xl sm:text-6xl md:text-7xl font-display font-black tracking-tight my-auto py-8 shrink-0 will-change-[transform,opacity]"
         >
           <a
             href="#hero"
@@ -355,38 +317,28 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
             <span>START A CAMPAIGN</span>
           </a>
         </div>
-
-        {/* Contacts & Metadata Section */}
-        <div
-          ref={contactsSectionRef}
-          className="flex flex-col gap-6 md:flex-row md:justify-between md:items-end pt-8 border-t border-white/15 shrink-0"
-        >
-          <div>
-            <p className="font-sans text-xs uppercase tracking-wider text-white/40 mb-1 font-semibold">
-              Inquiries
-            </p>
-            <a
-              href="mailto:contact@famo1mediaa.agency"
-              className="font-tech text-base sm:text-xl font-bold lowercase hover:text-[#FACC15] transition-colors tracking-wide text-white"
-            >
-              contact@famo1mediaa.agency
-            </a>
-          </div>
-
-          <div>
-            <p className="font-sans text-xs uppercase tracking-wider text-white/40 mb-1 font-semibold">
-              Global Office Hubs
-            </p>
-            <div className="flex flex-wrap gap-4 font-sans text-xs tracking-wider text-white/70 font-medium">
-              <span>SoHo, New York</span>
-              <span className="text-white/20">·</span>
-              <span>Mayfair, London</span>
-              <span className="text-white/20">·</span>
-              <span>DIFC, Dubai</span>
-            </div>
-          </div>
-        </div>
       </nav>
+
+      {/* Universal Morphing Hamburger / Close Button */}
+      <div className={`fixed top-2 right-4 z-[110] ${mobileMenuOpen ? 'block' : 'lg:hidden'}`}>
+        <button
+          ref={hamburgerButtonRef}
+          type="button"
+          onClick={toggleMenu}
+          aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
+          aria-expanded={mobileMenuOpen}
+          className="w-12 h-12 bg-[#FACC15] cursor-pointer flex flex-col items-center justify-center gap-[6px] border border-black/20 transition-transform active:scale-95 shadow-sm"
+        >
+          <span
+            ref={topLineRef}
+            className="h-[2px] w-[22px] bg-[#0D0D0D] block will-change-transform origin-center"
+          />
+          <span
+            ref={bottomLineRef}
+            className="h-[2px] w-[22px] bg-[#0D0D0D] block will-change-transform origin-center"
+          />
+        </button>
+      </div>
     </>
   );
 };

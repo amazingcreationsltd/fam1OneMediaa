@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { MaskedHeading } from './motion/RevealWrappers';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface PlatformData {
   id: string;
@@ -98,6 +102,43 @@ const PLATFORMS: PlatformData[] = [
 ];
 
 export const SocialDistributionManager: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    const rows = rowRefs.current.filter(Boolean);
+    if (rows.length === 0) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        rows,
+        {
+          opacity: 0,
+          y: 28,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top bottom',
+            toggleActions: 'play none none reset',
+          },
+        }
+      );
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
   return (
     <section id="deployment-engine" className="w-full bg-[#F4F3EF] text-[#0D0D0D] border-t border-b border-black/15 scroll-mt-20">
       {/* 1. Section Header */}
@@ -154,7 +195,7 @@ export const SocialDistributionManager: React.FC = () => {
       </div>
 
       {/* 3. Dual Operational Tracks: Cardless Architectural 2-Column Split (No Cards) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-black/15 border-b border-black/15">
+      <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-black/15 border-b border-black/15">
         
         {/* ========================================================
             TRACK 01: FOR CREATORS & INFLUENCERS
@@ -188,7 +229,12 @@ export const SocialDistributionManager: React.FC = () => {
             {/* 4 Pure Editorial Rows (Cardless, synchronized row heights) */}
             <div className="mt-8 divide-y divide-black/15 border-t border-b border-black/15">
               {/* Row 01 */}
-              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+              <div
+                ref={(el) => {
+                  rowRefs.current[0] = el;
+                }}
+                className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group will-change-transform"
+              >
                 <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
                   [01]
                 </span>
@@ -198,7 +244,12 @@ export const SocialDistributionManager: React.FC = () => {
               </div>
 
               {/* Row 02 */}
-              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+              <div
+                ref={(el) => {
+                  rowRefs.current[1] = el;
+                }}
+                className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group will-change-transform"
+              >
                 <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
                   [02]
                 </span>
@@ -208,7 +259,12 @@ export const SocialDistributionManager: React.FC = () => {
               </div>
 
               {/* Row 03 */}
-              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+              <div
+                ref={(el) => {
+                  rowRefs.current[2] = el;
+                }}
+                className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group will-change-transform"
+              >
                 <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
                   [03]
                 </span>
@@ -218,7 +274,12 @@ export const SocialDistributionManager: React.FC = () => {
               </div>
 
               {/* Row 04 */}
-              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+              <div
+                ref={(el) => {
+                  rowRefs.current[3] = el;
+                }}
+                className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group will-change-transform"
+              >
                 <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
                   [04]
                 </span>
@@ -282,7 +343,12 @@ export const SocialDistributionManager: React.FC = () => {
             {/* 4 Pure Editorial Rows (Cardless, synchronized row heights) */}
             <div className="mt-8 divide-y divide-black/15 border-t border-b border-black/15">
               {/* Row 01 */}
-              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+              <div
+                ref={(el) => {
+                  rowRefs.current[4] = el;
+                }}
+                className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group will-change-transform"
+              >
                 <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
                   [01]
                 </span>
@@ -292,7 +358,12 @@ export const SocialDistributionManager: React.FC = () => {
               </div>
 
               {/* Row 02 */}
-              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+              <div
+                ref={(el) => {
+                  rowRefs.current[5] = el;
+                }}
+                className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group will-change-transform"
+              >
                 <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
                   [02]
                 </span>
@@ -302,7 +373,12 @@ export const SocialDistributionManager: React.FC = () => {
               </div>
 
               {/* Row 03 */}
-              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+              <div
+                ref={(el) => {
+                  rowRefs.current[6] = el;
+                }}
+                className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group will-change-transform"
+              >
                 <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
                   [03]
                 </span>
@@ -312,7 +388,12 @@ export const SocialDistributionManager: React.FC = () => {
               </div>
 
               {/* Row 04 */}
-              <div className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group">
+              <div
+                ref={(el) => {
+                  rowRefs.current[7] = el;
+                }}
+                className="h-16 lg:h-[4.5rem] flex items-center gap-4 sm:gap-6 group will-change-transform"
+              >
                 <span className="font-mono text-xs font-bold text-neutral-400 group-hover:text-[#0D0D0D] transition-colors shrink-0">
                   [04]
                 </span>
