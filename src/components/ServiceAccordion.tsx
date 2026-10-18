@@ -88,21 +88,22 @@ export const ServiceAccordion: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-white/15">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3 font-tech text-xs uppercase tracking-wider text-white/60 mb-3 font-semibold">
+            <div className="flex items-center gap-3 mt-10 font-tech text-xs uppercase tracking-wider text-white/60 mb-3 font-semibold">
               <span className="w-2 h-2 bg-[#FACC15]" />
-              <span>Full-Spectrum Creative & Marketing Capabilities</span>
+              <span className="text-[#FACC15]"   >FULL-STACK CAPABILITIES</span>
             </div>
             <MaskedHeading
               as="h2"
               className="font-display font-black uppercase text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.9] text-[#F4F3EF]"
             >
-              Services
+              WHAT WE DO.
             </MaskedHeading>
+            <span>Six disciplined operational engines tailored for brands ready to scale market share through creator attention and paid distribution.</span>
           </div>
-          <div className="flex items-center gap-3 py-2 px-4 border border-white/15 bg-white/[0.03] font-sans text-xs uppercase tracking-wider text-[#F4F3EF] shrink-0 self-start lg:self-auto font-semibold">
+          {/* <div className="flex items-center gap-3 py-2 px-4 border border-white/15 bg-white/[0.03] font-sans text-xs uppercase tracking-wider text-[#F4F3EF] shrink-0 self-start lg:self-auto font-semibold">
             <span className="w-2 h-2 bg-[#10B981]" />
             <span>Currently Accepting New Projects</span>
-          </div>
+          </div> */}
         </div>
 
         {/* Full-Width Edge-To-Edge Architectural Rows */}

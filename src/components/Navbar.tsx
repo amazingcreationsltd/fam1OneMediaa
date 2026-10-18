@@ -211,8 +211,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
               <span>Clients</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
-            <a href="#calculator" className="relative hover:text-black py-1 group transition-colors">
-              <span>Estimate</span>
+            <a href="#contact" className="relative hover:text-black py-1 group transition-colors">
+              <span>Contact</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
           </div>
@@ -222,7 +222,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
             <div className="hidden sm:block h-full">
               <Magnetic strength={0.25} className="h-full">
                 <a
-                  href="#calculator"
+                  href="#contact"
                   className="h-full px-6 xl:px-8 bg-[#FACC15] text-[#0D0D0D] font-tech text-xs uppercase font-bold tracking-wider hover:bg-[#0D0D0D] hover:text-[#F4F3EF] transition-colors flex items-center justify-center border-l border-black/15"
                 >
                   Start a campaign &rarr;
@@ -309,7 +309,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
             <span>CLIENTS</span>
           </a>
           <a
-            href="#calculator"
+            href="#contact"
             onClick={closeMenu}
             className="hover:text-[#FACC15] transition-colors duration-200 flex items-baseline gap-4 text-[#FACC15]"
           >

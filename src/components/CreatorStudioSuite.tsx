@@ -257,7 +257,7 @@ export const CreatorStudioSuite: React.FC = () => {
   const allLabels = [...CONN_LABELS, ...FLOW_LABELS];
 
   return (
-    <ArchitecturalSection id="process" dark>
+    <ArchitecturalSection id="network" dark>
       {/* Header */}
       <div className="p-8 sm:p-12 md:p-14 border-b border-white/10 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>

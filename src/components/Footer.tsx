@@ -82,7 +82,7 @@ export const Footer: React.FC = () => {
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Capturing & 4K Editing</a></li>
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Social Media Handling</a></li>
               <li><a href="#work" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Campaign Case Studies</a></li>
-              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Start a Campaign</a></li>
+              <li><a href="#contact" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Start a Campaign</a></li>
             </ul>
           </div>
 
@@ -94,9 +94,9 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 font-tech text-sm uppercase text-white/70 font-medium">
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Talent Representation</a></li>
               <li><a href="#services" className="hover:text-white hover:translate-x-1 transition-transform inline-block">4K ProRes Video Post Desk</a></li>
-              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Estimate Model</a></li>
-              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Commercial Rights Clearances</a></li>
-              <li><a href="#calculator" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Apply For Representation</a></li>
+              <li><a href="#process" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Velocity Sprint Model</a></li>
+              <li><a href="#contact" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Commercial Rights Clearances</a></li>
+              <li><a href="#contact" className="hover:text-white hover:translate-x-1 transition-transform inline-block">Apply For Representation</a></li>
             </ul>
           </div>
 
