@@ -119,19 +119,23 @@ export const Testimonials: React.FC = () => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      // Mobile: Section pins, header stays fixed, subsequent cards slide in from the right to stack over first card
+      // Mobile: Section pins, header stays fixed, cards fan out downward in a cascading stack
       mm.add('(max-width: 767px)', () => {
-        // Set initial positions for cards 1..n to be offscreen to the right
+        const stepOffset = 36; // Each card lands 36px lower than the previous one
+
+        // Initial setup for cards
         cards.forEach((card, i) => {
           if (i > 0) {
             gsap.set(card, {
               xPercent: 120,
+              y: i * stepOffset,
               opacity: 0,
-              rotate: i % 2 === 0 ? 1.5 : -1.5,
+              rotate: i % 2 === 0 ? 1 : -1,
             });
           } else {
             gsap.set(card, {
               xPercent: 0,
+              y: 0,
               opacity: 1,
             });
           }
@@ -142,15 +146,16 @@ export const Testimonials: React.FC = () => {
             trigger: section,
             pin: true,
             start: 'top top',
-            end: () => `+=${cards.length * 420}`,
+            end: () => `+=${cards.length * 380}`,
             scrub: 0.8,
             anticipatePin: 1,
             invalidateOnRefresh: true,
           },
         });
 
-        // Animate each subsequent card sliding horizontally from right into stack
+        // Animate each subsequent card sliding in and resting lower
         cards.slice(1).forEach((card, index) => {
+          // New card glides in from right to its target downward-stepped position
           tl.to(
             card,
             {
@@ -162,13 +167,12 @@ export const Testimonials: React.FC = () => {
             `step-${index}`
           );
 
-          // Blur and subtle scale down of previous card behind it
+          // Previous card shifts up slightly and softens so top part remains visible as a tab
           tl.to(
             cards[index],
             {
-              scale: 0.95,
-              filter: 'blur(6px)',
-              opacity: 0.65,
+              opacity: 0.85,
+              filter: 'blur(2px)',
               duration: 1,
               ease: 'power2.out',
             },
@@ -213,12 +217,12 @@ export const Testimonials: React.FC = () => {
     <div ref={sectionRef} className="w-full">
       <ArchitecturalSection
         id="testimonials"
-        className="pt-8 pb-10 sm:py-24 border-t border-black/15 bg-[#F4F3EF] flex flex-col justify-center overflow-hidden"
+        className="py-10 sm:py-14 md:py-16 bg-[#F4F3EF] flex flex-col justify-center overflow-hidden"
       >
         <div className="max-w-[1560px] w-full mx-auto px-4 sm:px-8 lg:px-12 flex flex-col">
         
         {/* Section Header - stays pinned and visible while scrolling through stack on mobile */}
-        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-16 shrink-0">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10 shrink-0">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-neutral-500 mb-2 sm:mb-3 font-semibold">
             <span className="w-2 h-2 bg-[#FACC15]" />
             <span>Partner Perspectives</span>
@@ -236,10 +240,10 @@ export const Testimonials: React.FC = () => {
           </p>
         </div>
 
-        {/* Card Stage: Horizontal stacking stack on mobile, 5-col grid on desktop */}
+        {/* Card Stage: Cascading downward stack on mobile, 5-col grid on desktop */}
         <div
           ref={containerRef}
-          className="relative w-full max-w-md mx-auto md:max-w-none h-[340px] md:h-auto md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 items-stretch pt-2"
+          className="relative w-full max-w-md mx-auto md:max-w-none h-[490px] md:h-auto md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 items-stretch pt-2"
         >
           {TESTIMONIALS_NEW.map((item, idx) => (
             <div
@@ -250,7 +254,7 @@ export const Testimonials: React.FC = () => {
               style={{
                 zIndex: 10 + idx,
               }}
-              className={`absolute inset-0 md:static bg-white border border-black/15 p-6 sm:p-7 flex flex-col justify-between shadow-xl md:shadow-sm hover:shadow-xl transition-shadow duration-300 md:hover:-translate-y-1.5 hover:border-black ${item.tilt} will-change-transform group h-full md:min-h-[320px] min-w-0`}
+              className={`absolute left-0 right-0 md:static bg-white border border-black/15 p-6 sm:p-7 flex flex-col justify-between shadow-lg md:shadow-sm hover:shadow-xl transition-shadow duration-300 md:hover:-translate-y-1.5 hover:border-black ${item.tilt} will-change-transform group h-[330px] md:min-h-[320px] md:h-full min-w-0`}
             >
               <div>
                 {/* Clean Quote Text */}
