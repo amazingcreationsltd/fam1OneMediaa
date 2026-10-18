@@ -24,26 +24,53 @@ export const ServiceAccordion: React.FC = () => {
     const elements = itemRefs.current.filter(Boolean);
     if (elements.length === 0) return;
 
+    const isMobile = window.innerWidth < 768;
+
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        elements,
-        {
-          opacity: 0,
-          y: 40,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          stagger: 0.12, // Sequential reveal one by one
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: container,
-            start: 'top bottom',
-            toggleActions: 'play none none reset',
+      if (isMobile) {
+        // Mobile-tailored: each row reveals as it enters viewport with silky smooth glide
+        elements.forEach((row) => {
+          gsap.fromTo(
+            row,
+            {
+              opacity: 0,
+              y: 28,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1.15,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: row,
+                start: 'top 92%',
+                toggleActions: 'play none none reset',
+              },
+            }
+          );
+        });
+      } else {
+        // Desktop: grouped sequential cascade
+        gsap.fromTo(
+          elements,
+          {
+            opacity: 0,
+            y: 40,
           },
-        }
-      );
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.1,
+            stagger: 0.14,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: container,
+              start: 'top bottom',
+              toggleActions: 'play none none reset',
+            },
+          }
+        );
+      }
     }, container);
 
     return () => ctx.revert();
