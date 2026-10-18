@@ -1,4 +1,4 @@
-# Fam1Media Design System — Swiss Architectural Editorial
+# famO1Mediaa Design System — Swiss Architectural Editorial
 
 ## 1. Tokens & Color Architecture
 

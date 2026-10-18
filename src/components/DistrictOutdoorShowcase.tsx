@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ArchitecturalSection } from './layout/ArchitecturalSection';
 import { ParallaxMedia, MaskedHeading } from './motion/RevealWrappers';
 import { SocialDistributionManager } from './SocialDistributionManager';
 import { CustomReelPlayer } from './media/CustomReelPlayer';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface CaseStudy {
   id: string;
@@ -117,6 +121,37 @@ const REELS: ReelItem[] = [
 
 export const DistrictOutdoorShowcase: React.FC = () => {
   const [filter, setFilter] = useState('ALL');
+  const reelsContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    // Only apply stacking on mobile devices (< 768px)
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) return;
+
+    const container = reelsContainerRef.current;
+    if (!container) return;
+
+    const panels = container.querySelectorAll<HTMLElement>('.mobile-sticky-reel');
+
+    panels.forEach((panel, i) => {
+      if (i < panels.length - 1) {
+        gsap.to(panel, {
+          scale: 0.94,
+          opacity: 0.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: panels[i + 1],
+            start: 'top 75px',
+            end: 'top 55px',
+            scrub: true,
+          },
+        });
+      }
+    });
+  }, []);
 
   const filterTabs = [
     { id: 'ALL', label: 'ALL' },
@@ -247,19 +282,27 @@ export const DistrictOutdoorShowcase: React.FC = () => {
           </span>
         </div>
 
-        {/* 3-Column Exposed 9:16 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/15">
-          {REELS.map((reel) => (
-            <CustomReelPlayer
+        {/* 3-Column Exposed 9:16 Grid with Mobile-Only Sticky Stacking */}
+        <div
+          ref={reelsContainerRef}
+          className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/15 relative"
+        >
+          {REELS.map((reel, idx) => (
+            <div
               key={reel.id}
-              videoSrc={reel.videoSrc}
-              posterSrc={reel.image}
-              title={reel.title}
-              tag={reel.tag}
-              views={reel.views}
-              meta={reel.meta}
-              metric={reel.metric}
-            />
+              className="mobile-sticky-reel sticky md:static top-16 md:top-auto bg-[#0A0A0A] w-full border-b md:border-b-0 border-white/15 shadow-none"
+              style={{ zIndex: idx + 1 }}
+            >
+              <CustomReelPlayer
+                videoSrc={reel.videoSrc}
+                posterSrc={reel.image}
+                title={reel.title}
+                tag={reel.tag}
+                views={reel.views}
+                meta={reel.meta}
+                metric={reel.metric}
+              />
+            </div>
           ))}
         </div>
       </div>

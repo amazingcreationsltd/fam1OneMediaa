@@ -2,13 +2,15 @@ import React from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { AudienceProvider } from './context/AudienceContext';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
+import { MagneticCursor } from './components/motion/MagneticCursor';
 import { Preloader } from './components/Preloader';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { KpiStrip } from './components/KpiStrip';
+import { VelocityMarquee } from './components/motion/VelocityMarquee';
+import { ServiceAccordion } from './components/ServiceAccordion';
 import { DistrictOutdoorShowcase } from './components/DistrictOutdoorShowcase';
 import { CreatorStudioSuite } from './components/CreatorStudioSuite';
-import { ServiceAccordion } from './components/ServiceAccordion';
 import { Testimonials } from './components/Testimonials';
 import { CalculatorAndContact } from './components/CalculatorAndContact';
 import { Footer } from './components/Footer';
@@ -21,6 +23,9 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="bg-[#F4F3EF] text-[#0D0D0D] min-h-screen selection:bg-[#FACC15] selection:text-black relative">
+      {/* Custom Fluid Magnetic Cursor */}
+      <MagneticCursor />
+
       {/* Accessible Skip Link */}
       <a
         href="#main-content"
@@ -39,17 +44,20 @@ const AppContent: React.FC = () => {
         {/* Section 02: 12-Column Hero & Spec Bar */}
         <Hero isLoaded={isLoaded} />
 
-        {/* Section 03: Border-Collapsed KPI Matrix & Velocity Marquee */}
+        {/* Section 03: Border-Collapsed KPI Matrix ("Experience that builds trust") */}
         <KpiStrip />
 
-        {/* Section 04: Dark Obsidian Case Studies & Vertical 9:16 Video Showcase */}
+        {/* Section 04: Full-Spectrum Service Architecture (Moved between KPI numbers and Marquee) */}
+        <ServiceAccordion />
+
+        {/* Section 05: Velocity Skew Marquee */}
+        <VelocityMarquee />
+
+        {/* Section 06: Dark Obsidian Case Studies & Vertical 9:16 Video Showcase */}
         <DistrictOutdoorShowcase />
 
-        {/* Section 06: Sticky-Stacking Architectural Growth Panels */}
+        {/* Section 07: Sticky-Stacking Architectural Growth Panels */}
         <CreatorStudioSuite />
-
-        {/* Section 07: Full-Spectrum Service Architecture */}
-        <ServiceAccordion />
 
         {/* Section 08: Verified Perspectives Matrix */}
         <Testimonials />

@@ -79,8 +79,8 @@ export const MaskedHeading: React.FC<MaskedHeadingProps> = ({
           ease: 'power4.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
+            start: 'top bottom',
+            toggleActions: 'play none none reset',
           },
         }
       );
@@ -150,8 +150,8 @@ export const ParallaxMedia: React.FC<ParallaxMediaProps> = ({
           ease: 'expo.out',
           scrollTrigger: {
             trigger: container,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
+            start: 'top bottom',
+            toggleActions: 'play none none reset',
           },
         }
       );

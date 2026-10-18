@@ -1,7 +1,7 @@
-# Audit Closure & Polish Review — Fam1Media
+# Audit Closure & Polish Review — famO1Mediaa
 
 ## Executive Summary
-This document records the systematic resolution of all findings from the `FamO1mediaa-UIUX-Audit.html` specification and the comprehensive `Fam1Media-Agent-Build-Prompt.md` (§0 through §16).
+This document records the systematic resolution of all findings from the `FamO1mediaa-UIUX-Audit.html` specification and the comprehensive `famO1Mediaa-Agent-Build-Prompt.md` (§0 through §16).
 
 ---
 
@@ -21,7 +21,7 @@ This document records the systematic resolution of all findings from the `FamO1m
 - **G2 (Banned Jargon Purge):** Swept and removed banned terminology (`Partner Intake` → `Contact`, `Yield Simulator` → `Estimate`, `Deploy Campaign` → `Start a campaign`).
 - **G3 (Purged Hospitality Drift):** Removed all hospitality/restaurant legacy copy and references from components and documentation.
 - **G4 / G5 (Single Metric Source):** Centralized all metrics in `src/content/metrics.ts` with explicit verification statuses.
-- **G6 (Evergreen Branding):** Single brand source in `src/content/site.ts` with `BRAND = 'Fam1Media'` and dynamic `new Date().getFullYear()`.
+- **G6 (Evergreen Branding):** Single brand source in `src/content/site.ts` with `BRAND = 'famO1Mediaa'` and dynamic `new Date().getFullYear()`.
 - **K1 / K2 (Metadata & JSON-LD):** Configured canonical meta, OpenGraph, Twitter cards, and `Organization` schema in `index.html`.
 - **A2 / §5.1 (Canonical Services & Process):** Canonicalized 6 services in `src/content/services.ts` and refactored `CreatorStudioSuite.tsx` into a streamlined 3-stage Process (`Discover -> Produce -> Distribute & Measure`). Removed `AudienceFork.tsx` to preserve desktop height budget.
 

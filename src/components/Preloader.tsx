@@ -77,14 +77,14 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       <div className="flex items-center justify-between font-tech text-xs uppercase tracking-widest text-neutral-400 font-semibold">
         <div className="flex items-center gap-2.5">
           <span className="w-2 h-2 bg-[#FACC15] animate-pulse" />
-          <span>Fam1Media STUDIO</span>
+          <span>famO1Mediaa STUDIO</span>
         </div>
         <span className="text-[#FACC15] border border-[#FACC15]/30 px-2 py-0.5 font-bold">STUDIO ARCHIVE</span>
       </div>
 
       <div className="text-center my-auto">
         <div id="preloaderLogo" className="font-display text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tight uppercase">
-          Fam1Media
+          famO1Mediaa
         </div>
         <div className="mt-4 font-tech text-xs sm:text-sm font-bold text-neutral-400 tracking-[0.25em] uppercase">
           CREATIVE PRODUCTION & MARKETING

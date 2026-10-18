@@ -1,10 +1,10 @@
-# Product — Fam1Media
+# Product — famO1Mediaa
 
 ## Platform
 Web (Responsive desktop and mobile).
 
 ## Brand & Category
-- **Brand Name:** Fam1Media (strictly formatted as `Fam1Media`).
+- **Brand Name:** famO1Mediaa (strictly formatted as `famO1Mediaa`).
 - **Category:** Modern creative production & performance marketing studio.
 - **Positioning:** We connect brands, creators, and audiences through strategic campaigns, compelling content, and meaningful collaborations that keep businesses relevant.
 

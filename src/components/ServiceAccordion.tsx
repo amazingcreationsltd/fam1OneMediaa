@@ -1,12 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArchitecturalSection } from './layout/ArchitecturalSection';
 import { MaskedHeading } from './motion/RevealWrappers';
 import { CANONICAL_SERVICES } from '../content/services';
 import { ArrowUpRight } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const ServiceAccordion: React.FC = () => {
   // Exactly one item can be open, or none
   const [openId, setOpenId] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    const elements = itemRefs.current.filter(Boolean);
+    if (elements.length === 0) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        elements,
+        {
+          opacity: 0,
+          y: 40,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.12, // Sequential reveal one by one
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top bottom',
+            toggleActions: 'play none none reset',
+          },
+        }
+      );
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <ArchitecturalSection
@@ -38,14 +79,17 @@ export const ServiceAccordion: React.FC = () => {
         </div>
 
         {/* Full-Width Edge-To-Edge Architectural Rows */}
-        <div className="divide-y divide-white/15">
-          {CANONICAL_SERVICES.map((item) => {
+        <div ref={containerRef} className="divide-y divide-white/15">
+          {CANONICAL_SERVICES.map((item, idx) => {
             const isOpen = openId === item.id;
 
             return (
               <div
                 key={item.id}
-                className={`transition-colors duration-300 group ${
+                ref={(el) => {
+                  itemRefs.current[idx] = el;
+                }}
+                className={`transition-colors duration-300 group will-change-transform ${
                   isOpen ? 'bg-white/[0.03]' : 'hover:bg-white/[0.02]'
                 }`}
               >

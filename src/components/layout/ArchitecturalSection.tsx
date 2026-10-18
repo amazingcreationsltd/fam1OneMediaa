@@ -37,8 +37,8 @@ export const ArchitecturalSection: React.FC<ArchitecturalSectionProps> = ({
         ease: 'expo.out',
         scrollTrigger: {
           trigger: line,
-          start: 'top 92%',
-          toggleActions: 'play none none none',
+          start: 'top bottom',
+          toggleActions: 'play none none reset',
         },
       }
     );

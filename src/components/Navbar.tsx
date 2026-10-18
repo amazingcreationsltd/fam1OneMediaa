@@ -195,14 +195,14 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
     <>
       <header
         ref={headerRef}
-        className="fixed top-0 left-0 w-full z-50 bg-[#F4F3EF] border-b border-black/15 h-16 transition-none will-change-transform shadow-none"
+        className="fixed top-0 left-0 w-full z-50 bg-[#F4F3EF]/80 backdrop-blur-md border-b border-black/15 h-16 transition-none will-change-transform shadow-none"
       >
         <nav className="w-full h-full flex items-center justify-between" aria-label="Main Navigation">
           {/* Cell 1: Brand Cell */}
           <div className="h-full flex items-center px-4 sm:px-6 border-r border-black/15 shrink-0 gap-3 min-w-0">
             <a href="#hero" className="flex items-baseline gap-2.5">
               <span className="font-display text-2xl font-black tracking-tight text-[#0D0D0D]">
-                Fam1Media
+                famO1Mediaa
               </span>
               <span className="font-sans text-xs text-neutral-500 font-medium tracking-wide hidden xl:inline">
                 Creative Growth Partner
@@ -366,10 +366,10 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoaded = true }) => {
               Inquiries
             </p>
             <a
-              href="mailto:contact@fam1media.agency"
+              href="mailto:contact@famo1mediaa.agency"
               className="font-tech text-base sm:text-xl font-bold lowercase hover:text-[#FACC15] transition-colors tracking-wide text-white"
             >
-              contact@fam1media.agency
+              contact@famo1mediaa.agency
             </a>
           </div>
 

@@ -45,7 +45,7 @@ export async function submitInquiry(payload: InquiryPayload): Promise<SubmitResp
 
   // Structured fallback: prepare mailto dispatch
   const subject = encodeURIComponent(
-    `[Fam1Media Inquiry] - ${payload.audience.toUpperCase()} - ${payload.name}`
+    `[famO1Mediaa Inquiry] - ${payload.audience.toUpperCase()} - ${payload.name}`
   );
 
   const bodyContent = [
@@ -58,7 +58,7 @@ export async function submitInquiry(payload: InquiryPayload): Promise<SubmitResp
     .filter(Boolean)
     .join('\n');
 
-  const mailtoUrl = `mailto:partners@fam1media.com?subject=${subject}&body=${encodeURIComponent(
+  const mailtoUrl = `mailto:partners@famo1mediaa.com?subject=${subject}&body=${encodeURIComponent(
     bodyContent
   )}`;
 

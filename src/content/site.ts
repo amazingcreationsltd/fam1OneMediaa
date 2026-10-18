@@ -1,12 +1,12 @@
-export const BRAND = 'Fam1Media';
+export const BRAND = 'famO1Mediaa';
 
 export const SITE = {
   name: BRAND,
   tagline: 'Creative Growth Partner Connecting Brands & Creators',
   description:
     'Creative strategy, high-retention video production, social channel management, and paid advertising campaigns.',
-  url: 'https://fam1media.com', // TODO_VERIFY: Confirm client production domain
-  contactEmail: 'partners@fam1media.com', // TODO_VERIFY: Confirm contact desk email
+  url: 'https://famo1mediaa.com', // TODO_VERIFY: Confirm client production domain
+  contactEmail: 'partners@famo1mediaa.com', // TODO_VERIFY: Confirm contact desk email
   offices: [
     { city: 'London', area: 'Mayfair' },
     { city: 'New York', area: 'SoHo' },
