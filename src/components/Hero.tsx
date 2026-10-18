@@ -20,18 +20,28 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
   const capabilitiesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!isLoaded) return;
-
-    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
-
     const subtitle = subtitleRef.current;
     const ctas = ctaContainerRef.current;
     const note = noteRef.current;
     const caps = capabilitiesRef.current;
 
     const elements = [subtitle, ctas, note, caps].filter(Boolean);
+    if (elements.length === 0) return;
 
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // While preloader is running, keep elements strictly hidden (no flicker)
+    if (!isLoaded) {
+      gsap.set(elements, { opacity: 0, y: 30 });
+      return;
+    }
+
+    if (prefersReduced) {
+      gsap.set(elements, { opacity: 1, y: 0 });
+      return;
+    }
+
+    // Preloader completed -> animate in smoothly right after heading cascade
     gsap.fromTo(
       elements,
       {
@@ -43,7 +53,7 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
         y: 0,
         duration: 0.95,
         stagger: 0.15,
-        delay: 0.65, // Flows right after main masked heading words finish cascading
+        delay: 0.65,
         ease: 'power3.out',
       }
     );
@@ -59,7 +69,7 @@ export const Hero: React.FC<HeroProps> = ({ isLoaded = true }) => {
           <div className="flex items-center justify-center mb-6">
             <span className="inline-flex items-center gap-2 px-3 py-1 bg-black text-[#FACC15] font-tech text-xs uppercase font-bold tracking-widest">
               <Sparkles className="w-3 h-3 fill-[#FACC15]" />
-              <span>Next-Gen Media Engine</span>
+              <span>Your Future Growth Partner</span>
             </span>
           </div>
 
